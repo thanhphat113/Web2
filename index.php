@@ -11,6 +11,7 @@
 	<div class="wrapper">
 		<?php
 			require("Admin/sidebar.php");
+			require("Admin/content.php");
 		?>
 	</div>
 </body>

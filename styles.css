@@ -1,9 +1,10 @@
 body{
 	margin: 0;
+	overflow: hidden;
 }
 
 .wrapper{
-	display: block;
+	display: flex;
 }
 
 .sidebar a{
@@ -29,6 +30,7 @@ body{
 	transition: width .75s ease;
 	box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
 	position:fixed;
+	/* float:left; */
 }
 
 .sidebar:hover{
@@ -39,4 +41,12 @@ body{
 	position:absolute;
 	bottom: 0;
 }
+
+.content{
+	flex:1;
+	height:100%;
+	background-color: aqua;
+	width: 100%; /* Subtracting sidebar width from the total width */
+}
+
 
