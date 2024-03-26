@@ -1,4 +1,4 @@
-<div class="sidebar">
+<div class="sidebar" onmouseover="changeContentWidth(true)" onmouseout="changeContentWidth(false)">
 	<div class="top">
 		<p align="center">Admin</p><hr>
 		<ul>

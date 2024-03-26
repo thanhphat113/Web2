@@ -11,8 +11,13 @@
 	<div class="wrapper">
 		<?php
 			require("Admin/sidebar.php");
-			require("Admin/content.php");
 		?>
+		<div class="content">
+			<?php
+				require("Admin/content.php");
+			?>
+		</div>
 	</div>
+	<script src="script.js"></script>
 </body>
 </html>
