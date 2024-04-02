@@ -1,5 +1,4 @@
-<h1 align="center" style="margin:15px 0;">THỐNG KÊ</h1>
-<hr class="line">
+
 <div class="top">
 	<a href="#" class="box box1">
 			<span class="title-box">Sản Phẩm</span>
@@ -18,7 +17,9 @@
 	</a>
 </div>
 <div class="center">
-	
+	<canvas id="myChart"></canvas>
+
 </div>
+
 
 
