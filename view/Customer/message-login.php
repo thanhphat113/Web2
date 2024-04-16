@@ -45,7 +45,7 @@
             background-color: #2980b9;
         }
     </style>
-</head>
+</head> 
 <body>
     <div id="notification" class="notification">
         <span id="notification-text"></span>

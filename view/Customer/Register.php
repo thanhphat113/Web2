@@ -3,6 +3,7 @@ session_start(); // Bắt đầu phiên làm việc
 
 // Include file kết nối CSDL
 include '../database/connection.php';
+$conn = connectToDatabase();
 // Kiểm tra nếu người dùng đã đăng nhập, chuyển hướng đến trang dashboard
 if(isset($_SESSION['username'])) {
     header("Location: dashboard.php");
@@ -69,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
         }
     }
 }
-$conn->close();
+    $conn->close();
 ?>
 
 <!DOCTYPE html>

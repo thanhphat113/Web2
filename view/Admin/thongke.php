@@ -1,19 +1,20 @@
 <?php
-	require("./database/connection.php");
+	include("../controller/hoadonCTL.php");
+	$hoadon = new hoadonCTL();
 ?>
 
 <div class="top">
 	<a href="index.php?id=sanpham" class="box box1">
 			<span class="title-box">Sản Phẩm</span>
-			<p class="box-content"><?php echo countProducts();?></p>
+			<p class="box-content">100</p>
 	</a>
 	<a href="index.php?id=khachhang" class="box box2">
 			<span class="title-box">Khách Hàng</span>
-			<p class="box-content"><?php echo countCus(); ?></p>
+			<p class="box-content">100</p>
 	</a>
 	<a href="index.php?id=nhanvien" class="box box3">
 			<span class="title-box">Nhân viên</span>
-			<p class="box-content"><?php echo countEmployee(); ?></p>
+			<p class="box-content">100</p>
 	</a>
 	<a href="#bottom" class="box box4">
 			<span class="title-box">Doanh Thu</span>
@@ -25,7 +26,7 @@
 			<div class="box-title">
 				<h1><i class="far fa-money-bill-alt"></i> Danh sách hoá đơn</h1>
 			</div>
-			<?php $hoadon_list = HoaDon_list(); ?>
+			<?php $hoadon_list = $hoadon->findAll(); ?>
 				<table  class = "table_view">
 					<thead>
 						<tr>
@@ -38,14 +39,14 @@
 						</tr>
 					</thead>
 					<tbody>
-						<?php foreach ($hoadon_list as $hoadon) {
+						<?php foreach ($hoadon_list as $hd) {
 									echo'<tr> 
-											<td>'.$hoadon["MaHD"].'</td> 
-											<td type="left">'.$hoadon["TenNV"] .'</td>
-											<td type="left">'.$hoadon["TenKH"] .'</td>
-											<td>'.$hoadon["MaKM"] .'</td>
-											<td>'.$hoadon["NgayTao"] .'</td>
-											<td>'.addFormat($hoadon["TongTien"]).'</td>
+											<td>'.$hd->getMahd().'</td> 
+											<td type="left">'.$hd->getManv() .'</td>
+											<td type="left">'.$hd->getMakh() .'</td>
+											<td>'.$hd->getMakm() .'</td>
+											<td>'.$hd->getNgaytao() .'</td>
+											<td>'.$hd->getTongtien().'</td>
 											</tr>';
 									}
 						?>

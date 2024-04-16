@@ -6,10 +6,10 @@ function togglePasswordVisibility(inputId) {
 
     if (passwordInput.type === "password") {
         passwordInput.type = "text";
-        eyeIcon.src = "../Pictures/ẩnpass.png";
+        eyeIcon.src = "../public/Pictures/hidePass.png";
     } else {
         passwordInput.type = "password";
-        eyeIcon.src = "../Pictures/hiệnpass.png";
+        eyeIcon.src = "../public/Pictures/showPass.png";
     }
 }
 // Comfirm password 

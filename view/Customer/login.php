@@ -2,15 +2,16 @@
 session_start(); // Bắt đầu phiên làm việc
 
 // Include file kết nối CSDL
-include '../database/connection.php';
+include './database/connection.php';
 include 'message-login.php';
 // Kiểm tra nếu người dùng đã đăng nhập, chuyển hướng đến trang dashboard
+
 if(isset($_SESSION['username'])) {
     header("Location: dashboard.php");
     exit(); // Dừng việc thực thi kịch bản tiếp theo sau lệnh header
 }
 
-//checkCookies
+// checkCookies
 $usernameInCookies ="";
 $passwordInCookies ="";
 if(isset($_COOKIE["username"]) && $_COOKIE["password"]){
@@ -19,17 +20,18 @@ if(isset($_COOKIE["username"]) && $_COOKIE["password"]){
 }
 
 // Kiểm tra nếu có dữ liệu được gửi từ form
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])){
+if (isset($_POST['login'])){
     // Lấy thông tin đăng nhập từ form
     $username = $_POST['username'];
     $password = $_POST['password'];
+    
 
     // Bảo vệ khỏi SQL injection
     $username = mysqli_real_escape_string($conn, $username);
     $password = mysqli_real_escape_string($conn, $password);
 
     // Truy vấn SQL để kiểm tra thông tin đăng nhập
-    $sql = "SELECT * FROM taikhoan WHERE BINARY username='$username' ";
+    $sql = "SELECT * FROM taikhoan WHERE BINARY username='$username'";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         //lấy mật khẩu mã hóa trong database
@@ -37,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])){
         $PassInDB = $rowMatk['Password'];
         $Role = $rowMatk['MaQuyen'];
         $Status = $rowMatk ['TrangThai'];
-        //Kiểm tra trạng thái tài khoản nếu mở
+//         //Kiểm tra trạng thái tài khoản nếu mở
         if($Status == 1){
             //kiểm tra mật khẩu nếu đúng
             if(password_verify($password, $PassInDB)){    
@@ -65,8 +67,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])){
                 // Đăng nhập không thành công, gửi thông báo lỗi
                 $error = "Mật khẩu không chính xác.";
                 echo "<script>showMessage('$error', 'error');</script>";
-            }
-        }else{
+                }
+            }else{
             // Đăng nhập không thành công, gửi thông báo tài khoản bị khóa
             $error = "Tài khoản bị khóa!";
             echo "<script>showMessage('$error', 'error');</script>";
@@ -77,8 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])){
         echo "<script>showMessage('$error', 'error');</script>";
     }
 }
-$conn->close();
-?>
+// ?>
 
 
 <!DOCTYPE html>
@@ -103,7 +104,7 @@ $conn->close();
                     <div class="password-container">
                         <input type="password" id="login-password" name="password" <?php echo $passwordInCookies?> required>
                         <span class="toggle-password" onclick="togglePasswordVisibility('login-password')">
-                            <img class="eye-icon" src="../Pictures/hiệnpass.png" alt="Show/Hide Password">
+                            <img class="eye-icon" src="../public/Pictures/showPass.png" alt="Show/Hide Password">
                         </span>
                     </div>       
                 </div>
