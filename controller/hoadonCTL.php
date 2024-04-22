@@ -1,6 +1,5 @@
 <?php
-include("../database/connectiondb.php");
-include("../model/hoadon.php");
+
 class hoadonCTL{
 	private $db;
 	

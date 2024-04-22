@@ -32,6 +32,15 @@ class connectiondb{
         }
     }
 
+    function execute_fetch_one($sql){
+        $result = $this->conn->query($sql);
+        if ($result && $result->num_rows > 0) {
+            return $result->fetch_assoc();
+        } else {
+            return null;
+        }
+    }
+
     function newId($type,$query){
         $result = $this->conn->query($query);
         $row = $result->fetch_array();

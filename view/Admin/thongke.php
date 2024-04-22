@@ -1,5 +1,4 @@
 <?php
-	include("../controller/hoadonCTL.php");
 	$hoadon = new hoadonCTL();
 ?>
 
@@ -27,6 +26,7 @@
 				<h1><i class="far fa-money-bill-alt"></i> Danh sách hoá đơn</h1>
 			</div>
 			<?php $hoadon_list = $hoadon->findAll(); ?>
+			<form action="detail_bill.php" method="get">
 				<table  class = "table_view">
 					<thead>
 						<tr>
@@ -36,22 +36,25 @@
 						<th>Mã KM</th>
 						<th>Ngày tạo</th>
 						<th>Tổng tiền</th>
+						<th>Xem chi tiết</th>
 						</tr>
 					</thead>
 					<tbody>
 						<?php foreach ($hoadon_list as $hd) {
 									echo'<tr> 
 											<td>'.$hd->getMahd().'</td> 
-											<td type="left">'.$hd->getManv() .'</td>
-											<td type="left">'.$hd->getMakh() .'</td>
+											<td type="left">'.$hd->getNv()->getTennv() .'</td>
+											<td type="left">'.$hd->getKh()->getTenkh() .'</td>
 											<td>'.$hd->getMakm() .'</td>
 											<td>'.$hd->getNgaytao() .'</td>
 											<td>'.$hd->getTongtien().'</td>
-											</tr>';
+											<td><button style="background-color:#13E41C;border-radius:10px;" type="submit" id="mahd" value="'.$hd->getMahd().'"><i class="far fa-eye"></i></button>
+										</tr>';
 									}
 						?>
 					</tbody>
 				</table>
+			</form>
 		</div>
 		<div class="boxex">
 			<h1><i class="fas fa-star" style="color: #FFD43B;"></i> Top sản phẩm bán chạy</h1><hr>

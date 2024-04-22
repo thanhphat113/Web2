@@ -7,6 +7,9 @@
 	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 	<link rel="stylesheet" href="./public/styles.css">
 	<title>Infinity Store</title>
+	<?php
+		require("public/import_list.php");
+	?>
 </head>
 <body>
 	<div class="wrapper">
