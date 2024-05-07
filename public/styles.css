@@ -24,7 +24,6 @@ a{
 	padding-top: 10px;
 	
 }
-
 .sidebar{
 	width: 50px;
 	z-index: 1;
@@ -194,7 +193,304 @@ a{
 	border-collapse: collapse; /* Loại bỏ khoảng trống giữa các ô */
 	max-height: 30px;
 }
+/*Nhan*/
+.main-content{
+    width: 100%;
+    height: 100%;
+    background-color: aliceblue;
+    /* background-color: rgb(241, 243, 244); */
+}
+.top-content{
+    position: relative;
+    width: 100%;
+    height: 8%;
+    margin-top: 0;
+}
+.title{
+    font-size: 32px;
+    text-align: left;
+    line-height: 250%;
+    margin-left: 50px;
+}
+.search-input{
+    position: absolute;
+    width: 15%;
+    line-height: 200%;
+    height: 30px;
+    top: 20px;
+    right: 8%;
+}
+.btn-add{
+    position: absolute;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 200%;
+    text-align: center;
+    top : 20px;
+    right: 25%;
+    width: 150px;
+    height: 35px;
+    color: white;
+    background-color: #6ec2f7;
+    border-radius: 20px;
+    border: solid 1px #6ec2f7;
+    cursor: pointer;
+}
+.btn-quick-search{
+    position: absolute;
+    width: 35px;
+    height: 25px;
+    top: 30px;
+    right: 5%;
+    color: white;
+    background-color: #6ec2f7;
+    border-radius: 5px;
+    border: solid 1px #6ec2f7;
+    cursor: pointer;
+}
+.center-content{
+    position: relative;
+    display: flex;
+    width: 100%;
+    align-items:flex-end;
+    width: 100%;
+    height: 50px;
+    margin-top: 0;
+}
+.text-search{
+    font-weight: 550;
+}
+.search-addres{
+    position: absolute;
+    right: 110px;
+    bottom: 5px;
+}
+.search-second{
+    position: absolute;
+    right: 380px;
+    bottom: 5px;
+}
+.search-gender{
+    position: absolute;
+    right: 600px;
+    bottom: 7px;
+}
+.search-state{
+    position: absolute;
+    right: 350px;
+    bottom: 5px;
+}
+.search-permission{
+    position: absolute;
+    right: 120px;
+    bottom: 5px;
+}
+.icon-list{
+    line-height: 200%;
+    margin-left: 30px;
+    background-color:aliceblue;
+    border: solid 1px aliceblue;
+    cursor: pointer;
+}
+.btn-search{
+    position: absolute;
+    right: 50px;
+    bottom: 5px; 
+    color: white;
+    background-color: #6ec2f7;
+    border-radius: 5px;
+    border: solid 1px #6ec2f7;
+    cursor: pointer;
+}
+.bot-content{
+    position: relative;
+    width: 100%;
+    height: 80%;
+}
+table{
+    position: relative;
+    width: 97%;
+    height: 550px;
+    margin: auto;
+    background-color: white;
+    border-collapse: separate;
+    border-spacing: 0px;
+    display: block;
+    overflow: auto;
 
+}
+th{
+    width: 25%;
+    position: sticky;
+    top: 0px;
+    padding: 10px;
+    text-align: left;
+    color: white;
+    background-color: #6ec2f7;
+}
+td,th{
+    border: solid rgb(241, 243, 244) 2px;
+    padding: 10px;
+    text-align: left;
+}
+.modal-add{
+    display: none;
+    position: relative;
+    position: absolute;
+    top: 0%;
+    width: 100%;
+    height: 110%;
+	background-color:aliceblue;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+.view-info{
+    display: flex;
+    position: relative;
+    position: absolute;
+    width: 40%;
+    height: 500px;
+    top: 2%;
+    left: 30%;
+    background-color:white;
+	border-radius: 10px;
+}
+.exit-view-info{
+    position: absolute;
+    margin-right: 0;
+    right: 0;
+    font-weight: 700;
+    height: 30px;
+    width: 35px;
+    background-color: rgb(255, 80, 80);
+    color: white;
+    background-color: #6ec2f7;
+    text-align: center;
+    line-height: 180%;
+    font-size: 18px; 
+    cursor: pointer;
+}
+.info{
+    position: absolute;
+    top: 5%;
+    display: flex;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+ul,li{
+    list-style: none;
+}
+.text-info{
+    position: absolute;
+    top: 5%;
+    left: 10%;
+    height: 70%;
+    width: 30%;
+    font-size: 18px;
+    line-height: 230%;
+}
+.input-info{
+    position: absolute;
+    left: 30%;
+    top: 5%;
+    width: 70%;
+    height: 50%;
+    font-size: 100%;
+    line-height: 260%;
+}
+.li{
+    font-size: 120%;
+}
+.error{
+    position: absolute;
+    display: block;
+    width: 100%;
+    color: red;
+    font-size: 12px;
+    margin-top: 0;
+    line-height: 0%;
+    left: 10%;
+}
+.btn-xacnhan{
+    position: absolute;
+    bottom: 70px;
+	left: 225px;
+    width: 120px;
+    height: 40px;
+    color: white;
+    text-align: center;
+    line-height: 250%;
+    border-radius: 5px;
+    background-color: #6ec2f7;
+    border-radius: 20px;
+    border: 1 solid #6ec2f7;
+    cursor: pointer;
+}
+.view-xacnhan{
+    position: relative;
+    display: none;
+    position: absolute;
+    width: 300px;
+    height: 100px;
+    top: 250px;
+    right: 560px;
+    border-radius: 10px;
+    border: 1px solid black;
+    background-color: white;
+}
+.text-xacnhan{
+    margin-top: 20px;
+    font-weight: 700;
+    text-align: center;
+}
+.bnt-select{
+    width: 50px;
+    margin-left: 70px;
+    margin-top: 20px;
+    color: white;
+    border-radius: 5px;
+    background-color: black;
+}
+#btn-back{
+    position: absolute;
+    right: 50px;
+    top:38px;
+    width: 60px;
+    height: 23px;
+    line-height: 130%;
+    text-align: center;
+    cursor: pointer;
+}
+.icon-option{
+    cursor: pointer;
+    width: 25px;
+    text-align: center;
+    border-radius: 5px;
+    border: #222 1px solid;
+    margin-left: 10px;
+}
+.xacnhan-delete{
+    position: relative;
+    display: none;
+    position: absolute;
+    width: 300px;
+    height: 100px;
+    top: 200px;
+    right: 600px;
+    border-radius: 10px;
+    border: 1px solid black;
+    background-color: white;
+}
+.modal-edit{
+    display: none;
+    position: relative;
+    position: absolute;
+    top: 0%;
+    width: 100%;
+    height: 110%;
+	background-color:aliceblue;
+    background-color: rgba(0, 0, 0, 0.4);
+}
 
   
 

@@ -1,0 +1,219 @@
+<?php
+	$taikhoan = new taikhoanCTL();
+?>
+<body>
+        <div class="main-content">
+            <div class="top-content">
+            <form  method="post">
+                <h2 class="title">Quản lý tài khoản</h2>
+                <div type="submit" onclick="moveModal('modal-add-accout')" class="btn-add">Thêm tài khoản</div>
+                <input type="text" class="search-input" name="id-acc-search" placeholder="Tìm mã hoặc tên tài khoản">
+                <button class="btn-quick-search" name="search-id"><i class="fas fa-search"></i></button>
+            </div>
+            <div class="center-content">
+                <button class="icon-list" name="icon-list">
+                <i class="fas fa-clipboard-list sidebar-icon"></i>
+                </button>
+                <div class="search-permission">
+                    <label class ="text-search"for="permission">Quyền:</label>
+                    <select style="font-weight: 550;" id="gender-search" name="permission-acc-search">
+                        <option style="width:50px"  class ="text-search" value="3"></option>
+                        <option style="width:50px"  class ="text-search" value="0">Admin(0)</option>
+                        <option style="width:50px"  class ="text-search" value="1">Nhân viên(1)</option>
+                        <option style="width:50px"  class ="text-search" value="2">Khách hàng(2)</option>
+                    </select>
+                </div>
+                <div class="search-state">
+                    <label class ="text-search"for="state">Trạng thái:</label>
+                    <select style="font-weight: 550;" id="gender-search" name="state-acc-search">
+                        <option style="width:50px"  class ="text-search" value="2"></option>
+                        <option style="width:50px"  class ="text-search" value="1">Còn hoạt động (1)</option>
+                        <option style="width:50px"  class ="text-search" value="0" >Off (0)</option>
+                    </select>
+                </div>
+                <div class="search">
+                    <button class="btn-search" name="search">Lọc</button>
+                </div>
+            </div>
+            <div class="bot-content">
+            <?php echo $taikhoan->add(); ?>
+            <?php echo $taikhoan->delete(); ?>
+            <?php echo $taikhoan->edit(); ?>
+            <?php $taikhoan_list = $taikhoan->findAll(); ?>
+                <table>
+                    <thead>                            
+                        <th style="width:5%">STT</th>
+                        <th style="width:10%">ID</th>
+                        <th style="width:20%">Username</th>
+                        <th style="width:20%">Password</th>
+                        <th style="width:10%">Trạng Thái</th>
+                        <th style="width:10%">Quyền</th>
+                        <th style="width:5%">Tùy chỉnh</th>
+                    </thead>
+                    <tbody>
+                    <?php $i=1; $user_list=[]; foreach ($taikhoan_list as $tk) {
+                                 array_push($user_list, $tk->getTentk());
+                        ?>
+                            <tr> 
+                                <td><?php echo $i?></td> 
+                                <td><?php echo $tk->getMatk();?></td> 
+                                <td><?php echo $tk->getTentk();?></td>
+                                <td><?php echo $tk->getPassword();?></td>
+                                <td><?php echo $tk->getTrangThai();?></td>
+                                <td><?php echo $tk->getMaquyen();?></td>
+                                <td style="display:flex;">
+                                    <div class="icon-option" style="background-color: rgb(93, 184, 93);" id="icon-edit" onclick="moveEdit('modal-edit-accout','<?php echo $tk->getMatk();?>','<?php echo $tk->getTentk();?>','<?php echo $tk->getPassword();?>','<?php echo $tk->getPassword();?>','<?php echo $tk->getMaquyen();?>','<?php echo $tk->getTrangthai();?>','<?php echo $tk->getMatk();?>','<?php echo $tk->getMatk();?>')" >
+                                        <i class="fas fa-edit"></i>
+                                    </div>  
+                                    <div type ="submit" class="icon-option" style="background-color: rgb(255, 80, 80);" id="icon-delete" name="id-dele" value="<?php echo $tk->getMatk();?>" onclick="xacnhanDelete('xacnhan-delete','<?php echo $tk->getMatk();?>','id-dele')">
+                                        <i class="fas fa-trash-alt"></i>
+                                </td>
+                            </tr>
+                        <?php
+                        $i++;
+                        }
+                        $users = json_encode($user_list);
+						?>
+                    </tbody> 
+                </table>
+
+                <div class="xacnhan-delete" id="xacnhan-delete">
+                <div class="text-xacnhan" id="text-xacnhan" >Xác nhận xóa nhân viên <span id="id-dele"></span> ?</div>
+                    <button type="submit" class="bnt-select" id="btn-delete" name="delete-acc">OK</button>
+                    <div class="bnt-select" id="btn-back" onclick="exitXacnhan('xacnhan-delete')">Không</div>
+                </div>
+
+                <div class="modal-add" id="modal-add-accout">
+                    <div style="height:400px" class="view-info">
+                        <div class="exit-view-info" onclick="exitAdd('modal-add-accout')">X</div>
+                        <div class="info">
+                            <div style="width:50%" class="text-info">
+                                <ul>
+                                    <li>Mã</li>
+                                    <li>Tài khoản</li>
+                                    <li>Mật khẩu</li>
+                                    <li>Nhập lại mật khẩu</li>
+                                    <li>Quyền</li>
+                                </ul>
+                            </div>
+                            <?php $newid = $taikhoan->newMaTK(); ?>
+                            
+                            <!-- <form id="form-add" method="post"> -->
+                            <div style="left: 40%; width:50%" class="input-info">
+                            
+                                <ul class="input">
+                                    <li >
+                                        <input type="text" id="id-acc-input" name="id-acc-input" class="li"  placeholder="Nhập mã" value="<?php echo $newid; ?>" readonly>
+                                        <div class="error" style="margin-left:10px" id="error-ma-tk"> </div>
+                                    </li>
+                                    <li >
+                                        <input type="text" id="user-acc-input" name="user-acc-input" class="li"  placeholder="Nhập tài khoản" value="">
+                                        <div class="error" style="margin-left:10px" id="error-user-tk" ></div>
+                                    </li>
+                                    <li >
+                                        <input type="text" id="pass-acc-input" name="pass-acc-input" class="li"  placeholder="Nhập mật khẩu" value="">
+                                        <div class="error" style="margin-left:10px" id="error-pass-tk"></div>                                    
+                                    </li>
+                                    <li >
+                                        <input type="text" id="pass2-acc-input" name="pass2-acc-input" class="li"  placeholder="Nhập lại mật khẩu" value="">
+                                        <div class="error" style="margin-left:10px" id="error-pass2-tk" ></div>                                                                      
+                                    </li>
+                                    <li>
+                                    <div class="li">
+                                        <select style="font-weight: 550;width:100px;height:25px" id="quyen-acc-input" name="quyen-acc-input">
+                                            <option style="width:800px"  class ="text-search" value="0">Admin</option>
+                                            <option style="width:50px"  class ="text-search" value="1">Nhân viên</option>
+                                            <option style="width:50px"  class ="text-search" value="2" >Khách hàng</option>
+                                        </select>
+                                    </div>
+                                    <div class="error" id="error-quyen-tk" style="margin-left:10px"></div>   
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- </form> -->
+                           <span style="display:none" id='span-user-tk'><?php echo $users ?></span>
+                            <div style="bottom:60px" class="btn-xacnhan" onclick="xacnhanAdd('taikhoan')">Hoàn tất</div>
+                        </div>
+                    </div>
+                    <!-- </form> -->
+                    
+                    <div class="view-xacnhan" id="add-xacnhan-accout" style="top:150px">
+                        <div class="text-xacnhan">Xác nhận thêm tài khoản <span id="id-add-acc"></span> ?</div>
+                        <button class="bnt-select" id="btn-add" name="add-acc">OK</button>
+                        <div class="bnt-select" id="btn-back" onclick="exitXacnhan('add-xacnhan-accout')">Không</div>
+                    </div>
+                </div>
+
+                <div class="modal-edit" id="modal-edit-accout">
+                    <div style="height:400px" class="view-info">
+                        <div class="exit-view-info" onclick="exitAdd('modal-edit-accout')">X</div>
+                        <div  class="info">
+                            <div style="width:50%" class="text-info">
+                                <ul>
+                                    <li>Mã</li>
+                                    <li>Tài khoản</li>
+                                    <li>Mật khẩu</li>
+                                    <li>Nhập lại mật khẩu</li>
+                                    <li>Quyền</li>
+                                    <li>Trạng thái</li>
+                                </ul>
+                            </div>
+                            
+                            <!-- <form id="form-add" method="post"> -->
+                            <div style="left: 40%; width:50%" class="input-info">
+                            
+                                <ul class="input">
+                                    <li >
+                                        <input type="text" id="id-acc-edit" name="id-acc-edit" class="li"  placeholder="Nhập mã" value="" readonly>
+                                        <div class="error" style="margin-left:10px" id="error-ma-tk-edit"> </div>
+                                    </li>
+                                    <li >
+                                        <input type="text" id="user-acc-edit" name="user-acc-edit" class="li"  placeholder="Nhập tài khoản" value="">
+                                        <div class="error" style="margin-left:10px" id="error-user-tk-edit" ></div>
+                                        <span id="user-current"></span> 
+                                    </li>
+                                    <li >
+                                        <input type="text" id="pass-acc-edit" name="pass-acc-edit" class="li"  placeholder="Nhập mật khẩu" value="">
+                                        <div class="error" style="margin-left:10px" id="error-pass-tk-edit"></div>                                    
+                                    </li>
+                                    <li >
+                                        <input type="text" id="pass2-acc-edit" name="pass2-acc-edit" class="li"  placeholder="Nhập lại mật khẩu" value="">
+                                        <div class="error" style="margin-left:10px" id="error-pass2-tk-edit" ></div>                                                                      
+                                    </li>
+                                    <li>
+                                    <div class="li">
+                                        <select style="font-weight: 550;width:100px;height:25px" id="quyen-acc-edit" name="quyen-acc-edit">
+                                            <option style="width:800px"  class ="text-search" value="0">Admin</option>
+                                            <option style="width:50px"  class ="text-search" value="1">Nhân viên</option>
+                                            <option style="width:50px"  class ="text-search" value="2" >Khách hàng</option>
+                                        </select>
+                                    </div>
+                                    <div class="error" id="error-quyen-tk-edit" style="margin-left:10px"></div>   
+                                    </li>
+                                    <li>
+                                    <div class="li">
+                                        <select style="font-weight: 550;width:100px;height:25px" id="trangthai-acc-edit" name="trangthai-acc-edit">
+                                            <option style="width:800px"  class ="text-search" value="1">On(1)</option>
+                                            <option style="width:50px"  class ="text-search" value="0">Off(0)</option>
+                                        </select>
+                                    </div>
+                                    <div class="error" id="error-quyen-tk-edit" style="margin-left:10px"></div>   
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- </form> -->
+                            <div style = "bottom : 50px" class="btn-xacnhan" onclick="xacNhanEdit('taikhoan')">Cập nhật</div>
+                        </div>
+                    </div>
+                    <!-- </form> -->
+                    
+                    <div style="top:150px" class="view-xacnhan" id="edit-xacnhan-accout">
+                        <div class="text-xacnhan">Xác nhận cập nhật tài khoản <span id="id-edit-acc"></span> ?</div>
+                        <button class="bnt-select" id="btn-edit" name="edit-acc">OK</button>
+                        <div class="bnt-select" id="btn-back" onclick="exitXacnhan('edit-xacnhan-accout')">Không</div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+</body>

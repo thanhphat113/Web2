@@ -5,13 +5,15 @@
 		private $email;
 		private $sdt;
 		private $matk;
+		private $dckh;
 
-		public function __construct($makh,$tenkh,$email,$sdt,$matk){
+		public function __construct($makh,$tenkh,$email,$sdt,$matk,$dckh){
 			$this->makh=$makh;
 			$this->tenkh=$tenkh;
 			$this->email=$email;
 			$this->sdt=$sdt;
 			$this->matk=$matk;
+			$this->dckh=$dckh;
 		}
 
 		public function getMakh(){
@@ -52,6 +54,14 @@
 	
 		public function setMatk($matk){
 			$this->matk = $matk;
+		}
+
+		public function getDckh(){
+			return $this->dckh;
+		}
+	
+		public function setDckh($dckh){
+			$this->dckh = $dckh;
 		}
 	}
 ?>

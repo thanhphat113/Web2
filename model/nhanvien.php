@@ -2,24 +2,53 @@
 	class nhanvien{
 		private $manv;
 		private $tennv;
+		private $gtnv;
+		private $nsnv;
+		private $dcnv;
 		private $email;
 		private $sdt;
 		private $matk;
 
-		public function __construct($manv,$tennv,$email,$sdt,$matk){
+		public function __construct($manv,$tennv,$email,$sdt,$matk,$gtnv,$nsnv,$dcnv){
 			$this->manv=$manv;
 			$this->tennv=$tennv;
 			$this->email=$email;
 			$this->sdt=$sdt;
 			$this->matk=$matk;
+			$this->gtnv=$gtnv;
+			$this->nsnv=$nsnv;
+			$this->dcnv=$dcnv;
+		}
+
+		public function getGtnv(){
+			return $this->gtnv;
+		}
+	
+		public function setGtnv($gtnv){
+			$this->gtnv = $gtnv;
+		}
+		public function getNsnv(){
+			return $this->nsnv;
+		}
+	
+		public function setNsnv($nsnv){
+			$this->nsnv = $nsnv;
+		}
+
+		public function getDcnv(){
+			return $this->dcnv;
+		}
+	
+		public function setDcnv($dcnv){
+			$this->dcnv = $dcnv;
 		}
 
 		public function getManv(){
-			return $this->makh;
+			return $this->manv;
 		}
 	
-		public function setManv($makh){
-			$this->manv = $makh;
+		public function setManv($manv){
+			$this->manv = $manv;
 		}
 
 		public function getTennv(){
