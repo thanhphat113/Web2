@@ -21,6 +21,15 @@
 				if ($_GET["id"] == "thongke") {
 					require("view/Admin/thongke.php");
 				}
+				else if ($_GET["id"] == "nhanvien") {
+					require("view/Admin/nhanvienView.php");
+				}
+				else if ($_GET["id"] == "khachhang") {
+					require("view/Admin/khachhangView.php");
+				}
+				else if ($_GET["id"] == "taikhoan") {
+					require("view/Admin/taikhoanView.php");
+				}
 				else{
 					require("example.php");
 				}

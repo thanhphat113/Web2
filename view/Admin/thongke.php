@@ -43,7 +43,6 @@
 					</thead>
 					<tbody>
 						<?php foreach ($hoadon_list as $hd) {
-								
 								$color = "#FF3300";
 								$trangthai = "Chưa xác nhận";
 								if ($hd->getTrangthai() == 0) {
@@ -53,11 +52,11 @@
 									$trangthai = "Đã xác nhận";
 								}
 									echo'<tr> 
-											<td>'.$hd->getMahd().'</td> 
-											<td>';
+											<td>'.$hd->getMahd().'</td>
+									 		<td>';
 											if ($hd->getNv() != null)
-											echo $hd->getNv()->getTennv() .'</td>';
-									echo '<td>'.$hd->getKh()->getTenkh() .'</td>
+											echo $hd->getNv()->getTennv().'</td>';
+									echo	'<td>'.$hd->getKh()->getTenkh() .'</td>
 											<td>'.$hd->getMakm() .'</td>
 											<td>'.$hd->getNgaytao() .'</td>
 											<td>'.$hd->getTongtien().'</td>

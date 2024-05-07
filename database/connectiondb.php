@@ -10,9 +10,9 @@ class connectiondb{
         // Thông tin kết nối đến cơ sở dữ liệu
         $this->conn = new mysqli($this->servername, $this->username, $this->password, $this->database);
 
-        if ($conn->connect_error) {
-            die("Kết nối thất bại: " . $this->conn->connect_error);
-        }
+        // if ($conn->connect_error) {
+        //     die("Kết nối thất bại: " . $this->conn->connect_error);
+        // }
         return $this->conn;
     }
 
