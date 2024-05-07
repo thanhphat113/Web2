@@ -4,14 +4,16 @@
 		private $nvCTL;
 		private $mahd;
 		private $manv;
-		private $nhanvien;
+		private $nhanvien = null;
 		private $makh;
 		private $khachhang;
 		private $makm;
 		private $ngaytao;
 		private $tongtien;
+		private $trangthai;
 
-		public function __construct($mahd,$manv,$makh,$makm,$ngaytao,$tongtien){
+
+		public function __construct($mahd,$manv,$makh,$makm,$ngaytao,$tongtien,$trangthai){
 			$this->khCTL = new khachhangCTL();
 			$this->nvCTL = new nhanvienCTL();
 			$this->mahd=$mahd;
@@ -22,6 +24,7 @@
 			$this->makm=$makm;
 			$this->ngaytao=$ngaytao;
 			$this->tongtien=$tongtien;
+			$this->trangthai=$trangthai;
 		}
 
 		public function getMahd(){
@@ -31,6 +34,16 @@
 		public function setMahd($mahd){
 			$this->mahd = $mahd;
 		}
+
+		public function getTrangthai(){
+			return $this->trangthai;
+		}
+
+		public function setTrangthai($mahd){
+			$this->trangthai = $trangthai;
+		}
+
+
 
 		public function getManv(){
 			return $this->manv;

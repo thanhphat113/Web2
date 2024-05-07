@@ -26,6 +26,7 @@
 				<h1><i class="far fa-money-bill-alt"></i> Danh sách hoá đơn</h1>
 			</div>
 			<?php $hoadon_list = $hoadon->findAll(); ?>
+			<div class="table-list">
 			<form action="detail_bill.php" method="get">
 				<table  class = "table_view">
 					<thead>
@@ -36,25 +37,42 @@
 						<th>Mã KM</th>
 						<th>Ngày tạo</th>
 						<th>Tổng tiền</th>
-						<th>Xem chi tiết</th>
+						<th>Trạng thái</th>
+						<th>Chức năng</th>
 						</tr>
 					</thead>
 					<tbody>
 						<?php foreach ($hoadon_list as $hd) {
+								
+								$color = "#FF3300";
+								$trangthai = "Chưa xác nhận";
+								if ($hd->getTrangthai() == 0) {
+									$trangthai = "Chưa xác nhận";
+								} else {
+									$color = "#00FF99";
+									$trangthai = "Đã xác nhận";
+								}
 									echo'<tr> 
 											<td>'.$hd->getMahd().'</td> 
-											<td type="left">'.$hd->getNv()->getTennv() .'</td>
-											<td type="left">'.$hd->getKh()->getTenkh() .'</td>
+											<td>';
+											if ($hd->getNv() != null)
+											echo $hd->getNv()->getTennv() .'</td>';
+									echo '<td>'.$hd->getKh()->getTenkh() .'</td>
 											<td>'.$hd->getMakm() .'</td>
 											<td>'.$hd->getNgaytao() .'</td>
 											<td>'.$hd->getTongtien().'</td>
-											<td><button style="background-color:#13E41C;border-radius:10px;" type="submit" id="mahd" value="'.$hd->getMahd().'"><i class="far fa-eye"></i></button>
+											<td style="color:'.$color.'">'.$trangthai.'</td>
+											<td>
+												<button style="background-color:#00FFFF;border-radius:10px;" type="button" id="mahd" value="'.$hd->getMahd().'"><i class="far fa-eye"></i> Xem</button>
+											</td>
 										</tr>';
 									}
+								
 						?>
 					</tbody>
 				</table>
 			</form>
+			</div>
 		</div>
 		<div class="boxex">
 			<h1><i class="fas fa-star" style="color: #FFD43B;"></i> Top sản phẩm bán chạy</h1><hr>
@@ -68,9 +86,13 @@
 </div>
 <div class="bottom">
 	<div class="boxex chart-box">
+		<!-- <div class="box-title"> -->
 		<h3><i class="fas fa-chart-bar"></i> Doanh thu theo năm</h3><hr>
+		<!-- </div> -->
+		<canvas id="myChart"></canvas>
 	</div>
 	<div class="boxex chart-box">
 		<h3><i class="fas fa-chart-pie"></i> Thị phần các loại sản phẩm bán được</h3><hr>
+		<canvas id="myDonutChart" width="50" height="50"></canvas>
 	</div>
 </div>

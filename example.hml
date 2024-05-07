@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Column Chart</title>
+<style>
+    .chart {
+        width: 400px;
+        margin: 20px auto;
+        border: 1px solid #ccc;
+        padding: 10px;
+        box-sizing: border-box;
+        position: relative;
+    }
+
+    .bar {
+        background-color: #4CAF50;
+        width: 50px; /* Chiều rộng của cột */
+        margin-right: 10px;
+        display: inline-block;
+        position: relative;
+    }
+
+    .bar span {
+        position: absolute;
+        bottom: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+</style>
+</head>
+<body>
+
+<div class="chart">
+    <div class="bar" style="height: 150px;"><span>150</span></div>
+    <div class="bar" style="height: 100px;"><span>100</span></div>
+    <div class="bar" style="height: 200px;"><span>200</span></div>
+    <div class="bar" style="height: 120px;"><span>120</span></div>
+</div>
+
+</body>
+</html>

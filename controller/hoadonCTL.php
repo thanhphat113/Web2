@@ -18,7 +18,8 @@ class hoadonCTL{
 			$makm = $hd['MaKM'];
 			$ngaytao = $hd['NgayTao'];
 			$tien = $hd['TongTien'];
-			$hoadon = new hoadon($mahd,$manv,$makh,$makm,$ngaytao,$tien);
+			$trangthai = $hd['trangthai'];
+			$hoadon = new hoadon($mahd,$manv,$makh,$makm,$ngaytao,$tien,$trangthai);
 			$result[] = $hoadon;
 		}
 		return $result;
@@ -27,6 +28,15 @@ class hoadonCTL{
 	function newMaHD(){
 		$query = "SELECT MAX(SUBSTRING(mahd, 3)) AS max_id FROM hoadon";
 		return $this->db->newId('HD',$query);
+	}
+
+	function tongTienTheoThang($thang){
+		$query = "SELECT SUM(TongTien) FROM hoadon WHERE MONTH(NgayTao) = ".$thang;
+		$result = $this->db->execute_fletch_one($query);
+		if(!empty($result)){
+			return $result[0];
+		}
+		else return 0;
 	}
 
 	public function insert($hoadon){
