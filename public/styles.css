@@ -24,6 +24,10 @@ a{
 	padding-top: 10px;
 	
 }
+.sidebar i{
+	width:40px;
+    height: 40px;	
+}
 .sidebar{
 	width: 50px;
 	z-index: 1;
@@ -51,11 +55,10 @@ a{
 	height: 40px;
 	font-size:32px;
 	margin-right: 16px;
-	
 }
 
 .content{
-	margin-left: 50px;
+	margin-left: 58px;
 	display: flex;
 	align-items: center;
 	flex-direction: column;
@@ -186,8 +189,8 @@ a{
     overflow-y: auto;
 }
 
-.table_view tbody tr:hover {
-    background-color: lightgrey;
+tbody tr:hover {
+    background-color: rgb(159, 206, 183,0.5);
 }
 
 .table_view tbody tr {
@@ -204,27 +207,6 @@ a{
 	max-height: 30px;
 }
 
-.hoadon-menu_top{
-	height: 100%;
-	width: 50%;
-	position: fixed;
-	z-index: 1;
-	top: 0;
-	overflow-x: hidden;
-	padding-top: 20px;
-	}
-
-.hoadon-menu_top .left{
-	left: 0;
-	background-color: #111;
-	color: white;
-	}
-
-	.hoadon-menu_top .right{
-		right: 0;
-		background-color: #222;
-		color: white;
-		}
 	
 #myDonutChart{
 	max-width: 300px; /* Thiết lập chiều rộng tối đa */
@@ -232,6 +214,74 @@ a{
     width: 100%; /* Thiết lập chiều rộng 100% */
     height: auto; 
 }
+
+
+.hoadon-menu_top{
+	width: 100%;
+	height: 50px;
+	background-color: #EEEEEE;
+	align-items: center;
+	display: flex;
+}
+
+.hoadon-content table{
+	margin-top:3px;
+	width: 100%;
+	border-collapse: collapse;
+	/* height: 600px; */
+	max-height: 600px;
+}
+
+.hoadon-content table thead{
+	background-color: #666666;
+	height: 60px;
+	color:rgb(255, 255, 255);
+}
+
+.hoadon-content .showList{
+	height: calc(100vh - 84px);
+	border: 0.5px solid black;
+}
+
+.hoadon-content tbody tr{
+	height: 50px;
+}
+
+.hoadon-content tbody .action:hover{
+	font-size: 35px;
+}
+
+tr:nth-child(even) {
+	background-color: #DDDDDD; /* Đặt màu nền của các dòng số lẻ thành màu đỏ */
+}
+
+.hoadon-content tbody tr button{
+	border: none;
+    background: none;
+	padding:0;
+	margin-right: 8px;
+}
+
+.hoadon-content i{
+	font-size:28px;
+}
+
+.hoadon-content .btn-add{
+	border: 0.5px solid black;
+	right: 0;
+	position: absolute;
+	height: 30px;
+	width: 200px;
+	margin-right: 5px;
+	background-color:aquamarine;
+}
+
+.hoadon-content{
+	/* border: 0.5px solid black; */
+	margin:3px;
+    width: 100%;
+}
+
 
 
 /*Nhan*/
@@ -542,3 +592,4 @@ ul,li{
   
   
    */
+
