@@ -609,3 +609,54 @@ function xacnhanAdd(item) {
         }
     }
 }
+
+    var search = document.getElementById("search-input");
+    var dataTable = document.getElementById("viewTable");
+    var tableRows = dataTable.getElementsByTagName("tr");
+
+    search.addEventListener("input", function () {
+        var keyword = search.value.trim().toLowerCase();
+
+        // Duyệt qua từng dòng của bảng
+        for (var i = 1; i < tableRows.length; i++) {
+            var row = tableRows[i];
+            var cells = row.getElementsByTagName("th");
+            var matchFound = false;
+
+            // Duyệt qua từng ô dữ liệu trong dòng
+            for (var j = 0; j < cells.length; j++) {
+                var cell = cells[j];
+                var cellText = cell.textContent.toLowerCase();
+
+                // Nếu từ khóa khớp với nội dung của ô dữ liệu
+                if (cellText.includes(keyword)) {
+                    matchFound = true;
+                    break;
+                }
+            }
+
+            // Hiển thị hoặc ẩn dòng dựa trên kết quả tìm kiếm
+            if (matchFound) {
+                row.style.display = "";
+            } else {
+                row.style.display = "none";
+            }
+        }
+    });
+
+    function thongbao(message) {
+        const tb = document.querySelector(".thongbao")
+        tb.style.right = '20px'
+        let length = 70
+        let process = document.querySelector(".process")
+        const mess = document.querySelector(".mess");
+        mess.textContent = message;
+        const run = setInterval(() => {
+            process.style.height = length + 'px'
+            length -= 5
+            if (length <= -10) {
+                clearInterval(run)
+                tb.style.right = '-500px'
+            }
+        }, 200)
+    }

@@ -3,10 +3,10 @@
 		<h1 style="margin-left: 10px;">Quản lý hoá đơn</h1>
 	</div>
 	<div class="hoadon-content">
-		<input style="width:400px;height:25px" type="text" name="txtSearch" placeholder="Nhập thông tin tìm kiếm"/>
-		<button class="btn-add" onclick="">Thêm</button>
+		<input id="search-input" type="text" class="txtSearch" placeholder="Nhập thông tin tìm kiếm"/>
+		<button class="btn-add" onclick="thongbao('hoá đơn')"> Thêm</button>
 		<div class="showList" >
-			<table>
+			<table id="viewTable">
 				<thead>
 					<tr>
 						<th style="width: 100px;">Mã hoá đơn</th>

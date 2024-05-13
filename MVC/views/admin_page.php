@@ -21,6 +21,15 @@
 			?>
 		</div>
 	</div>
+
+	<div class="thongbao">
+        <div class="process"></div>
+        <div class="circle">
+			<i class="fas fa-bullhorn" style="color: #0ebaec;"></i>
+        </div>
+        <span class="mess">Thông báo</span>
+    </div>
+
 	<script src="public/script.js"></script>
 </body>
 </html>
