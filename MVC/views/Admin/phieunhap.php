@@ -40,15 +40,67 @@
 			</table>
 		</div>
 
-		<div style="background-color:aqua; width: 100%;position:fixed;z-index:1" class="myModel">
-				<div class="content">
+		<div id="myModel" class="model">
+				<div class="model-content">
 					<div class="model-top">
 						<h1>THÊM PHIẾU NHẬP</h1>
 					</div>
-					<div class="model-content">
-						<span>Mã phiếu nhập</span>
-						<span>Nhà cung cấp</span>
-						<span>Ngày tạo</span>
+					<div class="model-content-bottom">
+						<input type="hidden" id="mapn"/>
+						<div class="form-input">
+							<div class="half">
+								<div class="choise">
+									<span>Nhà cung cấp</span>
+									<select class="model-choise">
+										<option value="1">NCC 1</option>
+										<option value="2">NCC 2</option>
+										<option value="3">NCC 3</option>
+									</select>
+								</div>
+								<div class="choise">
+									<span>Sản phẩm</span>
+									<select class="model-choise">
+										<option value="1">SP1</option>
+										<option value="2">SP2</option>
+										<option value="3">SP3</option>
+									</select>
+								</div>
+								<div class="choise">
+									<span>Số lượng</span>
+									<input type="text" />
+								</div>
+								<div class="choise">
+									<span>Giá nhập</span>
+									<input type="text" />
+								</div>
+							</div>
+							<div class="half">
+								<button class="model-btn-add" style="">Thêm</button>
+							</div>
+						</div>
+					</div>
+					<div class="model-table">
+						<table >
+							<thead style="height:30px;">
+								<th>Mã chi tiết</th>
+								<th>Tên sản phẩm</th>
+								<th>Màu sắc</th>
+								<th>Số lượng</th>
+								<th>Tổng tiền</th>
+								<th>Chức năng</th>
+							</thead>
+							<tbody>
+								<th>1</th>
+								<th>Iphone 15</th>
+								<th>Titan</th>
+								<th>5</th>
+								<th>100</th>
+								<th>
+									<button><i class="far fa-edit action" style="color: #74C0FC;"></i></button>
+									<button><i class="fas fa-trash-alt action" style="color: #e13737;"></i></button>
+								</th>
+							</tbody>
+						</table>
 					</div>
 				</div>
 		</div>
