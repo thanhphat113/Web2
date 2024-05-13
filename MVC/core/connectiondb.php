@@ -51,7 +51,16 @@ class connectiondb{
     
     function execute_query($sql){
         $cursor = $this->conn->query($sql);
-        return $cursor;
+        if( $cursor === false){
+            return false;
+        }else{
+            if ($this->conn->affected_rows > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        ;
     }
 }
 

@@ -1,5 +1,4 @@
 <?php
-	require_once("./MVC/models/Entities/E_phieunhap.php");
 	class M_phieunhap extends connectiondb{
 		public function findAll(){
 			// $result = array();
@@ -14,6 +13,16 @@
 				$result[] = $phieunhap;
 			}
 			return $result;
+		}
+
+		public function delete($mapn){
+			$query = "delete from phieunhap where MaPN = '".$mapn."'";
+			$result = $this->execute_query($query);
+			if ($result){
+				return "Xoá thành công";
+			}else{
+				return "Xoá thất bại";
+			}
 		}
 	}
 

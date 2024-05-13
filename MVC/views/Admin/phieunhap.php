@@ -4,8 +4,9 @@
 	</div>
 	<div class="hoadon-content">
 		<input type="text" id="search-input" class="txtSearch" placeholder="Nhập thông tin tìm kiếm"/>
-		<button style="transition: all .75s ease;" class="btn-add" onclick="thongbao('phieunhap')">Thêm</button>
+		<button style="transition: all .75s ease;" class="btn-add" onclick="showModel()">Thêm</button>
 		<div class="showList" >
+		
 			<table id="viewTable">
 				<thead>
 					<tr>
@@ -18,30 +19,38 @@
 					</tr>
 				</thead>
 				<tbody>
-					<?php
-						foreach ($data['list'] as $pn) {
-								echo'<tr> 
-										<th>'.$pn->getMapn(). '</th>
-										<th>'.$pn->getMancc().'</th>
-										<th>'.$pn->getNgayTao().'</th>
-										<th>'.$pn->getTongTien().'</th>
-										<th style="width:100px">
-											<button><i class="fas fa-info-circle action" style="color: #5d88a2;"></i></button>
-										</th>
-										<th style="width:200px">
-											<button><i class="far fa-check-circle action" style="color: #63E6BE"></i></button>
-											<button><i class="far fa-edit action" style="color: #74C0FC;"></i></button>
-											<button><i class="fas fa-trash-alt action" style="color: #e13737;"></i></button>
-										</th>
-									</tr>';
-								}
-					?>
+					<?php foreach ($data['pn_list'] as $pn):?>
+						<tr>
+							
+							<th><?php echo $pn->getMapn(); ?></th>
+							<th><?php echo $pn->getMancc(); ?></th>
+							<th><?php echo $pn->getNgayTao(); ?></th>
+							<th><?php echo $pn->getTongTien(); ?></th>
+							<th style="width:100px">
+								<button><i class="fas fa-info-circle action" style="color: #5d88a2;"></i></button>
+							</th>
+							<th style="width:200px">
+							<form action="./admin/phieunhap" method="post">
+								<input type="hidden" name="mapn" value=<?php echo '"'.$pn->getMapn().'"'; ?> />
+								<button type="button"><i class="far fa-edit action" style="color: #74C0FC;"></i></button>
+								<button type="submit" name="type" value="delete"><i class="fas fa-trash-alt action" style="color: #e13737;"></i></button>
+							</form>
+							</th>
+						</tr>
+						<?php endforeach; ?>
 				</tbody>
 			</table>
+		</form>
 		</div>
 
 		<div id="myModel" class="model">
 				<div class="model-content">
+					<div class="model-click">
+						<div  style="margin-bottom: 20px;">
+							<span class="close" onclick="closeModal()" >&times;</span>
+						</div>
+					</div>
+
 					<div class="model-top">
 						<h1>THÊM PHIẾU NHẬP</h1>
 					</div>
@@ -52,9 +61,10 @@
 								<div class="choise">
 									<span>Nhà cung cấp</span>
 									<select class="model-choise">
-										<option value="1">NCC 1</option>
-										<option value="2">NCC 2</option>
-										<option value="3">NCC 3</option>
+										<?php foreach ($data['ncc_list'] as $ncc){
+											echo '<option value="'.$ncc->getMancc().'">'.$ncc->gettenncc().'</option>';
+											}
+											?>
 									</select>
 								</div>
 								<div class="choise">
@@ -75,7 +85,7 @@
 								</div>
 							</div>
 							<div class="half">
-								<button class="model-btn-add" style="">Thêm</button>
+								<button class="model-btn-add">Thêm</button>
 							</div>
 						</div>
 					</div>
@@ -105,3 +115,4 @@
 				</div>
 		</div>
 	</div>
+

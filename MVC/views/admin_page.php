@@ -31,5 +31,14 @@
     </div>
 
 	<script src="public/script.js"></script>
+	<?php
+		 	if ($data["mess"] !== null) {
+				$mess = $data["mess"];
+				echo "
+				<script>
+				thongbao('".$mess."')
+				</script>";
+			}
+		?>
 </body>
 </html>

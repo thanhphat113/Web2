@@ -660,4 +660,29 @@ function xacnhanAdd(item) {
             }
         }, 200)
     }
+
+
+    function handleSubmit(btn) {
+        var tr = btn.closest('tr');
+        var form = btn.closest('form');
+        var mapn = tr.querySelector('input[name="mapn"]').value;
+        var type = tr.querySelector('input[name="type"]').value;
+
+        form.querySelector('input[name="mapn"]').value = mapn;
+        form.querySelector('input[name="type"]').value = type;
+
+        form.submit();
+    }
+
+    function showModel(){
+        var modal = document.getElementById("myModel")
+        modal.classList.add("show");
+    }
+
+    function closeModal() {
+        // Lấy thẻ modal
+        var modal = document.getElementById("myModel");
+        // Xóa lớp hiển thị khỏi modal
+        modal.classList.remove("show");
+    }
     
