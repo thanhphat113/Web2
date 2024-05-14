@@ -365,6 +365,8 @@ tr:nth-child(even) {
 
 .model-content .model-top{
     text-align: center;
+    margin-top: -20px;
+    margin-bottom: 10px;
 }
 
 .model-content .action-model{
@@ -405,6 +407,18 @@ tr:nth-child(even) {
     height:25px;
     border-radius:10px;
     color:white;
+}
+
+td{
+    text-align: center;
+    font:bold;
+    font-size: 20px;
+}
+
+.model-content td{
+        text-align: center;
+        font:bold;
+        font-size: 15px;
 }
 
 .model .choise{

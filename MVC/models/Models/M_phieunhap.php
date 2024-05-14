@@ -20,7 +20,31 @@
 			return $this->newId('PN',$query);
 		}
 
+		function insert($mapn, $mancc, $chitiet){
+			$query = "insert into phieunhap(MaPN,MaNCC,NgayTao) value ('". $mapn ."','". $mancc ."',NOW())";
+			$result = $this->execute_query($query);
+			if ($result){
+				foreach ($chitiet as $ct){
+					$query = "insert into chitiet_pn value ('". $mapn ."','". $ct["MaCT"] ."','". $ct["gianhap"] ."','".$ct["soluong"]."','". $ct["tongtien"] ."')";
+					$result = $this->execute_query($query);
+					if (!$result) return "Thêm chi tiết vào phiếu nhập thất bại";
+				}
+				$query = "UPDATE phieunhap as sp
+								SET TongTien = (
+									SELECT SUM(tongtien) 
+									FROM chitiet_pn as ct
+									WHERE ct.MaPN = sp.MaPN
+								)";
+				$result = $this->execute_query($query);
+				return "Thêm phiếu nhập thành công";
+			}else{
+				return "Thêm phiếu nhập thất bại";
+			}
+		}
+
 		public function delete($mapn){
+			$query = "delete from chitiet_pn where MaPN = '".$mapn."'";
+			$result = $this->execute_query($query);
 			$query = "delete from phieunhap where MaPN = '".$mapn."'";
 			$result = $this->execute_query($query);
 			if ($result){

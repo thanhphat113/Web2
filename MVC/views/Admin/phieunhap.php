@@ -13,7 +13,7 @@
 						<th style="width: 100px;">Mã phiếu nhập</th>
 						<th>Nhà cung cấp</th>
 						<th>Ngày tạo</th>
-						<th>Tổng tiền</th>
+						<th>Tổng tiền<small> (vnđ)</small></th>
 						<th style="width: 90px;">Xem chi tiết</th>
 						<th>Chức năng</th>
 					</tr>
@@ -22,20 +22,20 @@
 					<?php foreach ($data['pn_list'] as $pn):?>
 						<tr>
 							
-							<th><?php echo $pn->getMapn(); ?></th>
-							<th><?php echo $pn->getMancc(); ?></th>
-							<th><?php echo $pn->getNgayTao(); ?></th>
-							<th><?php echo $pn->getTongTien(); ?></th>
-							<th style="width:100px">
+							<td><?php echo $pn->getMapn(); ?></td>
+							<td><?php echo $pn->getMancc(); ?></td>
+							<td><?php echo $pn->getNgayTao(); ?></td>
+							<td><?php echo number_format($pn->getTongTien(), 0, ',', '.'); ?></td>
+							<td style="width:100px">
 								<button><i class="fas fa-info-circle action" style="color: #5d88a2;"></i></button>
-							</th>
-							<th style="width:200px">
+							</td>
+							<td style="width:200px">
 							<form action="./admin/phieunhap" method="post">
 								<input type="hidden" name="mapn" value=<?php echo '"'.$pn->getMapn().'"'; ?> />
 								<button type="button"><i class="far fa-edit action" style="color: #74C0FC;"></i></button>
 								<button type="submit" name="type" value="delete"><i class="fas fa-trash-alt action" style="color: #e13737;"></i></button>
 							</form>
-							</th>
+							</td>
 						</tr>
 						<?php endforeach; ?>
 				</tbody>
@@ -44,7 +44,7 @@
 		</div>
 
 		<div id="myModel" class="model <?php if ($data["openModel"]) echo 'show';?>" >
-				<input type="hidden" id="MaPN" value="<?php echo $data["mapn"] ;?>">
+				<input type="hidden" id="MaPN-model" value="<?php echo $data["mapn"] ;?>">
 				<div class="model-content">
 					<div class="model-click">
 						<div  style="margin-bottom: 20px;">
@@ -71,26 +71,17 @@
 								</div>
 								<div class="choise">
 									<span>Sản phẩm</span>
-									<form id="myForm" action="./admin/phieunhap" method="post">
-										<select id="sanpham" name="selectedValue" class="model-choise" onChange="this.form.submit()">
+										<select id="sanpham" name="selectedValue" class="model-choise" >
 											<option value="0">-- Chọn sản phẩm --</option>
 											<?php foreach ($data['detail_name_list'] as $dtsp){
-													echo '<option';
-													if ($data["masp_selected"] == $dtsp["MaSP"]) echo " selected";
-													echo ' value="'.$dtsp['MaSP'].'">'. $dtsp['TenSP'] .'</option>';
+													echo '<option value="'.$dtsp['MaSP'].'">'. $dtsp['TenSP'] .'</option>';
 													}
 													?>
 										</select>
-									</form>
 								</div>
 								<div class="choise">
 									<span>Màu sắc</span>
-									<select id="mau" class="model-choise" <?php if ($data["masp_selected"] == 0) echo " disabled";?>>
-										<option value="0">-- Chọn màu --</option>
-									<?php foreach ($data['color_list'] as $mau){
-											echo '<option value="'.$mau['MaCT'].'">'. $mau['Mau'] .'</option>';
-											}
-											?>
+									<select id="mau" class="model-choise" ;?>>
 									</select>
 								</div>
 								<div class="choise">
@@ -116,9 +107,9 @@
 								<th>Mã chi tiết</th>
 								<th>Tên sản phẩm</th>
 								<th>Màu sắc</th>
-								<th>Giá nhập</th>
+								<th>Giá nhập<small>(vnđ)</small></th>
 								<th>Số lượng</th>
-								<th>Tổng tiền</th>
+								<th>Tổng tiền<small>(vnđ)</small></th>
 								<th>Chức năng</th>
 							</thead>
 							<tbody class="tableBody">

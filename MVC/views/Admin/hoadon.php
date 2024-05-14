@@ -32,23 +32,23 @@
 								$trangthai = "Đã xác nhận";
 							}
 								echo'<tr> 
-										<th >'.$hd->getMahd().'</td>
-										 <th style="width:200px">'.$hd->getMaNV().'</td>';
-										// if ($hd->getNv() != null)
-										// 	echo $hd->getNv()->getTennv().'</td>';
-								echo	'<th style="width:200px">'.$hd->getMakh().'</td>
-										<th>'.$hd->getMakm() .'</td>
-										<th>'.$hd->getNgaytao() .'</td>
-										<th>'.$hd->getTongtien().'</td>
-										<th style="color:'.$color.'">'.$trangthai.'</th>
-										<th style="width:100px">
+										<td>'.$hd->getMahd().'</td>
+										<td>';
+										if ($hd->getNv() != null)
+											echo $hd->getNv()->getTennv().'</td>';
+								echo	'<td style="width:200px">'.$hd->getMakh().'</td>
+										<td>'.$hd->getMakm() .'</td>
+										<td>'.$hd->getNgaytao() .'</td>
+										<td>'.$hd->getTongtien().'</td>
+										<td style="color:'.$color.'">'.$trangthai.'</td>
+										<td style="width:100px">
 											<button><i class="fas fa-info-circle action" style="color: #5d88a2;"></i></button>
-										</th>
-										<th style="width:200px">
+										</td>
+										<td style="width:200px">
 											<button><i class="far fa-check-circle action" style="color: #63E6BE"></i></button>
 											<button><i class="far fa-edit action" style="color: #74C0FC;"></i></button>
 											<button><i class="fas fa-trash-alt action" style="color: #e13737;"></i></button>
-										</th>
+										</td>
 									</tr>';
 								}
 					?>

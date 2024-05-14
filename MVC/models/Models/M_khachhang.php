@@ -7,6 +7,16 @@ class M_khachhang extends connectiondb{
 		return $this->newId('KH',$query);
 	}
 
+	public function findById($id){
+		$query = "select * from khachhang where MaKH = '".$id."'";
+		$result = $this->execute_fetch_one($query);
+		
+		if(!empty($result)){
+			return new nhanvien($result['MaKH'],$result['TenKH'],$result['Email'],$result['SoDienThoai'],$result['MaTK'],$result['GioiTinh'],$result['NgaySinh'],$result['DiaChi']);
+		}
+		else return null;
+	}
+
 	public function search($diachi){
 		$result = array();
 		$query = "SELECT * FROM khachhang WHERE DiaChi LIKE '%$diachi%' ";

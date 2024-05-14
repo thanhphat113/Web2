@@ -620,7 +620,7 @@ function xacnhanAdd(item) {
         // Duyệt qua từng dòng của bảng
         for (var i = 1; i < tableRows.length; i++) {
             var row = tableRows[i];
-            var cells = row.getElementsByTagName("th");
+            var cells = row.getElementsByTagName("td");
             var matchFound = false;
 
             // Duyệt qua từng ô dữ liệu trong dòng
@@ -684,6 +684,44 @@ function xacnhanAdd(item) {
         var modal = document.getElementById("myModel");
         // Xóa lớp hiển thị khỏi modal
         modal.classList.remove("show");
+        location.reload();
+    }
+
+    document.getElementById("sanpham").addEventListener("change", function() {
+        var selectedValue = this.value;
+        var data = {
+            selected: selectedValue
+        };
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "./admin/loadColor", true); // Không cần nối thêm selectedValue vào URL
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4) {
+                if (xhr.status === 200) {
+                    var responseData = JSON.parse(xhr.responseText);
+                    updateCombobox2(responseData);
+                } else {
+                    document.write("Đã xảy ra lỗi khi gửi yêu cầu.");
+                }
+            }
+        };
+        xhr.send(JSON.stringify(data)); // Chuyển đổi data thành JSON trước khi gửi
+    });
+
+    function formatCurrency(number) {
+        return number.toLocaleString('vi-VN');
+    }
+    
+
+    function updateCombobox2(data) {
+        var cbb2 = document.getElementById("mau");
+        cbb2.innerHTML = "";
+        data.forEach(function(option) {
+            var optionElem = document.createElement("option");
+            optionElem.value = option.value;
+            optionElem.textContent = option.text;
+            cbb2.appendChild(optionElem);
+        });
     }
 
     document.getElementById("model-btn-add").addEventListener("click", function() {
@@ -691,7 +729,7 @@ function xacnhanAdd(item) {
         var mact = document.getElementById("mau").value;
         value = parseInt(mact);
         var sl = parseInt(document.getElementById("sl").value);
-        var gianhap = document.getElementById("gianhap").value;
+        var gianhap = parseInt(document.getElementById("gianhap").value);
 
         var selectElementMau = document.getElementById("mau");
         var selectedMau = selectElementMau.selectedIndex;
@@ -701,7 +739,7 @@ function xacnhanAdd(item) {
         var selectedSP = selectElementSP.selectedIndex;
         var sp = selectElementSP.options[selectedSP].text;
 
-        if (value != 0){
+        if (!isNaN(sl) && !isNaN(gianhap)){
             var tableBody = document.getElementById("myTable-Model").getElementsByTagName("tbody")[0];
             var rows = tableBody.getElementsByTagName("tr");
             var found = false;
@@ -736,45 +774,73 @@ function xacnhanAdd(item) {
                 cellMaCT.innerHTML = mact;
                 cellSP.innerHTML = sp;
                 cellMau.innerHTML = mau;
-                cellGiaNhap.innerHTML = gianhap;
+                cellGiaNhap.innerHTML = formatCurrency(gianhap);
                 cellSoluong.innerHTML = sl;
-                cellTong.innerHTML = gianhap * sl;
-                cellCN.innerHTML = '<button><i class="far fa-edit action" style="color: #74C0FC;"></i></button> <button><i class="fas fa-trash-alt action" style="color: #e13737;"></i></button>';
+                cellTong.innerHTML = formatCurrency( gianhap * sl);
+                cellCN.innerHTML = '<button><i class="far fa-edit action" style="color: #74C0FC;"></i></button> <button id="delete-row-model" onclick="deleteRow(this)"><i class="fas fa-trash-alt action" style="color: #e13737;"></i></button>';
             }
+            document.getElementById("sanpham").value = 0;
+            document.getElementById("mau").innerHTML = "";
+            document.getElementById("sl").innerHTML = "";
+            document.getElementById("gianhap").innerHTML = "";
         }
         else{
-            thongbao("Vui lòng chọn màu sắc");
+            thongbao("Vui lòng không bỏ trống số lượng và giá nhập");
         }
     })
 
     function themPN(){
         var rows = document.querySelectorAll("#myTable-Model tbody tr");
-        var mancc = document.getElementById("ncc").value;
-        var mapn = document.getElementById("MaPN").value;
-        var currentDate = new Date(); // Tạo một đối tượng Date mới, đại diện cho thời điểm hiện tại
-        var currentDateString = currentDate.toISOString().slice(0, 10);
-        var danhsach = [];
 
-        rows.forEach(function(row) {
-            var maPhieuNhap = row.cells[0].textContent;
-            var soLuong = row.cells[4].textContent;
-            var donGia = row.cells[3].textContent;
-            var thanhTien = row.cells[5].textContent;
-            // Lấy thông tin từ các ô khác nếu cần
-            danhsach.push({MaPN:mapn},{MaNCC:mancc},{NgayTao:currentDateString},{MaCT:maPhieuNhap},{soluong:soLuong},{gianhap:donGia},{tongtien:thanhTien});
-        });
-        var xhr = new XMLHttpRequest();
-            xhr.open("POST", "./admin/themPN", true);
-            xhr.setRequestHeader("Content-Type", "application/json");
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    // Xử lý phản hồi từ máy chủ nếu cần
-                    console.log(xhr.responseText);
+        var mancc = document.getElementById("ncc").value;
+        var mapn = document.getElementById("MaPN-model").value;
+        
+        var danhsach_ct = [];
+
+
+        if (rows.length > 0){
+            if (mancc != 0){
+                var danhsach_pn = {
+                    mapn : mapn,
+                    mancc : mancc,
                 }
-            };
-            xhr.send(JSON.stringify(danhsach));
-            thongbao(danhsach[0]["MaPN"]+" - "+danhsach[0]["MaNCC"])
+                rows.forEach(function(row) {
+                    var maCT = row.cells[0].textContent;
+                    var soLuong = row.cells[4].textContent;
+                    var donGia = row.cells[3].textContent;
+                    var thanhTien = row.cells[5].textContent;
+
+                    console.log(soLuong+ " "+donGia+" "+thanhTien)
+
+                    // Lấy thông tin từ các ô khác nếu cần
+                    danhsach_ct.push({soluong:soLuong,
+                                        MaCT:maCT,
+                                        gianhap:donGia,
+                                        tongtien:thanhTien});
+                    
+                });
+                
+                var xhr = new XMLHttpRequest();
+                    xhr.open("POST", "./admin/themPN", true);
+                    xhr.setRequestHeader("Content-Type", "application/json");
+                    xhr.onreadystatechange = function() {
+                        if (xhr.readyState === 4 && xhr.status === 200) {
+                            var result = JSON.parse(xhr.responseText);
+                            document.querySelectorAll("#myTable-Model tbody tr").innerHTML = ""
+                            thongbao(result["mess"]);
+                            if ( result["mapn"] != null ) document.getElementById("MaPN-model").value = result["mapn"];
+                        }
+                    };
+                var data ={
+                    pn:danhsach_pn,
+                    ct:danhsach_ct
+                }
+                xhr.send(JSON.stringify(data));
+            }else thongbao("Vui lòng chọn nhà cung cấp");
+        }else thongbao("Vui lòng hãy thêm dữ liệu sản phẩm")
     }
+        
+        
 
     function toggleComboBox2() {
         var cbb1 = document.getElementById("sanpham");
@@ -788,6 +854,14 @@ function xacnhanAdd(item) {
             // Nếu chưa chọn, tắt combobox 2 và đặt lại giá trị mặc định
             cbb2.disabled = true;
             cbb2.value = 0;
+        }
+    }
+
+
+    function deleteRow(button){
+        var row = button.closest('tr');
+        if (row) {
+            row.remove();
         }
     }
     
