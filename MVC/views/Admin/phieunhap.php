@@ -43,7 +43,8 @@
 		</form>
 		</div>
 
-		<div id="myModel" class="model">
+		<div id="myModel" class="model <?php if ($data["openModel"]) echo 'show';?>" >
+				<input type="hidden" id="MaPN" value="<?php echo $data["mapn"] ;?>">
 				<div class="model-content">
 					<div class="model-click">
 						<div  style="margin-bottom: 20px;">
@@ -60,7 +61,8 @@
 							<div class="half">
 								<div class="choise">
 									<span>Nhà cung cấp</span>
-									<select class="model-choise">
+									<select id="ncc" class="model-choise">
+										<option value="0">-- Nhà cung cấp --</option>
 										<?php foreach ($data['ncc_list'] as $ncc){
 											echo '<option value="'.$ncc->getMancc().'">'.$ncc->gettenncc().'</option>';
 											}
@@ -69,46 +71,57 @@
 								</div>
 								<div class="choise">
 									<span>Sản phẩm</span>
-									<select class="model-choise">
-										<option value="1">SP1</option>
-										<option value="2">SP2</option>
-										<option value="3">SP3</option>
+									<form id="myForm" action="./admin/phieunhap" method="post">
+										<select id="sanpham" name="selectedValue" class="model-choise" onChange="this.form.submit()">
+											<option value="0">-- Chọn sản phẩm --</option>
+											<?php foreach ($data['detail_name_list'] as $dtsp){
+													echo '<option';
+													if ($data["masp_selected"] == $dtsp["MaSP"]) echo " selected";
+													echo ' value="'.$dtsp['MaSP'].'">'. $dtsp['TenSP'] .'</option>';
+													}
+													?>
+										</select>
+									</form>
+								</div>
+								<div class="choise">
+									<span>Màu sắc</span>
+									<select id="mau" class="model-choise" <?php if ($data["masp_selected"] == 0) echo " disabled";?>>
+										<option value="0">-- Chọn màu --</option>
+									<?php foreach ($data['color_list'] as $mau){
+											echo '<option value="'.$mau['MaCT'].'">'. $mau['Mau'] .'</option>';
+											}
+											?>
 									</select>
 								</div>
 								<div class="choise">
 									<span>Số lượng</span>
-									<input type="text" />
+									<input id="sl" type="text" />
 								</div>
 								<div class="choise">
 									<span>Giá nhập</span>
-									<input type="text" />
+									<input id="gianhap" type="text" />
 								</div>
 							</div>
 							<div class="half">
-								<button class="model-btn-add">Thêm</button>
+								<button type="button" id="model-btn-add" class="model-btn-add action-model">Thêm</button><br>
+								<button type="button" onclick="themPN()" name="type" value="them-phieunhap" style="margin-top:10px;" id="model-btn-add-pn" class="model-btn-add action-model">Thêm phiếu nhập</button>
 							</div>
+
+
 						</div>
 					</div>
 					<div class="model-table">
-						<table >
+						<table id="myTable-Model">
 							<thead style="height:30px;">
 								<th>Mã chi tiết</th>
 								<th>Tên sản phẩm</th>
 								<th>Màu sắc</th>
+								<th>Giá nhập</th>
 								<th>Số lượng</th>
 								<th>Tổng tiền</th>
 								<th>Chức năng</th>
 							</thead>
-							<tbody>
-								<th>1</th>
-								<th>Iphone 15</th>
-								<th>Titan</th>
-								<th>5</th>
-								<th>100</th>
-								<th>
-									<button><i class="far fa-edit action" style="color: #74C0FC;"></i></button>
-									<button><i class="fas fa-trash-alt action" style="color: #e13737;"></i></button>
-								</th>
+							<tbody class="tableBody">
 							</tbody>
 						</table>
 					</div>

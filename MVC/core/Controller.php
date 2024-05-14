@@ -1,7 +1,6 @@
 <?php
 	class Controller {
 		public function model($model) {
-			require_once "./MVC/models/Models/". $model .".php";
 			return new $model;
 		}
 

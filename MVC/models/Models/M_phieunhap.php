@@ -1,7 +1,7 @@
 <?php
 	class M_phieunhap extends connectiondb{
 		public function findAll(){
-			// $result = array();
+			$result = array();
 			$query = "select * from phieunhap";
 			$list = $this->execute_fetch_all( $query );
 			foreach ($list as $pn) {
@@ -13,6 +13,11 @@
 				$result[] = $phieunhap;
 			}
 			return $result;
+		}
+
+		function newMaPN(){
+			$query = "SELECT MAX(SUBSTRING(maPN, 3)) AS max_id FROM phieunhap";
+			return $this->newId('PN',$query);
 		}
 
 		public function delete($mapn){

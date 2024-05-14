@@ -1,6 +1,4 @@
 <?php
-
-require_once("./MVC/models/Entities/E_hoadon.php");
 class M_hoadon extends connectiondb{
 	public function findAll(){
 		// $result = array();

@@ -685,4 +685,109 @@ function xacnhanAdd(item) {
         // Xóa lớp hiển thị khỏi modal
         modal.classList.remove("show");
     }
+
+    document.getElementById("model-btn-add").addEventListener("click", function() {
+    //     // Lấy giá trị từ các combobox
+        var mact = document.getElementById("mau").value;
+        value = parseInt(mact);
+        var sl = parseInt(document.getElementById("sl").value);
+        var gianhap = document.getElementById("gianhap").value;
+
+        var selectElementMau = document.getElementById("mau");
+        var selectedMau = selectElementMau.selectedIndex;
+        var mau = selectElementMau.options[selectedMau].text;
+
+        var selectElementSP = document.getElementById("sanpham");
+        var selectedSP = selectElementSP.selectedIndex;
+        var sp = selectElementSP.options[selectedSP].text;
+
+        if (value != 0){
+            var tableBody = document.getElementById("myTable-Model").getElementsByTagName("tbody")[0];
+            var rows = tableBody.getElementsByTagName("tr");
+            var found = false;
+
+            for (var i = 0; i < rows.length; i++) {
+                var cells = rows[i].getElementsByTagName("td");
+                var existingMact = cells[0].textContent; // Lấy giá trị của cột mã mặt hàng trong hàng hiện tại
+                if (existingMact === mact) {
+                    var cellSoluong = cells[4];
+                    var cellTong = cells[5];
+                    var soluong = parseInt(cellSoluong.textContent); // Lấy số lượng hiện tại
+                    var tong = parseInt(cellTong.textContent); // Lấy tổng tiền hiện tại
+                    soluong += sl; // Tăng số lượng lên
+                    tong += gianhap * sl; // Cập nhật tổng tiền
+                    cellSoluong.textContent = soluong; // Cập nhật số lượng
+                    cellTong.textContent = tong; // Cập nhật tổng tiền
+                    found = true;
+                    break; // Thoát khỏi vòng lặp sau khi cập nhật
+                }
+            }
+            if (!found) {
+                var newRow = tableBody.insertRow(tableBody.rows.length);
+
+                var cellMaCT = newRow.insertCell(0);
+                var cellSP = newRow.insertCell(1);
+                var cellMau = newRow.insertCell(2);
+                var cellGiaNhap = newRow.insertCell(3);
+                var cellSoluong = newRow.insertCell(4);
+                var cellTong = newRow.insertCell(5);
+                var cellCN = newRow.insertCell(6);
+
+                cellMaCT.innerHTML = mact;
+                cellSP.innerHTML = sp;
+                cellMau.innerHTML = mau;
+                cellGiaNhap.innerHTML = gianhap;
+                cellSoluong.innerHTML = sl;
+                cellTong.innerHTML = gianhap * sl;
+                cellCN.innerHTML = '<button><i class="far fa-edit action" style="color: #74C0FC;"></i></button> <button><i class="fas fa-trash-alt action" style="color: #e13737;"></i></button>';
+            }
+        }
+        else{
+            thongbao("Vui lòng chọn màu sắc");
+        }
+    })
+
+    function themPN(){
+        var rows = document.querySelectorAll("#myTable-Model tbody tr");
+        var mancc = document.getElementById("ncc").value;
+        var mapn = document.getElementById("MaPN").value;
+        var currentDate = new Date(); // Tạo một đối tượng Date mới, đại diện cho thời điểm hiện tại
+        var currentDateString = currentDate.toISOString().slice(0, 10);
+        var danhsach = [];
+
+        rows.forEach(function(row) {
+            var maPhieuNhap = row.cells[0].textContent;
+            var soLuong = row.cells[4].textContent;
+            var donGia = row.cells[3].textContent;
+            var thanhTien = row.cells[5].textContent;
+            // Lấy thông tin từ các ô khác nếu cần
+            danhsach.push({MaPN:mapn},{MaNCC:mancc},{NgayTao:currentDateString},{MaCT:maPhieuNhap},{soluong:soLuong},{gianhap:donGia},{tongtien:thanhTien});
+        });
+        var xhr = new XMLHttpRequest();
+            xhr.open("POST", "./admin/themPN", true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    // Xử lý phản hồi từ máy chủ nếu cần
+                    console.log(xhr.responseText);
+                }
+            };
+            xhr.send(JSON.stringify(danhsach));
+            thongbao(danhsach[0]["MaPN"]+" - "+danhsach[0]["MaNCC"])
+    }
+
+    function toggleComboBox2() {
+        var cbb1 = document.getElementById("sanpham");
+        var cbb2 = document.getElementById("mau");
+    
+        // Kiểm tra giá trị của combobox 1
+        if (cbb1.value != 0) {
+            // Nếu đã chọn, bật combobox 2
+            cbb2.disabled = false;
+        } else {
+            // Nếu chưa chọn, tắt combobox 2 và đặt lại giá trị mặc định
+            cbb2.disabled = true;
+            cbb2.value = 0;
+        }
+    }
     
