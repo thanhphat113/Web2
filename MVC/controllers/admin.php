@@ -7,6 +7,7 @@
 		private $sanpham_detailModel;
 		private $phieunhapModel;
 		private $nhacungcapModel;
+		public $taikhoanModel;
 
 		public function __construct(){
 			$this->phieunhap_detailModel = $this->model("M_phieunhap_detail");
@@ -14,6 +15,7 @@
 			$this->phieunhapModel = $this->model("M_phieunhap");
 			$this->nhacungcapModel = $this->model("M_nhacungcap");
 			$this->sanpham_detailModel = $this->model("M_sanpham_detail");
+			$this->taikhoanModel=$this->model("M_taikhoan");
 		}
 
 		function thongke() {
@@ -149,6 +151,59 @@
 				"detail_name_list" => $detail,
 				"ncc_list" => $ncc_list,
 				"pn_list" => $pn_list]);
+		}
+
+		function taikhoan() {
+			$result_mess = "";
+			$oop = $this->model("M_taikhoan");
+			$taikhoan_list = $oop -> showAll();
+			$newid = $oop->newMaTK();
+
+			if(isset($_POST["search"])){
+				$maquyen =	(int) $_POST['permission-acc-search'];
+				$trangthai =(int) $_POST['state-acc-search'];
+				$taikhoan_list = $oop -> search($maquyen,$trangthai);
+			}
+
+			else if(isset($_POST["quick_search"])){
+				$search = $_POST['id-acc-search'];
+				$taikhoan_list = $oop -> quick_search($search);
+			}
+
+			else if(isset($_POST["delete-acc"])){
+				$matk = $_POST["delete-acc"];
+				$result_mess="Đã xóa '$matk' thành công !";
+				$this->taikhoanModel->delete($matk);
+				$taikhoan_list = $oop -> showAll();
+			}
+
+			else if(isset($_POST["add-acc"])){
+				$matk = $_POST['id-acc-input'];
+				$tentk = $_POST['user-acc-input'];
+				$password = $_POST['pass-acc-input'];
+				$trangthai = 1;
+				$maquyen = $_POST['quyen-acc-input'];
+				$result_mess="Đã thêm '$matk' thành công !";
+                                $this->taikhoanModel->add($matk,$tentk,$password,$trangthai,$maquyen);
+				$taikhoan_list = $oop -> showAll();
+			}
+
+			else if(isset($_POST["edit-acc"])){
+				$matk = $_POST['id-acc-edit'];
+				$tentk = $_POST['user-acc-edit'];
+				$password = $_POST['pass-acc-edit'];
+				$trangthai = $_POST['trangthai-acc-edit'];
+				$maquyen = $_POST['quyen-acc-edit'];
+				$result_mess="Đã cập nhật '$matk' thành công !";
+                                $this->taikhoanModel->edit($matk,$tentk,$password,$trangthai,$maquyen);
+				$taikhoan_list = $oop -> showAll();
+			}
+
+			$this->view('admin_page',$data = [
+				"Page" => 'taikhoanView',
+				"result"=>$result_mess,
+				"newid"=>$newid,
+				"taikhoan_list" => $taikhoan_list]);
 		}
 
 	}
