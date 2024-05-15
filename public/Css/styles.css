@@ -1,0 +1,386 @@
+/* Phần .trangchu Customer */
+.Customer .trangchu {
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    height: fit-content;
+}
+
+/* Header Customer */
+.Customer .trangchu .header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 60px;
+}
+
+/* Cái tab trên topmenu Customer */
+.Customer .trangchu .tab {
+    display: flex;
+    align-items: center;
+    height: fit-content;
+    margin: 0 auto;
+    background-color: #000000;
+}
+
+/* Định dạng các mục trong tab */
+.Customer .trangchu .tab a {
+    text-decoration: none;
+    padding: 10px 15px;
+    color: #ffffff;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    /* Thay đổi kích thước font size */
+    transition: background-color 0.3s ease;
+}
+
+/* Định dạng khi trỏ chuột vào mục */
+.Customer .trangchu .tab .tab-item:hover {
+    background-color: #333333;
+}
+
+/* Định dạng tab đang được chọn */
+.Customer .trangchu .tab .tab-item.active,
+.trangchu .tab .tab-item.active:hover {
+    /* Khi tab được chọn, màu nền vẫn giữ nguyên */
+    font-weight: bold;
+    background-color: #f0f0f0;
+    color: #000000;
+    /* Đổi màu chữ khi tab được chọn */
+}
+
+/* Phần Giohang và Timkiem Customer */
+.Customer .trangchu .giohang,
+.trangchu .timkiem {
+    border-radius: 20px;
+    width: 40px;
+    height: 40px;
+    background-color: #493e3e;
+    margin-right: 10px;
+}
+
+/* Content Customer Customer */
+.Customer .trangchu .content {
+    background-color: #333333;
+    width: 100vw;
+    height: fit-content;
+}
+
+/* Footer Customer Customer */
+.Customer .trangchu .footer {
+    background-color: #000000;
+    width: 100vw;
+    height: fit-content;
+}
+
+/* Topmenu */
+.Customer .trangchu .topmenu {
+    background-color: #000000;
+    display: flex;
+    flex-direction: row;
+    padding: 10px 20px 10px 0;
+    width: 100vw;
+    height: fit-content;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+/* CSS cho logo */
+.Customer .trangchu .logo {
+    width: 60px;
+    height: 100%;
+    margin-right: 10px;
+    object-fit: contain;
+}
+
+/* CSS cho nội dung các tab */
+.Customer .iphone,
+.ipad,
+.mac,
+.phukien,
+.taingheloa,
+.tekzone,
+.topcare,
+.watch,
+.dangnhap {
+    background-color: #333333;
+    color: white;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: medium;
+}
+
+.Customer .iphone .title,
+.ipad .title,
+.mac .title,
+.watch .title,
+.taingheloa .title,
+.phukien .title {
+    width: 100vw;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.Customer .iphone .title .logo,
+.ipad .title .logo,
+.mac .title .logo,
+.watch .title .logo,
+.taingheloa .title .logo,
+.phukien .title .logo {
+    width: 200px;
+    height: 60px;
+    object-fit: contain;
+}
+
+/* CSS cho banner và các slide */
+.Customer .banner {
+    position: relative;
+    width: 90%;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 15px;
+    /* Bo góc cho banner */
+}
+
+.Customer .slides {
+    display: flex;
+    transition: transform 2s ease-in-out;
+}
+
+.Customer .slide {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+/* CSS cho nút di chuyển */
+.Customer .prev,
+.next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+    /* Bo góc cho nút */
+}
+
+.Customer .prev {
+    left: 10px;
+}
+
+.Customer .next {
+    right: 10px;
+}
+
+.Customer .dangnhap {
+    width: 50%;
+    margin: 50px auto;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.Customer .dangnhap form {
+    display: flex;
+    flex-direction: column;
+}
+
+.Customer .dangnhap form h2 {
+    text-align: center;
+    color: #333;
+}
+
+.Customer .dangnhap form .input-username-login,
+.dangnhap form .input-userpass-login {
+    margin-bottom: 20px;
+}
+
+.Customer .dangnhap form .input-username-login label,
+.dangnhap form .input-userpass-login label {
+    color: #666;
+}
+
+.Customer .dangnhap form .input-username-login input[type="text"],
+.dangnhap form .input-userpass-login input[type="password"] {
+    width: 90%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin: 0 auto;
+}
+
+.Customer .dangnhap form .to-register-login {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.Customer .dangnhap form .to-register-login p {
+    color: #666;
+}
+
+.Customer .dangnhap form .to-register-login a {
+    color: #00f;
+    text-decoration: none;
+}
+
+.Customer .dangnhap .to-register-login a:hover {
+    text-decoration: underline;
+}
+
+.Customer .dangnhap form button[type="submit"] {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    padding: 10px 0;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.Customer .dangnhap form button[type="submit"]:hover {
+    background-color: #333;
+}
+
+.Customer .iphone .options {
+    display: flex;
+    align-items: center;
+    height: fit-content;
+    margin-top: 10px;
+    margin-left: 5%;
+    background-color: #333333;
+}
+
+.Customer .iphone .options .option {
+    text-decoration: none;
+    padding: 10px;
+    color: #ffffff;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-weight: lighter;
+    font-size: medium;
+    transition: background-color 0.3s ease;
+}
+
+.Customer .iphone .options .option:hover {
+    background-color: #000;
+}
+
+/* CSS cho dropdown box */
+.Customer .iphone .arrange {
+    position: relative;
+    text-align: right;
+    /* Canh lề phải */
+    margin-right: 5%;
+    /* Khoảng cách với phần tử bên phải */
+}
+
+.Customer .iphone .dropbtn {
+    background: #333333;
+    color: white;
+    font-size: medium;
+}
+
+/* CSS cho dropdown content */
+.Customer .iphone .arrange .dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    /* Đặt dropdown content ở dưới nút toggle */
+    right: 0;
+    /* Đặt dropdown content ở bên phải của phần tử cha */
+    background-color: #fff;
+    min-width: 160px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 5px;
+}
+
+/* CSS cho các mục trong dropdown content */
+.Customer .iphone .arrange .dropdown-content a {
+    color: black;
+    text-align: left;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Hover effect cho các mục trong dropdown content */
+.Customer .iphone .arrange .dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+/* CSS cho .option-all */
+.Customer .option-all {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+/* CSS cho .iphone-item */
+.Customer .iphone-content .iphone-item {
+    float: left;
+    width: 30%;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #3f3e3e;
+    color: #fff;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.Customer .iphone-item:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transform: translateY(-3px);
+}
+
+.Customer .iphone-item img {
+    max-width: 30%;
+    height: auto;
+    display: block;
+    margin: 0 auto 15px;
+    border-radius: 10px;
+}
+
+.Customer .iphone-item b {
+    color: white;
+    margin-top: 0;
+    font-size: 1.2rem;
+}
+
+.Customer .iphone-item p {
+    color: white;
+    margin: 0; /* Reset margin để không có khoảng cách giữa các phần tử */
+}
+
+.Customer .iphone-item .current-price {
+    font-weight: bold;
+    color: #fff;
+}
+
+.Customer .iphone-item .original-price {
+    text-decoration: line-through;
+    color: #fff;
+    margin-right: 5px;
+}
+
+.Customer .iphone-item .discount-percentage {
+    color: #fff;
+}

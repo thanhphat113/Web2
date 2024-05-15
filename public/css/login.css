@@ -7,26 +7,39 @@
   }
   
   body {
-    font-family: Arial, sans-serif;
-    background-color: #0D0F1A;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url("../Pictures/login/backgroundLogin.jpg") no-repeat;
+    background-size: cover;
+    background-position: center;
   }
   
   .container {
-    max-width: 400px;
+    /* max-width: 400px;
     margin: 80px auto;
     background-color: #0D0F1A;
     padding: 20px;
     border-radius: 25px;
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
     border: 1px solid aqua;
-    box-shadow: 0px 0px 10px aqua;
+    box-shadow: 0px 0px 10px aqua; */
+    width: 420px;
+    background: transparent;
+    border: 2x solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 2);
+    color: #fff;
+    border-radius: 10px;
+    padding: 30px 40px;
   }
   
   /* form{
     /* border: 1px solid aqua;
     box-shadow: 0px 0px 10px aqua; }*/
-
-
+  
+  
   h2 {
     font-size: 24px;
     margin-bottom: 20px;
@@ -66,8 +79,8 @@
     margin-top: 5px;
   }
   
-
-
+  
+  
   .btn:hover {
     background-color: #0056b3;
   }
@@ -85,47 +98,47 @@
   p a:hover {
     text-decoration: underline;
   }
-
+  
   /* ẩn hiển pass */
-
-.password-container {
+  
+  .password-container {
     position: relative;
-}
-
-.toggle-password {
+  }
+  
+  .toggle-password {
     position: absolute;
     right: 10px;
     top: 50%;
     transform: translateY(-50%);
     cursor: pointer;
-}
-
-/* forgot-password */
-.forgot-password {
+  }
+  
+  /* forgot-password */
+  .forgot-password {
   color: #007bff; /* Màu chữ */
   text-decoration: none; /* Loại bỏ gạch chân */
   font-weight: bold; /* Đậm */
   cursor: pointer; /* Biểu tượng con trỏ */
-
-
-}
-
-/* CSS cho liên kết khi rê chuột vào */
-.forgot-password:hover {
+  
+  
+  }
+  
+  /* CSS cho liên kết khi rê chuột vào */
+  .forgot-password:hover {
   text-decoration: underline; /* Gạch chân khi rê chuột vào */
-}
-
-p#register{
+  }
+  
+  p#register{
   border-top: 1px solid #dadde1;
   padding-top: 10px;
-}
-
-span#password-match-message{
+  }
+  
+  span#password-match-message{
   font-size: smaller;
-}
-
-/* btn-otp */
-.btn-otp{
+  }
+  
+  /* btn-otp */
+  .btn-otp{
   background-color: #007bff;
   width: 75px;
   color: #fff;
@@ -136,45 +149,45 @@ span#password-match-message{
   padding: 10px;
   margin-left: 10px;
   
-}
-.input-group-otp input{
+  }
+  .input-group-otp input{
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
     /* width: 230px; */
     flex: 1;
     
-}
-
-p#login-forgot{
+  }
+  
+  p#login-forgot{
   border-top: 1px solid black;
   padding-top: 10px;
-}
-.input-group-otp {
+  }
+  .input-group-otp {
   display: flex;
   width: 100%;
-}
-
-span#password-otp-message{
+  }
+  
+  span#password-otp-message{
   margin-bottom: 10px;
-}
-
-#confirmButton[disabled], #btn-otp[disabled], #btn-reset-password[disabled], #btn-register[disabled]{
+  }
+  
+  #confirmButton[disabled], #btn-otp[disabled], #btn-reset-password[disabled], #btn-register[disabled]{
   background-color: #cccccc; /* Đổi màu nền sang xám */
     cursor: not-allowed; /* Không cho phép sử dụng con trỏ */
-}
-
-span#password-otp-message{
+  }
+  
+  span#password-otp-message{
   font: smaller;
   color: red;
-}
-
-span#password-reset-message-confirmed{
+  }
+  
+  span#password-reset-message-confirmed{
   font: smaller;
-}
-
-
-
-.checkboxRemember label{
+  }
+  
+  
+  
+  .checkboxRemember label{
   color: #fff;
-}
+  }
