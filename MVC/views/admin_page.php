@@ -31,7 +31,7 @@
         <span class="mess">Thông báo</span>
     </div>
 
-	<script src="public/script.js"></script>
+	<script src="./public/script.js"></script>
 	
 	<?php
 		 	if ($data["mess"] !== null) {

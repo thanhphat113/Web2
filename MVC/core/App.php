@@ -1,7 +1,7 @@
 <?php
 	class App{
 		protected $controller = "admin";
-		protected $action = "thongke";
+		protected $action = "taikhoan";
 		protected $params = []; 
 
 		function __construct(){

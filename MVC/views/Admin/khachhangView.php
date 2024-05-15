@@ -14,7 +14,7 @@
             <h3 style="text-align: center;margin-top: 20px;margin-right: 200px;"><?php echo $data["result"]; ?></h3><?php
         }
         ?>
-    <div class="search-second">
+    <div class="search-sdt">
         <label class ="text-search"for="">Số điện thoại</label>
         <input style="width:115px" name="sdt-cus-search" type="text" placeholder="Nhập số điện thoại">
     </div>
@@ -79,7 +79,7 @@
         <div class="modal-add" id="modal-add-customer">
             <div style="height:400px" class="view-info">
                 <div class="exit-view-info" onclick="exitAdd('modal-add-customer')">X</div>
-                <div class="info">
+                <div style="margin-left:80px" class="info">
                     <div class="text-info">
                         <ul>
                             <li>Mã</li>
@@ -113,14 +113,14 @@
                                 <div class="error" id="error-diachi-kh"></div>                                    
                             </li>
                             <li >
-                                <input type="text" id="idtk-cus-input" name="idtk-cus-input" class="li"  placeholder="Nhập mã tài khoản" value="">
+                                <input type="text" id="idtk-cus-input" name="idtk-cus-input" class="li"  placeholder="Nhập mã tài khoản" value="<?php echo $data['newidTK'];?>" readonly>
                                 <div class="error" id="error-matk-kh"></div>                                    
                             </li>
                         </ul>
                     </div>
                     <span style="display:none" id='span-phones-kh'><?php echo $phones?></span>
                     <span style="display:none" id='span-email-kh'><?php echo $emails?></span>
-                    <div style="bottom:50px" class="btn-xacnhan" onclick="xacnhanAdd('khachhang')">Hoàn tất</div>
+                    <div style="bottom:50px;left:160px" class="btn-xacnhan" onclick="xacnhanAdd('khachhang')">Hoàn tất</div>
                 </div>
             </div>
             <div class="view-xacnhan" id="add-xacnhan-customer" style="top:150px">
@@ -133,7 +133,7 @@
         <div class="modal-edit" id="modal-edit-customer">
             <div class="view-info" style="height:400px">
                 <div class="exit-view-info" onclick="exitAdd('modal-edit-customer')">X</div>
-                <div class="info">
+                <div style="margin-left:80px" class="info">
                     <div class="text-info">
                         <ul>
                             <li>Mã</li>
@@ -176,7 +176,7 @@
                     </div>
                     <span style="display:none" id='span-phones-kh'><?php echo $phones?></span>
                     <span style="display:none" id='span-email-kh'><?php echo $emails?></span>
-                    <div style="bottom:50px" class="btn-xacnhan" onclick="xacNhanEdit('khachhang')">Cập nhật</div>
+                    <div style="bottom:50px;left:170px" class="btn-xacnhan" onclick="xacNhanEdit('khachhang')">Cập nhật</div>
                 </div>
             </div>
             <div style="width:350px;top:200px" class="view-xacnhan" id="edit-xacnhan-customer">
