@@ -12,7 +12,7 @@ class SanphamModel extends connectiondb{
             AND chitiet_sp.HinhAnh LIKE '%black%';
                 ";
 
-        return mysqli_query($this->con, $query);
+        return mysqli_query($this->conn, $query);
     }
 
     public function getIphoneByBlackToMaLoai($Maloai){
@@ -28,7 +28,7 @@ class SanphamModel extends connectiondb{
                 AND loaisp.MaLoai = '".$Maloai."';
                 ";
 
-        return mysqli_query($this->con, $query);
+        return mysqli_query($this->conn, $query);
     }
 
     public function getAllIpadBySilver(){
@@ -42,7 +42,7 @@ class SanphamModel extends connectiondb{
                 AND chitiet_sp.MaCT = sp_giaban.MaCT
                 AND chitiet_sp.HinhAnh LIKE '%silver%';
                 ";
-        return mysqli_query($this->con, $query);
+        return mysqli_query($this->conn, $query);
     }
 
     public function getIpadBySilverToMaloai ($Maloai){
@@ -57,7 +57,7 @@ class SanphamModel extends connectiondb{
                     AND chitiet_sp.HinhAnh LIKE '%silver%'
                     AND loaisp.MaLoai = '".$Maloai."';
                     ";
-        return mysqli_query($this->con, $query);
+        return mysqli_query($this->conn, $query);
 
     }
 
@@ -72,7 +72,7 @@ class SanphamModel extends connectiondb{
                     AND chitiet_sp.MaCT = sp_giaban.MaCT
                     AND chitiet_sp.HinhAnh LIKE '%silver%';
                     ";
-        return mysqli_query($this->con, $query);
+        return mysqli_query($this->conn, $query);
     }
 
     public function getMacBySilverToMaloai ($Maloai){
@@ -87,13 +87,13 @@ class SanphamModel extends connectiondb{
                     AND chitiet_sp.HinhAnh LIKE '%silver%'
                     AND loaisp.MaLoai = '".$Maloai."';
                     ";
-        return mysqli_query($this->con, $query);
+        return mysqli_query($this->conn, $query);
 
     }
 
     public function getProductById($id){
         $query = "SELECT * FROM sanpham WHERE MASP= '".$id."'";
-        $result = mysqli_query($this->con, $query);
+        $result = mysqli_query($this->conn, $query);
         if ($result && mysqli_num_rows($result) > 0) {
             return mysqli_fetch_assoc($result);
         } 
@@ -105,7 +105,7 @@ class SanphamModel extends connectiondb{
 
     public function getTiLeKMByID($id){
         $query = "select * from khuyenmai_sp where MaKM ='".$id."'";
-        $result = mysqli_query($this->con, $query);
+        $result = mysqli_query($this->conn, $query);
         if ($result && mysqli_num_rows($result) > 0) {
             return mysqli_fetch_assoc($result)["TiLe"];
         } 

@@ -9,7 +9,7 @@
 <body>
     <div class="container">
         <div id="login-form">
-            <form id="login" action="<?php echo BASE_URL; ?>login/xuly" method="post">
+            <form id="login" action="<?php echo BASE_URL; ?>Login/xuly" method="post">
                 <h2>Đăng nhập</h2>
                 <div class="input-group">
                     <label for="login-username">Tên đăng nhập:</label>

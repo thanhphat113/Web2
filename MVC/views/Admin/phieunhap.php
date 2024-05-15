@@ -10,12 +10,12 @@
 			<table id="viewTable">
 				<thead>
 					<tr>
-						<th style="width: 100px;">Mã phiếu nhập</th>
-						<th>Nhà cung cấp</th>
-						<th>Ngày tạo</th>
-						<th>Tổng tiền<small> (vnđ)</small></th>
-						<th style="width: 90px;">Xem chi tiết</th>
-						<th>Chức năng</th>
+						<th onclick="sortTable(0)" style="width: 100px;">Mã phiếu nhập</th>
+						<th onclick="sortTable(1)"> Nhà cung cấp</th>
+						<th onclick="sortTable(2)">Ngày tạo</th>
+						<th onclick="sortTable(3)">Tổng tiền<small> (vnđ)</small></th>
+						<th onclick="sortTable(4)" style="width: 90px;">Xem chi tiết</th>
+						<th onclick="sortTable(5)">Chức năng</th>
 					</tr>
 				</thead>
 				<tbody>

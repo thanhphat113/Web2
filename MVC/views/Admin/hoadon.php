@@ -14,7 +14,7 @@
 						<th>Khách hàng</th>
 						<th>Mã KM</th>
 						<th>Ngày tạo</th>
-						<th>Tổng tiền</th>
+						<th>Tổng tiền<small>(vnđ)</small></th>
 						<th>Tình trạng</th>
 						<th style="width: 90px;">Xem chi tiết</th>
 						<th>Chức năng</th>
@@ -39,15 +39,14 @@
 								echo	'<td style="width:200px">'.$hd->getMakh().'</td>
 										<td>'.$hd->getMakm() .'</td>
 										<td>'.$hd->getNgaytao() .'</td>
-										<td>'.$hd->getTongtien().'</td>
+										<td>'.number_format($hd->getTongtien(), 0, ',', '.').'</td>
 										<td style="color:'.$color.'">'.$trangthai.'</td>
 										<td style="width:100px">
 											<button><i class="fas fa-info-circle action" style="color: #5d88a2;"></i></button>
 										</td>
-										<td style="width:200px">
-											<button><i class="far fa-check-circle action" style="color: #63E6BE"></i></button>
-											<button><i class="far fa-edit action" style="color: #74C0FC;"></i></button>
-											<button><i class="fas fa-trash-alt action" style="color: #e13737;"></i></button>
+										<td style="width:200px">';
+										if ($hd->getTrangthai() == 0)	echo '<button><i class="far fa-check-circle action" style="color: #63E6BE"></i></button>';
+										echo	'<button><i class="fas fa-trash-alt action" style="color: #e13737;"></i></button>
 										</td>
 									</tr>';
 								}

@@ -1,7 +1,7 @@
 <?php
 	class App{
 		protected $controller = "admin";
-		protected $action = "taikhoan";
+		protected $action ;
 		protected $params = []; 
 
 		function __construct(){
@@ -14,6 +14,7 @@
 			}
 			require_once "./MVC/controllers/". $this->controller .".php";
 
+			$doiTuong = new $this->controller();
 			
 			//Action
 			if (isset($arr[1])){
@@ -21,12 +22,13 @@
 					$this->action = $arr[1];
 				}
 				unset($arr[1]) ;
+			}else{
+				$methods = get_class_methods($doiTuong);
+				$this->action = $methods[1];
 			}
 
 			//Param
 			$this->params = $arr?array_values($arr):[];
-
-			$doiTuong = new $this->controller();
 
 			call_user_func_array([$doiTuong, $this->action], $this->params);
 		
