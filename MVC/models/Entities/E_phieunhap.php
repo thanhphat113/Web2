@@ -1,11 +1,16 @@
 <?php
 class E_phieunhap{
+	private $nccModel;
 	private $mapn;
 	private $mancc;
+
+	private $ncc;
 	private $ngaytao;
 	private $tongtien;
 
 	public function __construct($mapn,$mancc,$ngaytao,$tongtien){
+		$this->nccModel = new M_nhacungcap();
+		$this->ncc = $this->nccModel->findById($mancc);
 		$this->mapn = $mapn;
 		$this->mancc = $mancc;
 		$this->ngaytao = $ngaytao;
@@ -14,6 +19,10 @@ class E_phieunhap{
 
 	public function getMapn(){
 		return $this->mapn;
+	}
+
+	public function getNcc(){
+		return $this->ncc;
 	}
 
 	public function setMapn($pn){

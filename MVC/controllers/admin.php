@@ -2,11 +2,14 @@
 	class admin extends Controller{
 		private $hoaDonModel;
 
+		private $phieunhap_detailModel;
+
 		private $sanpham_detailModel;
 		private $phieunhapModel;
 		private $nhacungcapModel;
 
 		public function __construct(){
+			$this->phieunhap_detailModel = $this->model("M_phieunhap_detail");
 			$this->hoaDonModel = $this->model("M_hoadon");
 			$this->phieunhapModel = $this->model("M_phieunhap");
 			$this->nhacungcapModel = $this->model("M_nhacungcap");
@@ -99,8 +102,26 @@
 			} else {
 				echo json_encode(array("mapn"=> null,"mess" =>"Invalid request method"));
 			}
-
 		}
+
+		function loadDetail(){
+			if ($_SERVER["REQUEST_METHOD"] === "POST") {
+				// Lấy dữ liệu JSON được gửi từ trình duyệt
+				$json_data = file_get_contents("php://input");
+
+				// Giải mã dữ liệu JSON thành mảng PHP
+				$data = json_decode($json_data, true);
+
+				
+
+				// Kiểm tra xem dữ liệu đã được giải mã thành công hay không
+				if (json_last_error() === JSON_ERROR_NONE && isset($data["selected"])) {
+					$list = $this->phieunhap_detailModel->findById($data["selected"]);
+					echo json_encode(array("list"=> $list));
+				}
+			}
+		}
+
 
 		function phieunhap() {
 			$mess = null;
@@ -129,5 +150,6 @@
 				"ncc_list" => $ncc_list,
 				"pn_list" => $pn_list]);
 		}
+
 	}
 ?>

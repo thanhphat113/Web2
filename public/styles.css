@@ -363,7 +363,7 @@ tr:nth-child(even) {
     cursor:pointer;
 }
 
-.model-content .model-top{
+.model-content,.model-content-detail .model-top{
     text-align: center;
     margin-top: -20px;
     margin-bottom: 10px;
@@ -378,15 +378,36 @@ tr:nth-child(even) {
     height: 30px;
 }
 
+.update{
+    width: 50% !important;
+}
+
 .model-content {
     background-color: #fefefe;
     margin: 1% auto 0;
     padding: 20px;
-    /* border: 20px solid #888; */
+    border: 20px solid #473f3f;
     width: 80% !important;
-    height: 89% !important;
+    height: 80% !important;
     border-radius:10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.model-content-detail {
+    background-color: #fefefe;
+    margin: 5% auto 0;
+    padding: 20px;
+    border: 20px solid #473f3f;
+    width: 80% !important;
+    height: 70% !important;
+    border-radius:10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.model-table{
+    height: 280px;
+    border: 1px solid black;
+    border-top: none;
 }
 
 .model .form-input{
@@ -431,6 +452,48 @@ td{
     width:200px;
     height:25px;
 }
+
+.model-center .table-detail{ /* Chiều cao cố định cho tbody */
+    max-height: 100%; /* Sử dụng chiều cao tối đa có thể từ model-center */
+    overflow-y: auto;
+}
+
+
+.model-center { /* Chiều cao cố định cho tbody */
+    height:300px;
+    max-height: 300px;
+    overflow-y: auto;
+    border:0.5px solid black;
+    border-top:none;
+}
+
+strong em {
+    font-size: 25px;
+}
+
+.model-center tbody tr{
+    height: 40px;
+}
+
+#export-pdf{
+    background-color: #888888;
+    width: 100px;
+    height: 30px;
+    margin-top:20px;
+    right:0;
+    border:none;
+    color: white;
+    border-radius: 10px;
+    transition: all 0.5 ease;
+    right:0;
+}
+
+#export-pdf:hover{
+    background-color: #777777;
+    transform: scale(1.1);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
 
 
 

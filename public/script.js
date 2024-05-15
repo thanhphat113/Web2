@@ -674,14 +674,14 @@ function xacnhanAdd(item) {
         form.submit();
     }
 
-    function showModel(){
-        var modal = document.getElementById("myModel")
+    function showModel(id){
+        var modal = document.getElementById(id)
         modal.classList.add("show");
     }
 
-    function closeModal() {
+    function closeModal(id) {
         // Lấy thẻ modal
-        var modal = document.getElementById("myModel");
+        var modal = document.getElementById(id);
         // Xóa lớp hiển thị khỏi modal
         modal.classList.remove("show");
         location.reload();
@@ -781,8 +781,8 @@ function xacnhanAdd(item) {
             }
             document.getElementById("sanpham").value = 0;
             document.getElementById("mau").innerHTML = "";
-            document.getElementById("sl").innerHTML = "";
-            document.getElementById("gianhap").innerHTML = "";
+            document.getElementById("sl").value = "";
+            document.getElementById("gianhap").value = "";
         }
         else{
             thongbao("Vui lòng không bỏ trống số lượng và giá nhập");
@@ -864,4 +864,63 @@ function xacnhanAdd(item) {
             row.remove();
         }
     }
+
+
+
+    document.querySelectorAll("#detail-pn").forEach(function(element) {
+        element.addEventListener("click", function() {
+            var selectedValue = this.value;
+            var row = this.closest('tr');
+            console.log(row.cells[1].textContent);
+            document.getElementById("ncc-detail").innerHTML = "Nhà cung cấp: <strong><em>"+row.cells[1].textContent+"</em></strong>";
+            showModel('model-detail');
+            var data = {
+                selected: selectedValue
+            }
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "./admin/loadDetail", true); // Không cần nối thêm selectedValue vào URL
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4) {
+                    if (xhr.status === 200) {
+                        var responseData = JSON.parse(xhr.responseText);
+                        updateDetail(responseData["list"]);
+                    } else {
+                        document.write("Đã xảy ra lỗi khi gửi yêu cầu.");
+                    }
+                }
+            }
+            xhr.send(JSON.stringify(data));
+        });
+    });
+
+    function updateDetail(data){
+        var tbody = document.getElementById("table-detail").querySelector("tbody");
+        tbody.innerHTML = "";
+        data.forEach(function(option) {
+            var row = document.createElement("tr");
+            var cell1 = document.createElement("td");
+            cell1.textContent = option.TenSP;
+            row.appendChild(cell1);
+
+            var cell2 = document.createElement("td");
+            cell2.textContent = option.Mau;
+            row.appendChild(cell2);
+
+            var cell3 = document.createElement("td");
+            cell3.textContent = formatCurrency(parseInt(option.gianhap))                     ;
+            row.appendChild(cell3);
+
+            var cell4 = document.createElement("td");
+            cell4.textContent = option.soluong;
+            row.appendChild(cell4);
+
+            var cell5 = document.createElement("td");
+            cell5.textContent = formatCurrency(parseInt(option.tongtien));
+            row.appendChild(cell5);
+
+            tbody.appendChild(row);
+        });
+    }
+    
     

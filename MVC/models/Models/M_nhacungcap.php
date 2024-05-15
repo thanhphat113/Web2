@@ -15,5 +15,19 @@ class M_nhacungcap extends connectiondb {
 		}
 		return $result;
 	}
+
+	public function findById($id){
+		$query = "select * from nhacungcap where MaNCC='".$id."'";
+		$sub = $this->execute_fetch_one( $query );
+		if ($sub != null){
+			$mancc = $sub['MaNCC'];
+			$tenncc = $sub['TenNCC'];
+			$email = $sub['Email'];
+			$sdt = $sub['SoDienThoai'];
+			$ncc = new E_nhacungcap($mancc, $tenncc, $email, $sdt);
+			return $ncc;
+		}
+		return null;
+	}
 }
 ?>

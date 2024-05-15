@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Import Excel and Export PDF</title>
+</head>
+<body>
+    <h1>Import Excel and Export PDF</h1>
+    <input type="file" id="fileInput" />
+    <button class="btn" id="exportPDF" disabled>Export to PDF</button>
+    <div id="output"></div>
+
+    <!-- Include the xlsx and jsPDF libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script>
+        document.getElementById('fileInput').addEventListener('change', function(e) {
+            var file = e.target.files[0];
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+                var data = new Uint8Array(e.target.result);
+                var workbook = XLSX.read(data, {type: 'array'});
+                var firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+                var jsonData = XLSX.utils.sheet_to_json(firstSheet, {header: 1});
+
+                // Output data to console for testing
+                console.log(jsonData);
+
+                // Optionally, render the data to HTML
+                var output = '<table border="1">';
+                jsonData.forEach(function(row) {
+                    output += '<tr>';
+                    row.forEach(function(cell) {
+                        output += '<td>' + cell + '</td>';
+                    });
+                    output += '</tr>';
+                });
+                output += '</table>';
+                document.getElementById('output').innerHTML = output;
+
+                // Enable the export PDF button
+                document.getElementById('exportPDF').disabled = false;
+            };
+
+            reader.readAsArrayBuffer(file);
+        });
+
+        // Function to handle exporting to PDF
+        function exportToPDF() {
+            var { jsPDF } = window.jspdf;
+            var doc = new jsPDF();
+
+            // Get table data
+            var table = document.querySelector('#output table');
+            if (table) {
+                var rows = table.querySelectorAll('tr');
+                rows.forEach(function(row, rowIndex) {
+                    var cells = row.querySelectorAll('td');
+                    cells.forEach(function(cell, cellIndex) {
+                        doc.text(cell.textContent, 10 + cellIndex * 30, 10 + rowIndex * 10);
+                    });
+                });
+            }
+
+            // Save PDF
+            doc.save('table.pdf');
+        }
+
+        // Attach click event to all buttons with class "btn"
+        document.querySelectorAll('.btn').forEach(function(button) {
+            button.addEventListener('click', exportToPDF);
+        });
+    </script>
+</body>
+</html>
