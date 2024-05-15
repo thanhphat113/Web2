@@ -8,6 +8,8 @@
 		private $phieunhapModel;
 		private $nhacungcapModel;
 		public $taikhoanModel;
+		public $khachhangModel;
+		public $nhanvienModel;
 
 		public function __construct(){
 			$this->phieunhap_detailModel = $this->model("M_phieunhap_detail");
@@ -16,6 +18,8 @@
 			$this->nhacungcapModel = $this->model("M_nhacungcap");
 			$this->sanpham_detailModel = $this->model("M_sanpham_detail");
 			$this->taikhoanModel=$this->model("M_taikhoan");
+			$this->khachhangModel=$this->model("M_khachhang");
+			$this->nhanvienModel=$this->model("M_nhanvien");
 		}
 
 		function thongke() {
@@ -184,7 +188,7 @@
 				$trangthai = 1;
 				$maquyen = $_POST['quyen-acc-input'];
 				$result_mess="Đã thêm '$matk' thành công !";
-                                $this->taikhoanModel->add($matk,$tentk,$password,$trangthai,$maquyen);
+                $this->taikhoanModel->add($matk,$tentk,$password,$trangthai,$maquyen);
 				$taikhoan_list = $oop -> showAll();
 			}
 
@@ -195,7 +199,7 @@
 				$trangthai = $_POST['trangthai-acc-edit'];
 				$maquyen = $_POST['quyen-acc-edit'];
 				$result_mess="Đã cập nhật '$matk' thành công !";
-                                $this->taikhoanModel->edit($matk,$tentk,$password,$trangthai,$maquyen);
+                $this->taikhoanModel->edit($matk,$tentk,$password,$trangthai,$maquyen);
 				$taikhoan_list = $oop -> showAll();
 			}
 
@@ -204,6 +208,126 @@
 				"result"=>$result_mess,
 				"newid"=>$newid,
 				"taikhoan_list" => $taikhoan_list]);
+		}
+
+		function khachhang() {
+			$result_mess = "";
+			$oop = $this->model("M_khachhang");
+			$oopTK = $this->model("M_taikhoan");
+			$khachhang_list = $oop -> showAll();
+			$newid = $oop->newMaKH();
+			$newidTK = $oopTK->newMaTK();
+
+			if(isset($_POST["search"])){
+				$diachi = $_POST['addres-cus-search'];
+				$khachhang_list = $oop -> search($diachi);
+			}
+			else if(isset($_POST["quick_search"])){
+				$search = $_POST['id-cus-search'];
+				$khachhang_list = $oop -> quick_search($search);
+			}
+
+			else if(isset($_POST["delete-cus"])){
+				$makh = $_POST["delete-cus"];
+				$result_mess="Đã xóa '$makh' thành công !";
+				$this->khachhangModel->delete($makh);
+				$khachhang_list = $oop -> showAll();
+			}
+
+            else if(isset($_POST["edit-cus"])){
+				$makh = $_POST["id-cus-edit"];
+                $tenkh = $_POST["name-cus-edit"];
+                $email = $_POST["email-cus-edit"];
+                $sdt = $_POST["phone-cus-edit"];
+                $matk = $_POST["idtk-cus-edit"];
+                $dckh = $_POST["addres-cus-edit"];
+				$result_mess="Đã cập nhật '$makh' thành công !";
+				$this->khachhangModel->edit($makh,$tenkh,$email,$sdt,$matk,$dckh);
+				$khachhang_list = $oop -> showAll();
+			}
+
+            else if(isset($_POST["add-cus"])){
+				$makh = $_POST["id-cus-input"];
+                $tenkh = $_POST["name-cus-input"];
+                $email = $_POST["email-cus-input"];
+                $sdt = $_POST["phone-cus-input"];
+                $matk = $_POST["idtk-cus-input"];
+                $dckh = $_POST["addres-cus-input"];
+				$result_mess="Đã thêm '$makh' thành công !";
+				$this->khachhangModel->add($makh,$tenkh,$email,$sdt,$matk,$dckh);
+				$this->taikhoanModel->add($newidTK,$email,'123456Aa',1,2);
+				$khachhang_list = $oop -> showAll();
+			}
+
+			$this->view('admin_page',$data = [
+				"Page" => 'khachhangView',
+				"result"=>$result_mess,
+				"newid"=>$newid,
+				"newidTK"=>$newidTK,
+				"khachhang_list" => $khachhang_list]);
+		}
+		
+		function nhanvien() {
+			$result_mess = "";
+			$oop = $this->model("M_nhanvien");
+			$oopTK = $this->model("M_taikhoan");
+			$nhanvien_list = $oop -> showAll();
+			$newid = $oop->newMaNV();
+			$newidTK = $oopTK->newMaTK();
+
+			if(isset($_POST["search"])){
+				$dcnv = $_POST['addres-epl-search'];
+			    $gtnv = $_POST['gender-epl-search'];
+				$nhanvien_list = $oop -> search($dcnv,$gtnv);
+			}
+
+			else if(isset($_POST["quick_search"])){
+				$search = $_POST['id-epl-search'];
+				$nhanvien_list = $oop -> quick_search($search);
+			}
+
+			else if(isset($_POST["delete"])){
+				$manv = $_POST["delete"];
+				$result_mess="Đã xóa '$manv' thành công !";
+				$this->nhanvienModel->delete($manv);
+				$nhanvien_list = $oop -> showAll();
+			}
+
+            else if(isset($_POST["edit"])){
+				$manv = $_POST["id-epl-edit"];
+				$tennv = $_POST["name-epl-edit"];
+				$email = $_POST["email-epl-edit"];
+				$sdt = $_POST["phone-epl-edit"];
+				$matk = $_POST["idtk-epl-edit"];
+				$nsnv = $_POST["birt-epl-edit"];
+				$dcnv = $_POST["addres-epl-edit"];
+				$gtnv = $_POST['gender'];
+				$result_mess="Đã cập nhật '$manv' thành công !";
+				$this->nhanvienModel->edit($manv,$tennv,$email,$sdt,$matk,$gtnv,$nsnv,$dcnv);
+				$nhanvien_list = $oop -> showAll();
+			}
+
+            else if(isset($_POST["add-epl"])){
+				$manv = $_POST["id-epl-input"];
+				$tennv = $_POST["name-epl-input"];
+				$email = $_POST["email-epl-input"];
+				$sdt = $_POST["phone-epl-input"];
+				$matk = $_POST["idtk-epl-input"];
+				$nsnv = $_POST["birt-epl-input"];
+				$dcnv = $_POST["addres-epl-input"];
+				$gtnv = $_POST['gender'];
+				$result_mess="Đã thêm '$manv' thành công !";
+				$this->nhanvienModel->add($manv,$tennv,$email,$sdt,$matk,$gtnv,$nsnv,$dcnv);
+				$this->taikhoanModel->add($newidTK,$email,'123456Aa',1,1);
+				$nhanvien_list = $oop -> showAll();
+			}
+
+			$this->view('admin_page',$data = [
+				"Page" => 'nhanvienView',
+				"result"=>$result_mess,
+				"newid"=>$newid,
+				"newidTK"=>$newidTK,
+				"nhanvien_list" => $nhanvien_list]);
 		}
 
 	}

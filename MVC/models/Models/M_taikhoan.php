@@ -12,6 +12,11 @@ class M_taikhoan extends connectiondb{
 	// 	}
 	// 	else return null;
 	// }
+	// 	if(!empty($result)){
+	// 		return new nhanvien($result['MaNV'],$result['TenNV'],$result['Email'],$result['SoDienThoai'],$result['MaTK'],$result['GioiTinh'],$result['NgaySinh'],$result['DiaChi']);
+	// 	}
+	// 	else return null;
+	// }
 
 	function newMaTK(){
 		$query = "SELECT MAX(SUBSTRING(matk, 3)) AS max_id FROM taikhoan";
