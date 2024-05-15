@@ -2,8 +2,8 @@
 	require_once "./MVC/core/App.php";
 	require_once "./MVC/core/Controller.php";
 	require_once "./MVC/core/connectiondb.php";
-	require_once "./mvc/core/config.php";
-	require_once "./Library/sengmail.php";
+	require_once "./MVC/core/config.php";
+	require_once "./public/Library/sengmail.php";
 
 	$directory_E = "./MVC/models/Entities/";
 	

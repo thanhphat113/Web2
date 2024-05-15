@@ -7,23 +7,27 @@ class Home extends Controller{
     public function __construct(){
         $this->SanphamModel = $this->models("SanphamModel");
     }
-    
-    public function Home(){
-        $this->view("Customer/header", []);
-    }
 
     public function Iphone($title){
+
         if($title == "") $title = "tatca";
+        
         $sanpham = $this->SanphamModel->getAllIphoneByblack();
         $sanphamByMaloai = $this->SanphamModel->getIphoneByBlackToMaLoai($title);
-        // Call Views
         $this->view("Customer/trangchu", [
             "Page"=>"iphone",
             "Title"=>$title,
             "Data"=>$sanpham,
             "DataByMaloai"=> $sanphamByMaloai
         ]);
+        
     }
+    
+    public function Home(){
+        $this->view("Customer/header", []);
+    }
+
+    
     public function Ipad($title){
         if($title == "") $title = "tatca";
         $sanpham = $this->SanphamModel->getAllIpadBySilver();
