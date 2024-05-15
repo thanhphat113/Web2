@@ -29,6 +29,7 @@
                     <label for="rememberPassword">Nhớ mật khẩu</label>  
                 </div>
                 <button type="submit" name="login"  class="btn">Đăng nhập</button>
+                <span id="password-otp-message"><?php if(isset($data["erorr"])) { echo $data["erorr"]; } ?></span></br>  
                 <a href="<?php echo BASE_URL; ?>ForgotPassword" name = "forgot-password" class="forgot-password" id="forgot-password">Quên mật khẩu?</a>
                 <p id="register">Bạn chưa có tài khoản? <a href="<?php echo BASE_URL; ?>Register">Đăng ký ngay tại đây</a></p>
             </form>

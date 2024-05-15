@@ -44,7 +44,8 @@ class Login extends Controller{
         //         //Kiểm tra trạng thái tài khoản nếu mở
                 if($Status == 1){
                     //kiểm tra mật khẩu nếu đúng
-                    if(password_verify($password, $PassInDB)){    
+                    // if(password_verify($password, $PassInDB)){ 
+                    if($password == $PassInDB){   
                         // Kiểm tra xem người dùng đã chọn "Remember password" hay không
                         if (isset($_POST["remember"])) {
                             // Lưu mật khẩu vào cookie, thời gian sống là 30 ngày
@@ -65,23 +66,25 @@ class Login extends Controller{
                     }else{
                         // Đăng nhập không thành công, gửi thông báo lỗi
                         $error = "Mật khẩu không chính xác.";
-                        echo "<script>showMessage('$error', 'error');</script>";
                         $this->view("Customer/Login", [
+                            "erorr"=>$error
+
                         ]);
-                        }
-                    }else{
+                    }
+                }else{
                     // Đăng nhập không thành công, gửi thông báo tài khoản bị khóa
                     $error = "Tài khoản bị khóa!";
-                    echo "<script>showMessage('$error', 'error');</script>";
                     $this->view("Customer/Login", [
+                        "erorr"=>$error
+
                     
                     ]);
                 }
             } else {
                 // Đăng nhập không thành công, gửi thông báo lỗi
                 $error = "Tên đăng nhập không tồn tại.";
-                echo "<script>showMessage('$error', 'error');</script>";
                 $this->view("Customer/Login", [
+                    "erorr"=>$error
 
                 ]);
             }
