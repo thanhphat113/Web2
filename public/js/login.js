@@ -6,12 +6,13 @@ function togglePasswordVisibility(inputId) {
 
     if (passwordInput.type === "password") {
         passwordInput.type = "text";
-        eyeIcon.src = "../public/Pictures/hidePass.png";
+        eyeIcon.src = BASEE_URL+"public/Pictures/login/hidePass.png";
     } else {
         passwordInput.type = "password";
-        eyeIcon.src = "../public/Pictures/showPass.png";
+        eyeIcon.src = BASEE_URL+"public/Pictures/login/showPass.png";
     }
 }
+
 // Comfirm password 
 function checkPasswordMatch(inputPasswordId, confirmPasswordId, passwordMatchMessageId) {
     var password = document.getElementById(inputPasswordId).value;
