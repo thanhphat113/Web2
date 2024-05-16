@@ -65,12 +65,17 @@ class Login extends Controller{
                         $_SESSION['Matk'] = $Matk;
 
                         // Chuyển hướng đến trang dựa theo role
-                        if(['role'] == 2){
+                        if($_SESSION['role'] == 2){
                             header("Location: ".BASE_URL ."Home");
-                        }else if(['role'] == 1){
+                            exit;
+                        }else if($_SESSION['role'] == 1){
                             header("Location: ".BASE_URL ."admin");
-                        }else{
+                            exit;
+
+                        }else if($_SESSION['role'] == 0){
                             header("Location: ".BASE_URL ."admin");
+                            exit;
+
                         }
 
                     }else{

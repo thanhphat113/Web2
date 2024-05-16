@@ -18,7 +18,7 @@ class Detail extends Controller{
 
     public function detailproduct($IdProduct){
         if($IdProduct == ""){
-            $this->view("Customer/header", []);
+            $this->view("Customer/home", []);
         }else{
             
             $sanpham = $this->SanphamModel->getProductById($IdProduct);     
@@ -39,7 +39,7 @@ class Detail extends Controller{
                     "ProductDetail_Price"=>$ChitietSP_Gia,
                     "TiLe"=>$TiLeKhuyenMai
                 ]);
-            }else $this->view("Customer/header", []);
+            }else $this->view("Customer/home", []);
         }
         
     }
@@ -63,7 +63,7 @@ class Detail extends Controller{
             $TiLe = $this->SanphamModel->getTiLeKMByID($sanpham["MaKM"]);
             http_response_code(200);
             echo json_encode(array("Mau" => $SanPhamTheoMau, 
-            "Dungluong" => $SanPhamTheoDungLuong, "image" => $imageData, "imagefir" => $imageFirst,"TiLe" => $TiLe ));
+            "Dungluong" => $SanPhamTheoDungLuong, "image" => $imageData, "imagefir" => $imageFirst,"TiLe" => $TiLe, "MaCH"=>['MaCH'] ));
             exit;
         }else if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['ajax']) && $_POST['ajax'] == "2" ){
             $sanpham = $this->SanphamModel->getProductById($IdProduct);            
@@ -72,7 +72,7 @@ class Detail extends Controller{
             $TiLe = $this->SanphamModel->getTiLeKMByID($sanpham["MaKM"]);
             http_response_code(200);
             echo json_encode(array(
-            "price" => $SanPhamTheoCauHinh["DonGia"],"TiLe" => $TiLe ));
+            "price" => $SanPhamTheoCauHinh["DonGia"],"TiLe" => $TiLe , "MaCH"=> $SanPhamTheoCauHinh['MaCH']));
             exit;
         }
     }

@@ -8,7 +8,8 @@
     <div class="tab">
         <a href="<?php echo BASE_URL; ?>home/iphone/tatca" class="tab-item active">iPhone</a>
         <a href="<?php echo BASE_URL; ?>home/mac/tatca" class="tab-item">Mac</a>
-        <a href="<?php echo BASE_URL; ?>home/ipad/tatca" class="tab-item">iPad</a>
+        <a href="<?php echo BASE_URL; ?>home
+        /ipad/tatca" class="tab-item">iPad</a>
         
         <a href="?infinity=watch" class="tab-item">Watch</a>
         <a href="?infinity=tai-nghe-loa" class="tab-item">Tai nghe, Loa</a>
@@ -24,8 +25,8 @@
     </div>
 
     <div class="timkiem">
-        <a href="<?php echo BASE_URL; ?>">
-            <img src="<?php echo BASE_URL; ?>public/Pictures/login/hidepass.png" alt="logo" class="logo">
+        <a href="<?php echo BASE_URL; ?>thongtin">
+            <img src="<?php echo BASE_URL; ?>public/Pictures/login/infor.png" alt="logo" class="logo">
         </a> 
     </div>
          

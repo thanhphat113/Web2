@@ -64,5 +64,25 @@ class M_hoadon extends connectiondb{
 		$query = "select * from hoadon where MaKH = '$MaKH'";
 		return mysqli_query($this->conn, $query);
 	}
+
+	public function getMaxMaHD(){
+        $query = "SELECT MaHD FROM Hoadon ORDER BY MaHD DESC LIMIT 1";
+		$result = mysqli_query($this->conn, $query);
+        if ($result && mysqli_num_rows($result) > 0) {
+            return mysqli_fetch_assoc($result);
+        } 
+     
+    else {
+            return null; // or handle the case where no product is found
+        }    
+	}
+
+		public function insertHD($MaHD, $MaKH, $tongtien){
+			$insert_query = "INSERT INTO hoadon VALUES ('$MaHD',null ,'$MaKH',null ,NOW(), '$tongtien', 0)";
+			if($this->conn->query($insert_query)){
+				return true;
+			}
+			return false;
+		}
 }
 ?>
