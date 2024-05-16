@@ -57,6 +57,35 @@ function moveEdit(modal,ma,ten,ns,mail,sdt,dc,matk,gt){
         document.getElementById('quyen-acc-edit').value = sdt;
         document.getElementById('trangthai-acc-edit').value = dc;
     }
+    else if(modal == "modal-edit-product"){
+        var maus = document.getElementById('span-maus-'+gt).textContent;
+        var mau_list = JSON.parse(maus);
+        var cauhinhs = document.getElementById('span-cauhinhs-'+gt).textContent;
+        var cauhinh_list = JSON.parse(cauhinhs);
+        document.getElementById(modal).style.display = 'block';
+        //document.getElementById('email-current').value = mail;
+       // document.getElementById('phone-current').value = sdt;
+        document.getElementById('idloai-pro-edit').value = ma;
+        document.getElementById('tensp-pro-edit').value = ns;
+        document.getElementById('baohanh-pro-edit').value = mail;
+        document.getElementById('trangthai-pro-edit').value = sdt;
+        for (var i = 0; i < mau_list.length; i++) {
+            if(i%2 == 0 && i != 0){
+                document.getElementById('mau-li').innerHTML += "<br>";
+                document.getElementById('mau-pro-edit').innerHTML += mau_list[i] + "<br> ";
+            }
+            else{
+                document.getElementById('mau-pro-edit').innerHTML += mau_list[i] + "; ";
+            }
+        }
+        if(mau_list.length %2 ==0){
+            document.getElementById('mau-li').innerHTML += "<br>";
+        }
+        for (var i = 0; i < cauhinh_list.length; i = i+2) {
+                document.getElementById('cauhinh-li').innerHTML += "<br>";
+                document.getElementById('cauhinh-pro-edit').innerHTML += cauhinh_list[i] + " Giá: " + cauhinh_list[i+1] +" VNĐ<br>";
+        }
+    }
     
 }
 //Ẩn Modal thêm
@@ -78,6 +107,10 @@ function exitAdd(item){
             gender[i].checked = false;
         }
     }
+    document.getElementById('mau-li').innerHTML = "Màu sắc";
+    document.getElementById('cauhinh-li').innerHTML ="Phiên bản";
+    document.getElementById('mau-pro-edit').innerHTML ="";
+    document.getElementById('cauhinh-pro-edit').innerHTML ="";
 }
 function exitXacnhan(item){
     document.getElementById(item).style.display = 'none';
@@ -237,7 +270,7 @@ function xacNhanEdit(item) {
             }
         }
         
-        if(check_mail == true && check_phone == true && ma != "" && ten != "" && matk != "" && sdt != "" && diachi != "" && mail != "" && matk.match(/^[a-zA-Z0-9]*$/) && sdt.match(/^[0-9]{10}$/) && mail.match(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/) && ten.match(/^[A-Za-z\sáàảãạâấầẩẫậăắằẳẵặéèẻẽẹêếềểễệíìỉĩịóòỏõọôồốổỗộơờớởỡợúùủũụưứừửữựýỳỷỹỵ]+$/)){
+        if(check_mail === true && check_mail === true && ma != "" && ten != "" && matk != "" && sdt != "" && diachi != "" && mail != "" && matk.match(/^[a-zA-Z0-9]*$/) && sdt.match(/^[0-9]{10}$/) && mail.match(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/) && ten.match(/^[A-Za-z\sáàảãạâấầẩẫậăắằẳẵặéèẻẽẹêếềểễệíìỉĩịóòỏõọôồốổỗộơờớởỡợúùủũụưứừửữựýỳỷỹỵ]+$/)){
             let errors = ["error-ten-kh-edit","error-ma-kh-edit","error-matk-kh-edit","error-sdt-kh-edit","error-mail-kh-edit","error-diachi-kh-edit"]
             errors.forEach(function(item){
                 document.getElementById(item).innerHTML = "";
@@ -319,7 +352,7 @@ function xacNhanEdit(item) {
             }
         }
         
-        if(check_user == true && ma != "" && user != "" && pass != "" && pass2 != "" && pass2 == pass &&  pass.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/) && user.match(/^[a-zA-Z0-9]*$/) ){
+        if(check_user === true && ma != "" && user != "" && pass != "" && pass2 != "" && pass2 == pass &&  pass.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/) && user.match(/^[a-zA-Z0-9]*$/) ){
             let errors = ["error-ma-tk-edit","error-user-tk-edit","error-pass-tk-edit","error-pass2-tk-edit","error-quyen-tk-edit"]
             errors.forEach(function(item){
                 document.getElementById(item).innerHTML = "";
@@ -357,6 +390,40 @@ function xacNhanEdit(item) {
             }
             else{
                 document.getElementById("error-pass2-tk-edit").innerHTML = "";
+            }
+        }
+    }
+    if(item == "sanpham"){
+        //var maus = document.getElementById('span-maus').textContent;
+        //let user_current = document.getElementById('user-current').value;
+		let cauhinh= document.getElementById('cauhinh-pro-edit').value;
+        let mausac= document.getElementById('mau-pro-edit').value;
+        var value;
+ 
+        for (var i = 0; i < cauhinh.length; i++) {
+            if (cauhinh[i].checked) {
+                value = gioitinh[i].value;
+            }
+        }
+        
+        if(cauhinh != "" && mausac != ""){
+            let errors = ["error-cauhinh-sp-edit","error-mau-sp-edit"]
+            errors.forEach(function(item){
+                document.getElementById(item).innerHTML = "";
+            })
+        }
+        else { 
+            if(cauhinh == ""){
+                document.getElementById("error-cauhinh-sp-edit").innerHTML = "Vui lòng nhập tài khoản !";
+            }
+            else{
+                document.getElementById("error-cauhinh-sp-edit").innerHTML = "";
+            }
+            if(mausac == ""){
+                document.getElementById("error-mausac-sp-edit").innerHTML = "Vui lòng nhập mật khẩu !";
+            }
+            else{
+                document.getElementById("error-mausac-sp-edit").innerHTML = "";
             }
         }
     }
@@ -567,7 +634,7 @@ function xacnhanAdd(item) {
             }
         }
         
-        if(check_user == true && ma != "" && user != "" && pass != "" && pass2 != "" && pass2 == pass &&  pass.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/) && user.match(/^[a-zA-Z0-9]*$/) ){
+        if(check_user === true && ma != "" && user != "" && pass != "" && pass2 != "" && pass2 == pass &&  pass.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/) ){
             let errors = ["error-ma-tk","error-user-tk","error-pass-tk","error-pass2-tk","error-quyen-tk"]
             errors.forEach(function(item){
                 document.getElementById(item).innerHTML = "";
@@ -582,9 +649,6 @@ function xacnhanAdd(item) {
             else if(check_user === false){
                 document.getElementById("error-user-tk").innerHTML = "Tên tài khoản đã tồn tại !";
             }
-			else if(!user.match(/^[a-zA-Z0-9]*$/)){
-				document.getElementById("error-user-tk").innerHTML = "Tên khách hàng chỉ gồm chữ cái hoa, thường và số !";
-				}
             else{
                 document.getElementById("error-user-tk").innerHTML = "";
             }
@@ -608,6 +672,59 @@ function xacnhanAdd(item) {
             }
         }
     }
+}
+
+document.getElementById("year-choise-chart").addEventListener("change", function() {
+    var selectedValue = this.value;
+    var data = {
+        selected: selectedValue
+    };
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "./admin/loadBarChart", true); // Không cần nối thêm selectedValue vào URL
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4) {
+            
+            if (xhr.status === 200) {
+                var responseData = JSON.parse(xhr.responseText);
+                
+                console.log(responseData);
+                reloadChart(responseData);
+            } else {
+                document.write("Đã xảy ra lỗi khi gửi yêu cầu.");
+            }
+        }
+    };
+    xhr.send(JSON.stringify(data)); // Chuyển đổi data thành JSON trước khi gửi
+});
+
+function reloadChart(data){
+    var ctx = document.getElementById('myChart').getContext('2d');
+
+    // Nếu có biểu đồ cũ, hủy nó trước khi tạo biểu đồ mới
+    if (window.myChart) {
+        window.myChart.destroy();
+    }
+
+    // Tạo biểu đồ mới và gán cho window.myChart
+    window.myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: data.lb,
+            datasets: [{
+                label: 'Tổng doanh thu theo năm',
+                data: data.vl,
+                backgroundColor: 'rgb(75, 192, 192)',
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
 }
 
     var search = document.getElementById("search-input");
@@ -699,7 +816,8 @@ function xacnhanAdd(item) {
             if (xhr.readyState == 4) {
                 if (xhr.status === 200) {
                     var responseData = JSON.parse(xhr.responseText);
-                    updateCombobox2(responseData);
+                    updateCombobox('mau',responseData);
+                    document.getElementById("cauhinh").innerHTML = "";
                 } else {
                     document.write("Đã xảy ra lỗi khi gửi yêu cầu.");
                 }
@@ -711,11 +829,39 @@ function xacnhanAdd(item) {
     function formatCurrency(number) {
         return number.toLocaleString('vi-VN');
     }
+
+
+    document.getElementById("mau").addEventListener("change", function() {
+        var selectedValue = this.value;
+        var data = {
+            selected: selectedValue
+        };
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "./admin/loadCH", true); // Không cần nối thêm selectedValue vào URL
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4) {
+                if (xhr.status === 200) {
+                    var responseData = JSON.parse(xhr.responseText);
+                    updateCombobox('cauhinh',responseData);
+                } else {
+                    document.write(xhr.status);
+                    document.write("Đã xảy ra lỗi khi gửi yêu cầu.");
+                }
+            }
+        };
+        xhr.send(JSON.stringify(data));
+    })
     
 
-    function updateCombobox2(data) {
-        var cbb2 = document.getElementById("mau");
+    function updateCombobox(id,data) {
+        var cbb2 = document.getElementById(id);
         cbb2.innerHTML = "";
+        var option = document.createElement("option");
+            option.value = "0";
+            if (id == 'cauhinh') option.textContent = "-- Chọn cấu hình --";
+            else option.textContent = "-- Chọn màu --";
+        cbb2.appendChild(option);
         data.forEach(function(option) {
             var optionElem = document.createElement("option");
             optionElem.value = option.value;
@@ -727,6 +873,7 @@ function xacnhanAdd(item) {
     document.getElementById("model-btn-add").addEventListener("click", function() {
     //     // Lấy giá trị từ các combobox
         var mact = document.getElementById("mau").value;
+        var mach = document.getElementById("cauhinh").value;
         value = parseInt(mact);
         var sl = parseInt(document.getElementById("sl").value);
         var gianhap = parseInt(document.getElementById("gianhap").value);
@@ -738,55 +885,67 @@ function xacnhanAdd(item) {
         var selectElementSP = document.getElementById("sanpham");
         var selectedSP = selectElementSP.selectedIndex;
         var sp = selectElementSP.options[selectedSP].text;
-
-        if (!isNaN(sl) && !isNaN(gianhap)){
-            var tableBody = document.getElementById("myTable-Model").getElementsByTagName("tbody")[0];
-            var rows = tableBody.getElementsByTagName("tr");
-            var found = false;
-
-            for (var i = 0; i < rows.length; i++) {
-                var cells = rows[i].getElementsByTagName("td");
-                var existingMact = cells[0].textContent; // Lấy giá trị của cột mã mặt hàng trong hàng hiện tại
-                if (existingMact === mact) {
-                    var cellSoluong = cells[4];
-                    var cellTong = cells[5];
-                    var soluong = parseInt(cellSoluong.textContent); // Lấy số lượng hiện tại
-                    var tong = parseInt(cellTong.textContent); // Lấy tổng tiền hiện tại
-                    soluong += sl; // Tăng số lượng lên
-                    tong += gianhap * sl; // Cập nhật tổng tiền
-                    cellSoluong.textContent = soluong; // Cập nhật số lượng
-                    cellTong.textContent = tong; // Cập nhật tổng tiền
-                    found = true;
-                    break; // Thoát khỏi vòng lặp sau khi cập nhật
+        if (mact != 0){
+            var selectElementMau = document.getElementById("cauhinh");
+            var selectedch = selectElementMau.selectedIndex;
+            var ch = selectElementMau.options[selectedch].text;
+            if (mach != 0){
+                if (!isNaN(sl) && !isNaN(gianhap)){
+                    var tableBody = document.getElementById("myTable-Model").getElementsByTagName("tbody")[0];
+                    var rows = tableBody.getElementsByTagName("tr");
+                    var found = false;
+        
+                    for (var i = 0; i < rows.length; i++) {
+                        var cells = rows[i].getElementsByTagName("td");
+                        var existingMact = cells[0].textContent; // Lấy giá trị của cột mã mặt hàng trong hàng hiện tại
+                        if (existingMact === mact) {
+                            var cellSoluong = cells[4];
+                            var cellTong = cells[5];
+                            var soluong = parseInt(cellSoluong.textContent); // Lấy số lượng hiện tại
+                            var tong = parseInt(cellTong.textContent); // Lấy tổng tiền hiện tại
+                            soluong += sl; // Tăng số lượng lên
+                            tong += gianhap * sl; // Cập nhật tổng tiền
+                            cellSoluong.textContent = soluong; // Cập nhật số lượng
+                            cellTong.textContent = tong; // Cập nhật tổng tiền
+                            found = true;
+                            break; // Thoát khỏi vòng lặp sau khi cập nhật
+                        }
+                    }
+                    if (!found) {
+                        var newRow = tableBody.insertRow(tableBody.rows.length);
+        
+                        var cellMaCT = newRow.insertCell(0);
+                        var cellSP = newRow.insertCell(1);
+                        var cellMau = newRow.insertCell(2);
+                        var cellCH =newRow.insertCell(3)
+                        var cellGiaNhap = newRow.insertCell(4);
+                        var cellSoluong = newRow.insertCell(5);
+                        var cellTong = newRow.insertCell(6);
+                        var cellCN = newRow.insertCell(7);
+                        var cellMaCH = newRow.insertCell(8);
+                        cellMaCH.style.display = "none";
+        
+                        cellMaCT.innerHTML = mact;
+                        cellSP.innerHTML = sp;
+                        cellMau.innerHTML = mau;
+                        cellMaCH.innerHTML = mach;
+                        cellCH.innerHTML = ch;
+                        cellGiaNhap.innerHTML = formatCurrency(gianhap);
+                        cellSoluong.innerHTML = sl;
+                        cellTong.innerHTML = formatCurrency( gianhap * sl);
+                        cellCN.innerHTML = '<button><i class="far fa-edit action" style="color: #74C0FC;"></i></button> <button id="delete-row-model" onclick="deleteRow(this)"><i class="fas fa-trash-alt action" style="color: #e13737;"></i></button>';
+                    }
+                    document.getElementById("sanpham").value = 0;
+                    document.getElementById("mau").innerHTML = "";
+                    document.getElementById("sl").value = "";
+                    document.getElementById("gianhap").value = "";
+                    document.getElementById("cauhinh").innerHTML = "";
                 }
-            }
-            if (!found) {
-                var newRow = tableBody.insertRow(tableBody.rows.length);
-
-                var cellMaCT = newRow.insertCell(0);
-                var cellSP = newRow.insertCell(1);
-                var cellMau = newRow.insertCell(2);
-                var cellGiaNhap = newRow.insertCell(3);
-                var cellSoluong = newRow.insertCell(4);
-                var cellTong = newRow.insertCell(5);
-                var cellCN = newRow.insertCell(6);
-
-                cellMaCT.innerHTML = mact;
-                cellSP.innerHTML = sp;
-                cellMau.innerHTML = mau;
-                cellGiaNhap.innerHTML = formatCurrency(gianhap);
-                cellSoluong.innerHTML = sl;
-                cellTong.innerHTML = formatCurrency( gianhap * sl);
-                cellCN.innerHTML = '<button><i class="far fa-edit action" style="color: #74C0FC;"></i></button> <button id="delete-row-model" onclick="deleteRow(this)"><i class="fas fa-trash-alt action" style="color: #e13737;"></i></button>';
-            }
-            document.getElementById("sanpham").value = 0;
-            document.getElementById("mau").innerHTML = "";
-            document.getElementById("sl").value = "";
-            document.getElementById("gianhap").value = "";
-        }
-        else{
-            thongbao("Vui lòng không bỏ trống số lượng và giá nhập");
-        }
+                else{
+                    thongbao("Vui lòng không bỏ trống số lượng và giá nhập");
+                }
+            }else thongbao("Vui lòng chọn cấu hình máy");
+        }else thongbao("Vui lòng chọn màu máy");
     })
 
     function themPN(){
@@ -804,19 +963,17 @@ function xacnhanAdd(item) {
                     mapn : mapn,
                     mancc : mancc,
                 }
+
                 rows.forEach(function(row) {
-                    var maCT = row.cells[0].textContent;
-                    var soLuong = row.cells[4].textContent;
-                    var donGia = row.cells[3].textContent;
-                    var thanhTien = row.cells[5].textContent;
-
-                    console.log(soLuong+ " "+donGia+" "+thanhTien)
-
+                    var soLuong = row.cells[5].textContent;
+                    var donGia = row.cells[4].textContent;
+                    var thanhTien = row.cells[6].textContent;
+                    var mach = row.cells[8].textContent
                     // Lấy thông tin từ các ô khác nếu cần
                     danhsach_ct.push({soluong:soLuong,
-                                        MaCT:maCT,
                                         gianhap:donGia,
-                                        tongtien:thanhTien});
+                                        tongtien:thanhTien,
+                                        mach:mach});
                     
                 });
                 
@@ -829,6 +986,8 @@ function xacnhanAdd(item) {
                             document.querySelectorAll("#myTable-Model tbody tr").innerHTML = ""
                             thongbao(result["mess"]);
                             if ( result["mapn"] != null ) document.getElementById("MaPN-model").value = result["mapn"];
+                            var tableBody = document.querySelector("#myTable-Model tbody");
+                            tableBody.innerHTML = "";
                         }
                     };
                 var data ={
@@ -871,7 +1030,7 @@ function xacnhanAdd(item) {
         element.addEventListener("click", function() {
             var selectedValue = this.value;
             var row = this.closest('tr');
-            console.log(row.cells[1].textContent);
+            document.getElementById("tong-detail").innerHTML = "Tổng tiền: <strong><em>"+row.cells[3].textContent+" vnđ</em></strong>";
             document.getElementById("ncc-detail").innerHTML = "Nhà cung cấp: <strong><em>"+row.cells[1].textContent+"</em></strong>";
             showModel('model-detail');
             var data = {
@@ -906,6 +1065,10 @@ function xacnhanAdd(item) {
             var cell2 = document.createElement("td");
             cell2.textContent = option.Mau;
             row.appendChild(cell2);
+
+            var cell6 = document.createElement("td");
+            cell6.textContent = option.CauHinh;
+            row.appendChild(cell6);
 
             var cell3 = document.createElement("td");
             cell3.textContent = formatCurrency(parseInt(option.gianhap))                     ;
@@ -953,3 +1116,14 @@ function xacnhanAdd(item) {
     
     
     
+function changeContentWidth(isHovered) {
+	var content = document.querySelector('.content');
+	if (isHovered) {
+	  content.classList.add('expanded');
+	} else {
+	  content.classList.remove('expanded');
+	}
+  }
+
+
+  

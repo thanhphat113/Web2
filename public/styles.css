@@ -215,10 +215,12 @@ tbody tr:hover {
 
 	
 #myDonutChart{
-	max-width: 300px; /* Thiết lập chiều rộng tối đa */
-    max-height: 300px; /* Thiết lập chiều cao tối đa */
-    width: 100%; /* Thiết lập chiều rộng 100% */
-    height: auto; 
+	max-width: 500px; /* Thiết lập chiều rộng tối đa */
+    max-height: 500px; /* Thiết lập chiều cao tối đa */
+    position:absolute;
+    top:35%;
+    left:68%;
+    transform: translate(-50%, -50%);
 }
 
 
@@ -280,7 +282,26 @@ tr:nth-child(even) {
 	height: 36px;
 	width: 200px;
 	margin-right: 10px;
+    border-radius: 10px;
+    transition: all 0.75;
 	background-color:aquamarine;
+}
+
+.hoadon-content .btn-add:hover{
+    transform: scale(1.1);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+}
+
+.Top-table{
+    max-height: 100%;
+    overflow-y: auto;
+    
+}
+
+.Top-content{
+    height:485px;
+    max-height: 485px;
+    overflow-y: auto;
 }
 
 .hoadon-content{
@@ -500,7 +521,7 @@ strong em {
 
 
 /*Nhan*/
-/* .main-content{
+.main-content{
     width: 100%;
     height: 100%;
     background-color: aliceblue;
@@ -526,7 +547,7 @@ strong em {
     top: 20px;
     right: 8%;
 }
-.btn-add{
+#one .btn-add{
     position: absolute;
     font-size: 16px;
     font-weight: 600;
@@ -560,7 +581,7 @@ strong em {
     width: 100%;
     align-items:flex-end;
     width: 100%;
-    height: 50px;
+    height: 100px;
     margin-top: 0;
 }
 .text-search{
@@ -571,19 +592,19 @@ strong em {
     right: 110px;
     bottom: 5px;
 }
-.search-second{
+.search-sdt{
     position: absolute;
     right: 380px;
     bottom: 5px;
 }
 .search-gender{
     position: absolute;
-    right: 600px;
+    right: 380px;
     bottom: 7px;
 }
 .search-state{
     position: absolute;
-    right: 350px;
+    right: 370px;
     bottom: 5px;
 }
 .search-permission{
@@ -594,8 +615,8 @@ strong em {
 .icon-list{
     line-height: 200%;
     margin-left: 30px;
-    background-color:aliceblue;
-    border: solid 1px aliceblue;
+    background-color:#EEEEEE;
+    border: solid 1px #EEEEEE;
     cursor: pointer;
 }
 .btn-search{
@@ -613,7 +634,7 @@ strong em {
     width: 100%;
     height: 80%;
 }
-table{
+#one-table{
     position: relative;
     width: 97%;
     height: 550px;
@@ -625,19 +646,19 @@ table{
     overflow: auto;
 
 }
-th{
+#one-table th{
     width: 25%;
     position: sticky;
     top: 0px;
     padding: 10px;
-    text-align: left;
+    text-align: center;
     color: white;
     background-color: #6ec2f7;
 }
-td,th{
+#one-table td,th{
     border: solid rgb(241, 243, 244) 2px;
     padding: 10px;
-    text-align: left;
+    text-align: center;
 }
 .modal-add{
     display: none;
@@ -689,7 +710,6 @@ ul,li{
 .text-info{
     position: absolute;
     top: 5%;
-    left: 10%;
     height: 70%;
     width: 30%;
     font-size: 18px;
@@ -697,9 +717,9 @@ ul,li{
 }
 .input-info{
     position: absolute;
-    left: 30%;
+    left: 25%;
     top: 5%;
-    width: 70%;
+    width: 90%;
     height: 50%;
     font-size: 100%;
     line-height: 260%;
@@ -797,14 +817,45 @@ ul,li{
 	background-color:aliceblue;
     background-color: rgba(0, 0, 0, 0.4);
 }
+.view-info-product{
+    display: flex;
+    position: relative;
+    position: absolute;
+    width: 55%;
+    height: 500px;
+    top: 2%;
+    left: 20%;
+    background-color:white;
+	border-radius: 10px;
+}
+.info-product{
+    position: absolute;
+    left: 30%;
+    top:5%;
+    display: flex;
+    position: relative;
+    width: 55%;
+    height: 100%;
+}
+.info-img-product{
+    top:0%;
+    position: absolute;
+    width: 40%;
+    height: 100%;
+}
+.img-product{
+    margin-top: 50px;
+    margin-left: 30px;
+    width: 210px;
+    height: 280px;
+
+}
+  
 
   
+  
+  
 
   
   
   
-
-  
-  
-   */
-

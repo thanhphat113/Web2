@@ -15,13 +15,13 @@
 
 
 		public function __construct($mahd,$manv,$makh,$makm,$ngaytao,$tongtien,$trangthai){
-			// $this->khCTL = new khachhangCTL();
+			$this->khCTL = new M_khachhang();
 			$this->nvCTL = new M_nhanvien();
 			$this->mahd=$mahd;
 			$this->manv=$manv;
 			$this->nhanvien= $this->nvCTL->findById($manv);
 			$this->makh=$makh;
-			// $this->khachhang = $this->khCTL->findById($makh);
+			$this->khachhang = $this->khCTL->findById($makh);
 			$this->makm=$makm;
 			$this->ngaytao=$ngaytao;
 			$this->tongtien=$tongtien;

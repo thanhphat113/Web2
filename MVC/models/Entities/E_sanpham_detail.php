@@ -14,7 +14,6 @@ class E_sanpham_detail {
 		$this->m_sp =  new M_sanpham() ;
 		$this->masp = $masp;
 		$this->sanpham = $this->m_sp->findById($masp);
-		
 		$this->mact = $mact;
 		$this->mau = $mau;
 		$this->hinhanh = $hinhanh;

@@ -10,5 +10,13 @@ class M_sanpham extends connectiondb{
 		}
 		else return null;
 	}
+
+	public function getQuantity(){
+		$sql = "select * from sanpham";
+		$result = $this->count( $sql );
+		return $result;
+	}
+
+	
 }
 ?>

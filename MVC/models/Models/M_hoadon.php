@@ -1,7 +1,7 @@
 <?php
 class M_hoadon extends connectiondb{
 	public function findAll(){
-		// $result = array();
+		$result = array();
 		$query = "select * from hoadon";
 		$list = $this->execute_fetch_all( $query );
 		foreach ($list as $hd) {
@@ -16,6 +16,22 @@ class M_hoadon extends connectiondb{
 			$result[] = $hoadon;
 		}
 		return $result;
+	}
+
+	function getThongKe($year){
+		$sql = 'SELECT MONTH(ngaytao) AS thang, SUM(tongtien) AS tong_tien
+					FROM hoadon
+					WHERE YEAR(ngaytao) = "'.$year.'"
+					GROUP BY thang
+					ORDER BY thang';
+		$results = $this->execute_fetch_all( $sql );
+		return $results;
+	}
+
+	function tongTien() {
+		$query = 'SELECT SUM(TongTien) AS tong_tien FROM hoadon';
+		$result = $this->execute_fetch_one( $query );
+		return $result["tong_tien"];
 	}
 
 	function newMaHD(){

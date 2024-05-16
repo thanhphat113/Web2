@@ -25,9 +25,12 @@
 			$result = $this->execute_query($query);
 			if ($result){
 				foreach ($chitiet as $ct){
-					$query = "insert into chitiet_pn value ('". $mapn ."','". $ct["MaCT"] ."','". $ct["gianhap"] ."','".$ct["soluong"]."','". $ct["tongtien"] ."')";
+					$query = "insert into chitiet_pn value ('". $mapn ."','". $ct["mach"] ."','". $ct["gianhap"] ."','".$ct["soluong"]."','". $ct["tongtien"] ."')";
 					$result = $this->execute_query($query);
-					if (!$result) return "Thêm chi tiết vào phiếu nhập thất bại";
+					if ($result == 0) return "Thêm chi tiết vào phiếu nhập thất bại";
+					$queryl = "update sp_giaban set SoLuong =".$ct["soluong"]."+ SoLuong where MaCH ='".$ct["mach"]."'";
+					$resultl = $this->execute_query($queryl);
+					if ($resultl == 0 ) return "Thêm số lượng thất bại";
 				}
 				$query = "UPDATE phieunhap as sp
 								SET TongTien = (

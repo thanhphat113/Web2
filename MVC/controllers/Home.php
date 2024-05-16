@@ -12,7 +12,6 @@ class Home extends Controller{
     public function Iphone($title){
 
         if($title == "") $title = "tatca";
-        
         $sanpham = $this->SanphamModel->getAllIphoneByblack();
         $sanphamByMaloai = $this->SanphamModel->getIphoneByBlackToMaLoai($title);
         $this->view("Customer/trangchu", [

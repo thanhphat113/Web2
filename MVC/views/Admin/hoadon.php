@@ -4,7 +4,7 @@
 	</div>
 	<div class="hoadon-content">
 		<input id="search-input" type="text" class="txtSearch" placeholder="Nhập thông tin tìm kiếm"/>
-		<button class="btn-add" onclick="thongbao('hoá đơn')"> Thêm</button>
+		<button style="transition: all .75s ease;" class="btn-add" onclick="thongbao('hoá đơn')"> Thêm</button>
 		<div class="showList" >
 			<table id="viewTable">
 				<thead>
@@ -36,7 +36,7 @@
 										<td>';
 										if ($hd->getNv() != null)
 											echo $hd->getNv()->getTennv().'</td>';
-								echo	'<td style="width:200px">'.$hd->getMakh().'</td>
+								echo	'<td style="width:200px">'.$hd->getKh()->getTenkh().'</td>
 										<td>'.$hd->getMakm() .'</td>
 										<td>'.$hd->getNgaytao() .'</td>
 										<td>'.number_format($hd->getTongtien(), 0, ',', '.').'</td>

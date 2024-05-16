@@ -4,6 +4,7 @@ class Login extends Controller{
 
     public $TaikhoanModel;
 
+
     public function __construct()
     {
         if(isset($_SESSION['username'])) {
@@ -62,6 +63,7 @@ class Login extends Controller{
                         $_SESSION['username'] = $username;
                         $_SESSION['role'] = $Role;
                         $_SESSION['Matk'] = $Matk;
+
                         // Chuyển hướng đến trang dựa theo role
                         if(['role'] == 2){
                             header("Location: ".BASE_URL ."Home");

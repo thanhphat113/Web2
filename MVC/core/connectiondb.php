@@ -4,16 +4,17 @@ class connectiondb{
     private $servername = "localhost";
     private $username = "root";
     private $password = "";
-    private $database = "cuahangdienthoai";
+    private $database = "cuahangdienthoai_demo";
 
     public function __construct() {
         $this->conn = new mysqli($this->servername, $this->username, $this->password, $this->database);
         mysqli_query($this->conn,"SET NAMES 'utf8'");
     }
 
-    function addFormat($number){
-        $number = number_format($number, 1, '.', ','). ' <sup>đ</sup>';
-        return $number;
+    function count($sql){
+        $cursor = $this->conn->query($sql);
+        $count = $cursor->num_rows; // Đếm số lượng dòng trong kết quả
+        return $count;
     }
 
     function execute_fetch_all($sql){

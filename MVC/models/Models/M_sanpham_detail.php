@@ -15,6 +15,16 @@ class M_sanpham_detail extends connectiondb {
 		return $result;
 	}
 
+	function findById($id){
+		$sql = "select * from chitiet_sp where MaCT = '".$id."'";
+		$result = $this->execute_fetch_one( $sql );
+		if ($result != null) {
+			$ctsp = new E_sanpham_detail( $result["MaSP"], $result["MaCT"], $result["Mau"], $result["HinhAnh"], $result["MoTa"] );
+			return $ctsp;
+		}
+		return null;
+	}
+
 	public function getNameList() {
 		$query = "SELECT DISTINCT sp.MaSP,sp.TenSP FROM chitiet_sp ct join sanpham sp on sp.MaSP=ct.MaSP";
 		$list = $this->execute_fetch_all( $query );
@@ -22,7 +32,7 @@ class M_sanpham_detail extends connectiondb {
 	}
 
 	public function getMauListById($masp) {
-		$query = "SELECT ct.MaCT,ct.Mau FROM chitiet_sp ct join sanpham sp on ct.MaSP=sp.MaSP WHERE sp.MaSP = '".$masp."'";
+		$query = "SELECT ct.MaCT,ct.Mau FROM chitiet_sp ct  WHERE ct.MaSP = '".$masp."'";
 		$list = $this->execute_fetch_all( $query );
 		return $list;
 	}
