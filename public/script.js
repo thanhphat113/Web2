@@ -674,8 +674,12 @@ function xacnhanAdd(item) {
     }
 }
 
+
+
 document.getElementById("year-choise-chart").addEventListener("change", function() {
+    
     var selectedValue = this.value;
+    console.log(selectedValue);
     var data = {
         selected: selectedValue
     };
@@ -728,10 +732,13 @@ function reloadChart(data){
 }
 
     var search = document.getElementById("search-input");
-    var dataTable = document.getElementById("viewTable");
-    var tableRows = dataTable.getElementsByTagName("tr");
 
     search.addEventListener("input", function () {
+
+        
+        var dataTable = document.getElementById("viewTable");
+        var tableRows = dataTable.getElementsByTagName("tr");
+
         var keyword = search.value.trim().toLowerCase();
 
         // Duyệt qua từng dòng của bảng
@@ -1053,6 +1060,34 @@ function reloadChart(data){
         });
     });
 
+
+    document.querySelectorAll("#detail-hd").forEach(function(element) {
+        element.addEventListener("click", function() {
+            var selectedValue = this.value;
+            var row = this.closest('tr');
+            document.getElementById("tong-detail").innerHTML = "Tổng tiền: <strong><em>"+row.cells[5].textContent+" vnđ</em></strong>";
+            showModel('model-detail-detail');
+            var data = {
+                selected: selectedValue
+            }
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "./admin/loadDetailHD", true); // Không cần nối thêm selectedValue vào URL
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4) {
+                    if (xhr.status === 200) {
+                        var responseData = JSON.parse(xhr.responseText);
+                        updateDetailHD(responseData["list"]);
+                    } else {
+                        document.write("Đã xảy ra lỗi khi gửi yêu cầu.");
+                    }
+                }
+            }
+            xhr.send(JSON.stringify(data));
+        });
+    });
+
+
     function updateDetail(data){
         var tbody = document.getElementById("table-detail").querySelector("tbody");
         tbody.innerHTML = "";
@@ -1080,6 +1115,39 @@ function reloadChart(data){
 
             var cell5 = document.createElement("td");
             cell5.textContent = formatCurrency(parseInt(option.tongtien));
+            row.appendChild(cell5);
+
+            tbody.appendChild(row);
+        });
+    }
+
+    function updateDetailHD(data){
+        var tbody = document.getElementById("table-detail-hd").querySelector("tbody");
+        tbody.innerHTML = "";
+        data.forEach(function(option) {
+            var row = document.createElement("tr");
+            var cell1 = document.createElement("td");
+            cell1.textContent = option.TenSP;
+            row.appendChild(cell1);
+
+            var cell2 = document.createElement("td");
+            cell2.textContent = option.Mau;
+            row.appendChild(cell2);
+
+            var cell6 = document.createElement("td");
+            cell6.textContent = option.CauHinh;
+            row.appendChild(cell6);
+
+            var cell3 = document.createElement("td");
+            cell3.textContent = formatCurrency(parseInt(option.DonGia))                     ;
+            row.appendChild(cell3);
+
+            var cell4 = document.createElement("td");
+            cell4.textContent = option.soluong;
+            row.appendChild(cell4);
+
+            var cell5 = document.createElement("td");
+            cell5.textContent = formatCurrency(parseInt(option.TongTien));
             row.appendChild(cell5);
 
             tbody.appendChild(row);

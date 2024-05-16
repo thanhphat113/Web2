@@ -1,7 +1,6 @@
 <?php
 	class admin extends Controller{
 		private $hoaDonModel;
-		private $sanphamModel;
 
 		private $cauhinhModel;
 
@@ -11,14 +10,17 @@
 		private $phieunhapModel;
 		private $nhacungcapModel;
 		public $taikhoanModel;
+		private $hoadon_detailModel;
 		public $khachhangModel;
 		public $nhanvienModel;
+		public $sanphamModel;
 
 		public function __construct(){
 			if(!isset($_SESSION['username']) || $_SESSION['role'] == 2) {
 				header("Location: ".BASE_URL ."Home");
 				exit(); // Dừng việc thực thi kịch bản tiếp theo sau lệnh header
 			}
+			$this->hoadon_detailModel = $this->model("M_hoadon_detail");
 			$this->sanphamModel = $this->model("M_sanpham");
 			$this->cauhinhModel = $this->model("M_cauhinh");
 			$this->phieunhap_detailModel = $this->model("M_phieunhap_detail");
@@ -29,20 +31,27 @@
 			$this->taikhoanModel=$this->model("M_taikhoan");
 			$this->khachhangModel=$this->model("M_khachhang");
 			$this->nhanvienModel=$this->model("M_nhanvien");
+			$this->sanphamModel=$this->model("M_sanpham");
 		}
-
 		
 
+
 		function thongke() {
+			$matk = $_SESSION['Matk'];
+
+			$nv = $this->nhanvienModel->getNameBytk($matk);
 			$donut = $this->khachhangModel->getDonutChart();
 			$tk = $this->hoaDonModel->getThongKe("2024");
 
+			$_SESSION["MaNV"] = $nv["MaNV"];
+            
 			$oop = $this->model("M_hoadon");
 			$hoadon_list = $oop -> findAll();
 			$listTopsp = $this->cauhinhModel->getListTop();
 			$listTopkh = $this->khachhangModel->getListTop();
 			$slSP = $this->sanphamModel->getQuantity();
 			$this->view('admin_page',$data = [
+				"nvien"=> $nv,
 				"Page" => 'thongke',
 				"sp" => $slSP,
 				"kh" => $this->khachhangModel->getQuantity(),
@@ -104,12 +113,39 @@
 			}
 		}
 
-		function hoadon() {
-			$oop = $this->model("M_hoadon");
-			$hoadon_list = $oop -> findAll();
+		function loadDetailHD() {
+			if ($_SERVER["REQUEST_METHOD"] === "POST") {
+				// Lấy dữ liệu JSON được gửi từ trình duyệt
+				$json_data = file_get_contents("php://input");
 
+				// Giải mã dữ liệu JSON thành mảng PHP
+				$data = json_decode($json_data, true);
+
+				// Kiểm tra xem dữ liệu đã được giải mã thành công hay không
+				if (json_last_error() === JSON_ERROR_NONE && isset($data["selected"])) {
+					
+					$list = $this->hoadon_detailModel->findById($data["selected"]);
+					echo json_encode(array("list"=> $list));
+				}
+			}
+		}
+
+		function hoadon() {
+			$mess= null;
+			$oop = $this->model("M_hoadon");
+			
+			if (isset($_POST["type"])) {
+				if(	$_POST["type"] == "update") {
+					$mess = $this->hoaDonModel->updateTT($_POST["mahd"],$_POST["manv"]);
+				}
+				if ( $_POST["type"] == "delete") {
+					$mess = $this->hoaDonModel->delete($_POST["mahd"]);
+				}
+			}
+			$hoadon_list = $oop -> findAll();
 			$this->view('admin_page',$data = [
 				"Page" => 'hoadon',
+				"mess" => $mess,
 				"hoadon_list" => $hoadon_list]);
 		}
 
@@ -367,8 +403,9 @@
                 $sdt = $_POST["phone-cus-input"];
                 $matk = $_POST["idtk-cus-input"];
                 $dckh = $_POST["addres-cus-input"];
-				$result_mess="Đã thêm '$makh' thành công !";
-				$this->khachhangModel->add($makh,$tenkh,$email,$sdt,$matk,$dckh);
+                $nskh = $_POST["date-cus-input"];
+				$result_mess="Đã thêm '$nskh' thành công !";
+				$this->khachhangModel->add($makh,$tenkh,$email,$sdt,$dckh,$nskh,$matk);
 				$this->taikhoanModel->add($newidTK,$email,'123456Aa',1,2);
 				$khachhang_list = $oop -> showAll();
 			}
@@ -443,6 +480,82 @@
 				"newid"=>$newid,
 				"newidTK"=>$newidTK,
 				"nhanvien_list" => $nhanvien_list]);
+		}
+
+		function sanpham() {
+			$result_mess = "";
+			$oop = $this->model("M_sanpham");
+			$sanpham_list = $oop -> showAll();
+			$ctsanpham_list = $oop -> findChiTietSanPham();
+			$loaisanpham_list = $oop -> findLoaiSanPham();
+			$giasanpham_list = $oop -> findGiaBanSanPham();
+			$newid = $oop->newMaSP();
+
+			if(isset($_POST["search"])){
+				$danhmuc = $_POST['danhmuc-pro-search'];
+				if($danhmuc == 'IPhone'){
+					$giasanpham_list = $oop -> findIPhone();
+				}
+				else if($danhmuc == 'IPad'){
+					$giasanpham_list = $oop -> findIPad();
+				}
+				else if($danhmuc == 'Macbook'){
+					$giasanpham_list = $oop -> findMacbook();
+				}
+			}
+			if(isset($_POST["loc"])){
+				$min = $_POST['min-pro-search'];
+				$max = $_POST['max-pro-search'];
+				$giasanpham_list = $oop -> findPrice($min,$max);
+			}
+
+			else if(isset($_POST["quick_search"])){
+				$value = $_POST['id-pro-search'];
+				$giasanpham_list = $oop -> quick_search($value);
+			}
+
+			else if(isset($_POST["add-pro"])){
+				$matk = $_POST['id-acc-input'];
+				$tentk = $_POST['user-acc-input'];
+				$password = $_POST['pass-acc-input'];
+				$trangthai = 1;
+				$maquyen = $_POST['quyen-acc-input'];
+				$result_mess="Đã thêm '$matk' thành công !";
+                $this->taikhoanModel->add($matk,$tentk,$password,$trangthai,$maquyen);
+				$taikhoan_list = $oop -> showAll();
+			}
+
+			else if(isset($_POST["edit-pro"])){
+				$mach = $_POST["idloai-pro-edit"];
+				$masp = $_POST["idsp-pro-edit"];
+                $tensp = $_POST["tensp-pro-edit"];
+				$baohanh = $_POST["baohanh-pro-edit"];
+                $trangthai = $_POST["trangthai-pro-edit"];
+                $gia = $_POST["gia-pro-edit"];
+				$result_mess="Đã cập nhật '$tensp' thành công !";
+				$this->sanphamModel->edit($masp,$mach,$tensp,$baohanh,$trangthai,$gia);
+				$giasanpham_list = $oop -> findGiaBanSanPham();
+
+				$sanpham_list = $oop -> showAll();
+				$ctsanpham_list = $oop -> findChiTietSanPham();
+				$loaisanpham_list = $oop -> findLoaiSanPham();
+			}
+
+			else if(isset($_POST["delete"])){
+				$masp = $_POST["delete"];
+				$result_mess="Đã xóa '$masp' thành công !";
+				$this->sanphamModel->delete($masp);
+				$giasanpham_list = $oop -> findGiaBanSanPham();
+			}
+
+			$this->view('admin_page',$data = [
+				"Page" => 'sanphamView',
+				"result"=>$result_mess,
+				"newid"=>$newid,
+				"loaisanpham_list" => $loaisanpham_list,
+				"ctsanpham_list" => $ctsanpham_list,
+				"giasanpham_list" => $giasanpham_list,
+				"sanpham_list" => $sanpham_list]);
 		}
 
 	}

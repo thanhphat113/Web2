@@ -1,11 +1,11 @@
-<div class="top-content">
+<div class="quanly-top-content">
     <form  method="post">
-        <h2 class="title">Quản lý khách hàng</h2>
-        <div type="submit" onclick="moveModal('modal-add-customer')" class="btn-add">Thêm khách hàng</div>
+        <h1>Quản lý khách hàng</h1>
+        <div type="submit" onclick="moveModal('modal-add-customer')" class="ql-btn-add">Thêm khách hàng</div>
         <input type="text" class="search-input" name="id-cus-search" placeholder="Tìm mã hoặc tên khách hàng">
         <button class="btn-quick-search" name="quick_search"><i class="fas fa-search"></i></button>
 </div>
-<div class="center-content">
+<div class="quanly-center-content">
     <button class="icon-list" name="icon-list">
     <i class="fas fa-user sidebar-icon"></i>
     </button>
@@ -26,9 +26,9 @@
         <button class="btn-search" name="search">Lọc</button>
     </div>
 </div>
-    <div class="bot-content">
-        <table>
-            <thead>                            
+    <div class="quanly-bot-content">
+        <table class="viewTable"> 
+            <thead id="one-table">                            
                 <th style="width:5%">STT</th>
                 <th style="width:10%">ID</th>
                 <th style="width:15%">Tên</th>
@@ -52,7 +52,7 @@
                         <td><?php echo $kh->getDckh();?></td>
                         <td><?php echo $kh->getMatk();?></td>
                         <td style="display:flex;">
-                            <div class="icon-option" style="background-color: rgb(93, 184, 93);" id="icon-edit"  onclick="moveEdit('modal-edit-customer','<?php echo $kh->getMakh();?>','<?php echo $kh->getTenkh();?>','<?php echo $kh->getMakh();?>','<?php echo $kh->getEmail();?>','<?php echo $kh->getSdt();?>','<?php echo $kh->getDckh();?>','<?php echo $kh->getMatk();?>','<?php echo $kh->getMakh();?>')">
+                            <div class="icon-option" style="background-color: rgb(93, 184, 93);" id="icon-edit"  onclick="moveEdit('modal-edit-customer','<?php echo $kh->getMakh();?>','<?php echo $kh->getTenkh();?>','<?php echo $kh->getMakh();?>','<?php echo $kh->getEmail();?>','<?php echo $kh->getSdt();?>','<?php echo $kh->getDckh();?>','<?php echo $kh->getMatk();?>','<?php echo $kh->getMakh();?>','<?php echo $kh->getMakh();?>')">
                                 <i class="fas fa-edit"></i>
                             </div>  
                             <div type ="submit" class="icon-option" style="background-color: rgb(255, 80, 80);" id="icon-delete" name="id-dele" value="<?php echo $kh->getMakh();?>" onclick="xacnhanDelete('xacnhan-delete-cus','<?php echo $kh->getMakh();?>','id-dele')">
@@ -77,7 +77,7 @@
         </div>
 
         <div class="modal-add" id="modal-add-customer">
-            <div style="height:400px" class="view-info">
+            <div style="height:450px" class="view-info">
                 <div class="exit-view-info" onclick="exitAdd('modal-add-customer')">X</div>
                 <div style="margin-left:80px" class="info">
                     <div class="text-info">
@@ -86,6 +86,7 @@
                             <li>Tên</li>
                             <li>Email</li>
                             <li>SĐT</li>
+                            <li>Ngày sinh</li>
                             <li>Địa chỉ</li>
                             <li>Mã TK</li>
                         </ul>
@@ -106,6 +107,10 @@
                             </li>
                             <li >
                                 <input type="text" id="phone-cus-input" name="phone-cus-input" class="li"  placeholder="Nhập số điện thoại" value="">
+                                <div class="error" id="error-sdt-kh"></div>                                    
+                            </li>
+                            <li >
+                                <input type="date" id="date-cus-input" name="date-cus-input" class="li"  value="">
                                 <div class="error" id="error-sdt-kh"></div>                                    
                             </li>
                             <li >

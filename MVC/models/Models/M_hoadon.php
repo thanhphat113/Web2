@@ -60,6 +60,28 @@ class M_hoadon extends connectiondb{
 		}
 	}
 
+	function delete($id){
+		$query = 'delete from hoadon where MaHD="'.$id.'"';
+		$result = $this->execute_query($query);
+		if ($result){
+			return 'Xoá thành công';
+		}
+		else{	
+			return 'Xoá thất bại';
+		}
+	}
+
+	function updateTT($id,$nv){
+		$query = 'update hoadon set MaNV=\''.$nv.'\',trangthai = 1 where MaHD="'.$id.'"';
+		$result = $this->execute_query($query);
+		if ($result){
+			return 'Cập nhật thành công';
+		}
+		else{	
+			return 'Cập nhật thất bại';
+		}
+	}
+
 	public function getHDByKH($MaKH){
 		$query = "select * from hoadon where MaKH = '$MaKH'";
 		return mysqli_query($this->conn, $query);
