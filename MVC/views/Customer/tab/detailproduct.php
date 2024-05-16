@@ -134,7 +134,8 @@
                 </div>
             </div>
             <div class="buy-options">
-                <a href="" class="buy-btn"
+                <?php                 mysqli_data_seek($data["ProductDetail_Price"], 0);?>
+                <a href="<?php echo BASE_URL; ?>cart/buyproduct/<?php echo mysqli_fetch_assoc($data["ProductDetail_Price"])['MaCH']?>" class="buy-btn" id="buyBtn"
                 style = "float: left;
                 width: 15vw;
                 margin-right: 20px;
@@ -302,6 +303,10 @@
                         // Cập nhật giá trị cho thẻ <strong>
                         var strongElement = document.querySelector('strong');
                         strongElement.textContent = discountedPrice.toFixed(2);
+
+
+                        var mach = response.MaCH;
+                        document.getElementById("buyBtn").href = "<?php echo BASE_URL; ?>cart/buyproduct/" + encodeURIComponent(mach);
                         
                     }
                 };

@@ -8,7 +8,6 @@
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     </head>
     <body>
-        <?php require('header.php');?>
         <div class="cus-content">
             <div class="cus-left">
                 <a href="<?php echo BASE_URL; ?>Thongtin/thongtincanhan" id="cus-per-info">Tài khoản của tôi</a>
@@ -24,7 +23,6 @@
             </div>
             <div class="bottom"></div>
         </div>
-        <?php require('footer.php');?>
         <script src="<?php echo BASE_URL; ?>public/js/script.js"></script>
 
     </body>

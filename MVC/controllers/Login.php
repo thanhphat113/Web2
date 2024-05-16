@@ -67,13 +67,16 @@ class Login extends Controller{
                         
 
                         // Chuyển hướng đến trang dựa theo role
-                        if(['role'] == 2){
+                        if($_SESSION['role'] == 2){
                             header("Location: ".BASE_URL ."Home");
-                        }else if(['role'] == 1){
+                            exit;
+                        }else if($_SESSION['role'] == 1){
                             header("Location: ".BASE_URL ."admin");
-                        }else{
-                            // $nvien = $nvModel->getNameBytk($Matk) ;
+                            exit;
+                        }else if($_SESSION['role'] == 0){
                             header("Location: ".BASE_URL ."admin");
+                            exit;
+
                         }
 
                     }else{

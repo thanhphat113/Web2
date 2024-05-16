@@ -4,7 +4,7 @@ class connectiondb{
     private $servername = "localhost";
     private $username = "root";
     private $password = "";
-    private $database = "cuahangdienthoai_demo";
+    private $database = "cuahangdienthoai";
 
     public function __construct() {
         $this->conn = new mysqli($this->servername, $this->username, $this->password, $this->database);

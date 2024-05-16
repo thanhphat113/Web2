@@ -16,6 +16,10 @@
 		public $sanphamModel;
 
 		public function __construct(){
+			if(!isset($_SESSION['username']) || $_SESSION['role'] == 2) {
+				header("Location: ".BASE_URL ."Home");
+				exit(); // Dừng việc thực thi kịch bản tiếp theo sau lệnh header
+			}
 			$this->hoadon_detailModel = $this->model("M_hoadon_detail");
 			$this->sanphamModel = $this->model("M_sanpham");
 			$this->cauhinhModel = $this->model("M_cauhinh");
