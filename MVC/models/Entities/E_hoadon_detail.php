@@ -1,6 +1,7 @@
 <?php
 
 	class E_hoadon_detail{
+		
 		private $mahd;
 		private $mach;
 		private $soluong;
