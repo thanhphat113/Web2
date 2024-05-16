@@ -43,5 +43,10 @@ class M_hoadon extends connectiondb{
 			return 'Thêm hoá đơn thất bại';
 		}
 	}
+
+	public function getHDByKH($MaKH){
+		$query = "select * from hoadon where MaKH = '$MaKH'";
+		return mysqli_query($this->conn, $query);
+	}
 }
 ?>

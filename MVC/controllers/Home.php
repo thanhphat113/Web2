@@ -8,6 +8,7 @@ class Home extends Controller{
         $this->SanphamModel = $this->models("SanphamModel");
     }
 
+
     public function Iphone($title){
 
         if($title == "") $title = "tatca";
@@ -23,9 +24,7 @@ class Home extends Controller{
         
     }
     
-    public function Home(){
-        $this->view("Customer/header", []);
-    }
+    
 
     
     public function Ipad($title){

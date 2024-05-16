@@ -1,0 +1,197 @@
+.Customer {
+    display: flex;
+    width: 100vw;
+    height: fit-content;
+}
+
+.Customer .cart {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: fit-content;
+    background-color: #333333;
+}
+
+.Customer .cart span,
+a,
+p,
+label {
+    color: white;
+    font-family: "Segoe UI", Roboto, Arial, sans-serif;
+    font-style: normal;
+    text-transform: none;
+}
+
+.Customer .cart input[type="text"] {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Thiết lập phần nội dung mặc định */
+.Customer .cart input[type="text"]::placeholder {
+    color: #999;
+}
+
+/* Khi khung nhập được chọn, ẩn nội dung */
+.Customer .cart input[type="text"]:focus::placeholder {
+    color: transparent;
+}
+
+.top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 80%;
+    height: fit-content;
+    margin: auto;
+  }
+  
+  #bogach {
+    text-decoration: none;
+  }
+  
+  .top span {
+    margin-left: auto;
+  }
+
+.Customer .cart .mid {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    border-radius: 20px;
+    height: auto;
+    background-color: #232323;
+    margin: auto;
+}
+
+.Customer .cart .frame {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: fit-content;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 5px solid #666;
+}
+
+.line {
+    display: inline;
+}
+
+.left {
+    float: left;
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.right {
+    float: right;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.cart img {
+    object-fit: cover;
+    width: 100%;
+}
+
+#hinhsp {
+    width: 30%;
+}
+
+#thongtinsp {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+}
+
+.info-1 {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+}
+
+.info-2 {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+#giahientai {
+    font-weight: bold;
+}
+
+#giacu {
+    text-decoration: line-through;
+    font-size: 14px;
+    color: #999;
+}
+
+#tensdt {
+    width: 100%;
+    height: fit-content;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#fullname, #thanhphoSelected, #phuongxaSelected {
+    width: 43%;
+    height: 20px;
+    margin-left: 10px;
+}
+
+#phonenumber, #quanhuyenSelected, #sonhatenduong {
+    width: 43%;
+    height: 20px;
+    margin-right: 10px;
+}
+
+#anh, #chi {
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+.flexcolumn {
+    display: flex;
+    flex-direction: column;
+}
+
+#ghichu {
+    width: 93%;
+    height: 20px;
+    margin: 10px;
+}
+
+#tmagiamgia {
+    width: 50%;
+    height: 20px;
+}
+
+#bmagiamgia {
+    width: 20%;
+    background-color: #131313;
+    font-weight: bold;
+    color: white;
+    border-radius: 10px;
+}
+
+#giacuoicung {
+    color: red;
+    font-weight: bold;
+}
+
+#dathang {
+    width: 100%;
+    background-color: blue;
+    color: white;
+    font-weight: bolder;
+    border-radius: 10px;
+}
