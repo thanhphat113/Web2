@@ -2,12 +2,12 @@
 class ChitietSanphamModel extends connectiondb{
     public function getCT_SpByID($MaSP){
         $query = "SELECT * FROM chitiet_sp where MASP = '$MaSP'";
-        return mysqli_query($this->con, $query);
+        return mysqli_query($this->conn, $query);
     }
 
     public function getFirstRecordById($MaSP){
         $query = "SELECT * FROM chitiet_sp where MASP = '$MaSP'";
-        $result = mysqli_query($this->con, $query);
+        $result = mysqli_query($this->conn, $query);
         if ($result && mysqli_num_rows($result) > 0) {
             return mysqli_fetch_assoc($result);
         } 
@@ -19,7 +19,7 @@ class ChitietSanphamModel extends connectiondb{
 
     public function getSanPhamTheoMau($id, $mau){
         $query = "SELECT * FROM chitiet_sp where MaSP = '$id' and Mau = '$mau'";
-        $result = mysqli_query($this->con, $query);
+        $result = mysqli_query($this->conn, $query);
         if ($result && mysqli_num_rows($result) > 0) {
             return mysqli_fetch_assoc($result);
         } 

@@ -1,6 +1,9 @@
 <?php
 	class admin extends Controller{
 		private $hoaDonModel;
+		private $sanphamModel;
+
+		private $cauhinhModel;
 
 		private $phieunhap_detailModel;
 
@@ -12,6 +15,8 @@
 		public $nhanvienModel;
 
 		public function __construct(){
+			$this->sanphamModel = $this->model("M_sanpham");
+			$this->cauhinhModel = $this->model("M_cauhinh");
 			$this->phieunhap_detailModel = $this->model("M_phieunhap_detail");
 			$this->hoaDonModel = $this->model("M_hoadon");
 			$this->phieunhapModel = $this->model("M_phieunhap");
@@ -22,13 +27,77 @@
 			$this->nhanvienModel=$this->model("M_nhanvien");
 		}
 
+		
+
 		function thongke() {
+			$donut = $this->khachhangModel->getDonutChart();
+			$tk = $this->hoaDonModel->getThongKe("2024");
+
 			$oop = $this->model("M_hoadon");
 			$hoadon_list = $oop -> findAll();
-
+			$listTopsp = $this->cauhinhModel->getListTop();
+			$listTopkh = $this->khachhangModel->getListTop();
+			$slSP = $this->sanphamModel->getQuantity();
 			$this->view('admin_page',$data = [
 				"Page" => 'thongke',
+				"sp" => $slSP,
+				"kh" => $this->khachhangModel->getQuantity(),
+				"nv" => $this->nhanvienModel->getQuantity(),
+				"listtop" => $listTopsp,
+				"listkh" => $listTopkh,
+				"tk" => $tk,
+				"donut" => $donut,
+				"doanhthu" => $this->hoaDonModel->tongTien(),
 				"hoadon_list" => $hoadon_list]);
+		}
+
+
+		function loadBarChart(){
+			if ($_SERVER["REQUEST_METHOD"] == "POST") {
+				// Lấy nội dung của request body
+				$request_body = file_get_contents('php://input');
+				// Parse JSON để lấy dữ liệu
+				$data = json_decode($request_body, true);
+				
+				if (json_last_error() === JSON_ERROR_NONE && isset($data["selected"])) {
+					$selectedValue = $data["selected"];
+	
+					// Giả sử bạn có phương thức để lấy danh sách màu sắc
+					$tk = $this->hoaDonModel->getThongKe( $selectedValue );
+
+					foreach($tk as $vl){
+						$datas[$vl["thang"]] = $vl["tong_tien"];
+					}
+		
+					$labels = [];
+					$values = [];
+					
+					for ($i = 1; $i <= 12; $i++) {
+						$labels[] = "Tháng $i";
+						$values[] = isset($datas[$i]) ? $datas[$i] : 0;
+					}
+
+					
+					$responData= array(
+						"lb" => $labels,
+						"vl" => $values
+					);
+
+
+					echo json_encode($responData);
+					exit; // Dừng script PHP sau khi gửi kết quả JSON
+				} else {
+					// Trả về lỗi nếu JSON không hợp lệ hoặc thiếu dữ liệu
+					header('Content-Type: application/json');
+					echo json_encode(array("status" => "error", "message" => "Invalid JSON or missing data"));
+					exit;
+				}
+			} else {
+				// Trả về lỗi nếu không phải là phương thức POST
+				header('Content-Type: application/json');
+				echo json_encode(array("status" => "error", "message" => "Invalid request method"));
+				exit;
+			}
 		}
 
 		function hoadon() {
@@ -38,6 +107,48 @@
 			$this->view('admin_page',$data = [
 				"Page" => 'hoadon',
 				"hoadon_list" => $hoadon_list]);
+		}
+
+		public function loadCH() {
+			if ($_SERVER["REQUEST_METHOD"] == "POST") {
+				// Lấy nội dung của request body
+				$request_body = file_get_contents('php://input');
+				// Parse JSON để lấy dữ liệu
+				$data = json_decode($request_body, true);
+				
+				if (json_last_error() === JSON_ERROR_NONE && isset($data["selected"])) {
+					$selectedValue = $data["selected"];
+	
+					// Giả sử bạn có phương thức để lấy danh sách màu sắc
+					$ch_list = $this->cauhinhModel->findListById($selectedValue);
+					$responseData = array();
+					if ($ch_list == null) echo json_encode($responseData);
+					else{
+						foreach ($ch_list as $ch) {
+							$ch_option = array(
+								"value" => $ch["MaCH"], // Thay "MaCT" bằng tên cột chứa giá trị
+								"text" => $ch["CauHinh"]    // Thay "Mau" bằng tên cột chứa văn bản hiển thị
+							);
+							array_push($responseData, $ch_option);
+						}
+		
+						// Đặt header để chỉ ra rằng đây là một response JSON
+						header('Content-Type: application/json');
+						echo json_encode($responseData);
+						exit; // Dừng script PHP sau khi gửi kết quả JSON
+					}
+				} else {
+					// Trả về lỗi nếu JSON không hợp lệ hoặc thiếu dữ liệu
+					header('Content-Type: application/json');
+					echo json_encode(array("status" => "error", "message" => "Invalid JSON or missing data"));
+					exit;
+				}
+			} else {
+				// Trả về lỗi nếu không phải là phương thức POST
+				header('Content-Type: application/json');
+				echo json_encode(array("status" => "error", "message" => "Invalid request method"));
+				exit;
+			}
 		}
 		
 		public function loadColor() {
@@ -53,11 +164,12 @@
 	
 					// Giả sử bạn có phương thức để lấy danh sách màu sắc
 					$color_list = $this->sanpham_detailModel->getMauListById($selectedValue);
+					
 					$responseData = array();
 					if ($color_list == null) echo json_encode($responseData);
 					else{
-						// Xử lý giá trị và trả về danh sách tùy chọn cho combobox 2
 						
+						// Xử lý giá trị và trả về danh sách tùy chọn cho combobox 2
 						foreach ($color_list as $color) {
 							$color_option = array(
 								"value" => $color["MaCT"], // Thay "MaCT" bằng tên cột chứa giá trị
@@ -118,10 +230,9 @@
 				// Giải mã dữ liệu JSON thành mảng PHP
 				$data = json_decode($json_data, true);
 
-				
-
 				// Kiểm tra xem dữ liệu đã được giải mã thành công hay không
 				if (json_last_error() === JSON_ERROR_NONE && isset($data["selected"])) {
+					
 					$list = $this->phieunhap_detailModel->findById($data["selected"]);
 					echo json_encode(array("list"=> $list));
 				}
@@ -245,7 +356,6 @@
 				$this->khachhangModel->edit($makh,$tenkh,$email,$sdt,$matk,$dckh);
 				$khachhang_list = $oop -> showAll();
 			}
-
             else if(isset($_POST["add-cus"])){
 				$makh = $_POST["id-cus-input"];
                 $tenkh = $_POST["name-cus-input"];
@@ -258,6 +368,7 @@
 				$this->taikhoanModel->add($newidTK,$email,'123456Aa',1,2);
 				$khachhang_list = $oop -> showAll();
 			}
+			
 
 			$this->view('admin_page',$data = [
 				"Page" => 'khachhangView',

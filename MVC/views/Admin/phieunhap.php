@@ -2,6 +2,7 @@
 <div class="hoadon-menu_top">
 		<h1 style="margin-left: 10px;">Quản lý phiếu nhập</h1>
 	</div>
+	<input type="hidden" id="year-choise-chart">
 	<div class="hoadon-content">
 		<input type="text" id="search-input" class="txtSearch" placeholder="Nhập thông tin tìm kiếm"/>
 		<button style="transition: all .75s ease;" class="btn-add" onclick="showModel('myModel')">Thêm</button>
@@ -84,6 +85,11 @@
 								</select>
 							</div>
 							<div class="choise">
+								<span>Cấu hình</span>
+								<select id="cauhinh" class="model-choise" ;?>>
+								</select>
+							</div>
+							<div class="choise">
 								<span>Số lượng</span>
 								<input id="sl" type="text" />
 							</div>
@@ -106,6 +112,7 @@
 							<th>Mã chi tiết</th>
 							<th>Tên sản phẩm</th>
 							<th>Màu sắc</th>
+							<th>Cấu hình</th>
 							<th>Giá nhập<small>(vnđ)</small></th>
 							<th>Số lượng</th>
 							<th>Tổng tiền<small>(vnđ)</small></th>
@@ -129,12 +136,13 @@
 				<div class="model-top">
 					<h1>Chi Tiết Phiếu Nhập</h1>
 				</div>
-				<span id="ncc-detail">Nhà cung cấp: <strong><em>Apple</em></strong></span>
+				<span id="ncc-detail"></span>
 				<div class="model-center">
 					<table id="table-detail">
 						<thead>
 							<th>Tên sản phẩm</th>
 							<th>Màu</th>
+							<th>Cấu hình</th>
 							<th>Giá nhập<small>(vnđ)</small></th>
 							<th>Số lượng</th>
 							<th>Giá tiền<small>(vnđ)</small></th>
@@ -145,6 +153,7 @@
 						</tbody>
 					</table>
 				</div>
+				<span id="tong-detail"></span>
 			</div>
 		</div>										
 

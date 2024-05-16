@@ -1,6 +1,5 @@
 <?php
 
-require_once("./MVC/models/Entities/E_taikhoan.php");
 class M_taikhoan extends connectiondb{
 
 	// public function findById($id){
@@ -19,7 +18,7 @@ class M_taikhoan extends connectiondb{
 	// }
 
 	function newMaTK(){
-		$query = "SELECT MAX(SUBSTRING(matk, 3)) AS max_id FROM taikhoan";
+		$query = "SELECT MAX(SUBSTRING(MaTK, 3)) AS max_id FROM taikhoan";
 		return $this->newId('TK',$query);
 	}
 
