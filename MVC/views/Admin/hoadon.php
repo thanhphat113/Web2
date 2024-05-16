@@ -9,6 +9,7 @@
 			<input id="sanpham" type="hidden">
 			<input id="mau" type="hidden">
 			<input id="model-btn-add" type="hidden">
+			<input id="detail-pn" type="hidden">
 
 
 			<table id="viewTable">
@@ -48,13 +49,16 @@
 										<td style="color:'.$color.'">'.$trangthai.'</td>
 										
 										<td style="width:100px">
-											<button><i class="fas fa-info-circle action" style="color: #5d88a2;"></i></button>
+											<button id="detail-hd" value="'.$hd->getMahd().'"> <i class="fas fa-info-circle action" style="color: #5d88a2;"></i></button>
 										</td>
 										<td style="width:200px">
 										<form action="./admin/hoadon" method="post">
-										<input type="hidden" name="mahd" value="'.$hd->getMahd().'">';
-										if ($hd->getTrangthai() == 0)	echo '<button type="submit" name="type" value="update"><i class="far fa-check-circle action" style="color: #63E6BE"></i></button>';
-										echo	'<button type="submit" name="type" value="delete" id="delete-hd"><i class="fas fa-trash-alt action" style="color: #e13737;"></i></button>
+											<input type="hidden" name="mahd" value="'.$hd->getMahd().'">
+											<input type="hidden" name="manv" value="'.$_SESSION["MaNV"].'">';
+										
+										
+										 if ($hd->getTrangthai() == 0)	echo '<button type="submit" name="type" value="update"><i class="far fa-check-circle action" style="color: #63E6BE"></i></button>
+										<button type="submit" name="type" value="delete" id="delete-hd"><i class="fas fa-trash-alt action" style="color: #e13737;"></i></button>
 										</td>
 										</form>
 									</tr>';
@@ -63,4 +67,39 @@
 				</tbody>
 			</table> 
 		</div>
+
+		<div id="model-detail-detail" class="model">
+			<div class="model-content-detail">
+				<input type="hidden" id="MaPN-detail">
+				<div class="model-click">
+					<div  style="margin-bottom: 20px;">
+						<span class="close" onclick="closeModal('model-detail-detail')" >&times;</span>
+					</div>
+				</div>
+				<div class="model-top">
+					<h1>Chi Tiết Hoá Đơn</h1>
+				</div>
+				<span id="ncc-detail"></span>
+				<div class="model-center">
+					<table id="table-detail-hd">
+						<thead>
+							<th>Tên sản phẩm</th>
+							<th>Màu</th>
+							<th>Cấu hình</th>
+							<th>Giá bán<small>(vnđ)</small></th>
+							<th>Số lượng</th>
+							<th>Giá tiền<small>(vnđ)</small></th>
+						</thead>
+						<tbody>
+							
+							
+						</tbody>
+					</table>
+				</div>
+				<span id="tong-detail"></span>
+			</div>
+		</div>					
+
 	</div>
+
+	

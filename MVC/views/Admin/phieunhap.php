@@ -3,6 +3,7 @@
 		<h1 style="margin-left: 10px;">Quản lý phiếu nhập</h1>
 	</div>
 	<input type="hidden" id="year-choise-chart">
+	<input type="hidden" id="delete-hd">
 	<div class="hoadon-content">
 		<input type="text" id="search-input" class="txtSearch" placeholder="Nhập thông tin tìm kiếm"/>
 		<button style="transition: all .75s ease;" class="btn-add" onclick="showModel('myModel')">Thêm</button>

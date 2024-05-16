@@ -63,6 +63,8 @@ class Login extends Controller{
                         $_SESSION['username'] = $username;
                         $_SESSION['role'] = $Role;
                         $_SESSION['Matk'] = $Matk;
+                        // $nvModel = new M_nhanvien();
+                        
 
                         // Chuyển hướng đến trang dựa theo role
                         if(['role'] == 2){
@@ -70,6 +72,7 @@ class Login extends Controller{
                         }else if(['role'] == 1){
                             header("Location: ".BASE_URL ."admin");
                         }else{
+                            // $nvien = $nvModel->getNameBytk($Matk) ;
                             header("Location: ".BASE_URL ."admin");
                         }
 

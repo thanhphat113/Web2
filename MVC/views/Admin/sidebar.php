@@ -26,6 +26,6 @@
 		</ul>
 	</div>
 	<div class="bottom">
-		<p>Xin chào,<?php echo $data["Nhanvien"]["TenNV"] ?></p>
+		<p>Xin chào,<?php echo $data["nvien"]["TenNV"] ?><a href="./home/logout" style="margin-left:5px;"><u> Đăng xuất</u></a></p>
 	</div>
 </div>

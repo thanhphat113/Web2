@@ -36,7 +36,7 @@ class M_nhanvien extends connectiondb{
 	}
 
 	function getNameBytk($tk){
-		$query = "select * from nhanvien where MaTK =".$tk."'";
+		$query = "select * from nhanvien where MaTK ='".$tk."'";
 		$result = $this->execute_fetch_one($query);
 		return $result;
 	}

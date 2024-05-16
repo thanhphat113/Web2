@@ -71,8 +71,8 @@ class M_hoadon extends connectiondb{
 		}
 	}
 
-	function updateTT($id){
-		$query = 'update hoadon set trangthai = 1 where MaHD="'.$id.'"';
+	function updateTT($id,$nv){
+		$query = 'update hoadon set MaNV=\''.$nv.'\',trangthai = 1 where MaHD="'.$id.'"';
 		$result = $this->execute_query($query);
 		if ($result){
 			return 'Cập nhật thành công';

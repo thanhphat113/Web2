@@ -1,11 +1,11 @@
-<div class="top-content">
+<div class="quanly-top-content">
     <form  method="post">
-        <h2 class="title">Quản lý tài khoản</h2>
-        <div type="submit" onclick="moveModal('modal-add-accout')" class="btn-add">Thêm tài khoản</div>
+        <h1>Quản lý tài khoản</h1>
+        <div type="submit" onclick="moveModal('modal-add-accout')" class="ql-btn-add">Thêm tài khoản</div>
         <input type="text" class="search-input" name="id-acc-search" placeholder="Tìm mã hoặc tên tài khoản">
         <button class="btn-quick-search" name="quick_search"><i class="fas fa-search"></i></button>
 </div>
-<div class="center-content">
+<div class="quanly-center-content">
     <button class="icon-list" name="icon-list">
     <i class="fas fa-clipboard-list sidebar-icon"></i>
     </button>
@@ -32,9 +32,9 @@
         <button class="btn-search" name="search">Lọc</button>
     </div>
 </div>
-<div class="bot-content">
-        <table>
-            <thead>                       
+<div class="quanly-bot-content">
+        <table class="viewTable">
+            <thead id="one-table">                       
                 <th style="width:5%">STT</th>
                 <th style="width:10%">ID</th>
                 <th style="width:20%">Username</th>
@@ -55,7 +55,7 @@
                         <td><?php echo $tk->getMaQuyen();?></td>
                         <td><?php echo $tk->getTrangThai();?></td>
                         <td style="display:flex;">
-                            <div class="icon-option" style="background-color: rgb(93, 184, 93);" id="icon-edit" onclick="moveEdit('modal-edit-accout','<?php echo $tk->getMatk();?>','<?php echo $tk->getTentk();?>','<?php echo $tk->getPassword();?>','<?php echo $tk->getPassword();?>','<?php echo $tk->getMaquyen();?>','<?php echo $tk->getTrangthai();?>','<?php echo $tk->getMatk();?>','<?php echo $tk->getMatk();?>')" >
+                            <div class="icon-option" style="background-color: rgb(93, 184, 93);" id="icon-edit" onclick="moveEdit('modal-edit-accout','<?php echo $tk->getMatk();?>','<?php echo $tk->getTentk();?>','<?php echo $tk->getPassword();?>','<?php echo $tk->getPassword();?>','<?php echo $tk->getMaquyen();?>','<?php echo $tk->getTrangthai();?>','<?php echo $tk->getMatk();?>','<?php echo $tk->getMatk();?>','<?php echo $tk->getMatk();?>')" >
                                 <i class="fas fa-edit"></i>
                             </div>  
                             <div type ="submit" class="icon-option" style="background-color: rgb(255, 80, 80);" id="icon-delete" name="id-dele" value="<?php echo $tk->getMatk();?>" onclick="xacnhanDelete('xacnhan-delete','<?php echo $tk->getMatk();?>','id-dele')">
