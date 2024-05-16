@@ -23,6 +23,15 @@
         <?php }?>
     </div>
 
-    <div class="timkiem"></div>
-    <div class="giohang"></div>
+    <div class="timkiem">
+        <a href="<?php echo BASE_URL; ?>">
+            <img src="<?php echo BASE_URL; ?>public/Pictures/login/hidepass.png" alt="logo" class="logo">
+        </a> 
+    </div>
+         
+    <div class="giohang">
+        <a href="<?php echo BASE_URL; ?>">
+            <img src="<?php echo BASE_URL; ?>public/Pictures/login/showpass.png" alt="logo" class="logo">
+        </a> 
+    </div>
 </div>

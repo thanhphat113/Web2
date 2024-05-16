@@ -8,9 +8,11 @@
 			$arr = $this->urlProcess() ;
 
 			//Controller
-			if (file_exists("./MVC/controllers/". $arr[0] .".php")){
-				$this->controller = $arr[0];
-				unset($arr[0]) ;
+			if(isset($arr)){
+				if( file_exists("./mvc/controllers/".$arr[0].".php") ){
+					$this->controller = $arr[0];
+					unset($arr[0]);
+				}
 			}
 			require_once "./MVC/controllers/". $this->controller .".php";
 
@@ -28,7 +30,7 @@
 			}
 
 			//Param
-			$this->params = $arr?array_values($arr):[];
+			$this->params = $arr?array_values($arr):[""];
 
 			call_user_func_array([$doiTuong, $this->action], $this->params);
 		

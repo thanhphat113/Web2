@@ -47,7 +47,7 @@ class Register extends Controller{
                 $rowMatk = $resultMatk->fetch_assoc();
                 $IdUserNew = $rowMatk['MaTK'] + 1;
                 //thêm tài khoản
-                $check_insertTK = $this->TaikhoanModel->registerTaiKhoanCustomer($IdUserNew, $username, $hashedPassword);
+                $check_insertTK = $this->TaikhoanModel->registerTaiKhoanCustomer($IdUserNew, $username, $password);
         
                 // Lấy mã khách hàng lớn nhất + 1
                 $resultCustomer = $this->KhachhangModel->getMaxMaKH();

@@ -17,6 +17,11 @@ class ChitietSanpham_GiaModel extends connectiondb{
             return null; // or handle the case where no product is found
         }
     }
+
+    public function getCTSPByMaCH($MaCH){
+        $query = "SELECT * FROM sp_giaban where MaCH = '$MaCH'";
+        return mysqli_query($this->conn, $query);
+    }
 }
 
 ?>

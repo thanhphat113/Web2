@@ -4,6 +4,7 @@ class Login extends Controller{
 
     public $TaikhoanModel;
 
+
     public function __construct()
     {
         if(isset($_SESSION['username'])) {
@@ -41,10 +42,12 @@ class Login extends Controller{
                 $PassInDB = $rowMatk['Password'];
                 $Role = $rowMatk['MaQuyen'];
                 $Status = $rowMatk ['TrangThai'];
+                $Matk = $rowMatk['MaTK'];
         //         //Kiểm tra trạng thái tài khoản nếu mở
                 if($Status == 1){
                     //kiểm tra mật khẩu nếu đúng
-                    if(password_verify($password, $PassInDB)){    
+                    // if(password_verify($password, $PassInDB)){ 
+                    if($password == $PassInDB){   
                         // Kiểm tra xem người dùng đã chọn "Remember password" hay không
                         if (isset($_POST["remember"])) {
                             // Lưu mật khẩu vào cookie, thời gian sống là 30 ngày
@@ -59,29 +62,39 @@ class Login extends Controller{
                         $message = "Đăng nhập thành công.";
                         $_SESSION['username'] = $username;
                         $_SESSION['role'] = $Role;
+                        $_SESSION['Matk'] = $Matk;
+
                         // Chuyển hướng đến trang dựa theo role
-                        header("Location: ".BASE_URL ."Home");
+                        if(['role'] == 2){
+                            header("Location: ".BASE_URL ."Home");
+                        }else if(['role'] == 1){
+                            header("Location: ".BASE_URL ."admin");
+                        }else{
+                            header("Location: ".BASE_URL ."admin");
+                        }
 
                     }else{
                         // Đăng nhập không thành công, gửi thông báo lỗi
                         $error = "Mật khẩu không chính xác.";
-                        echo "<script>showMessage('$error', 'error');</script>";
                         $this->view("Customer/Login", [
+                            "erorr"=>$error
+
                         ]);
-                        }
-                    }else{
+                    }
+                }else{
                     // Đăng nhập không thành công, gửi thông báo tài khoản bị khóa
                     $error = "Tài khoản bị khóa!";
-                    echo "<script>showMessage('$error', 'error');</script>";
                     $this->view("Customer/Login", [
+                        "erorr"=>$error
+
                     
                     ]);
                 }
             } else {
                 // Đăng nhập không thành công, gửi thông báo lỗi
                 $error = "Tên đăng nhập không tồn tại.";
-                echo "<script>showMessage('$error', 'error');</script>";
                 $this->view("Customer/Login", [
+                    "erorr"=>$error
 
                 ]);
             }

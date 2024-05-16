@@ -7,23 +7,29 @@ class Detail extends Controller{
     protected $ChitietSanpham_GiaModel;
 
     function __construct() {
+        
         $this->SanphamModel = $this->models("SanphamModel");
+        
         $this->ChitietSanphamModel = $this->models("ChitietSanphamModel");
         $this->HinhanhModel = $this->models("HinhanhModel");
-        $this->ChitietSanpham_GiaModel = $this->models("ChitietSanpham_GiaModel");
-
+        
+        $this->ChitietSanpham_GiaModel = $this->models("ChiTietSanPham_GiaModel");
     }
 
     public function detailproduct($IdProduct){
         if($IdProduct == ""){
             $this->view("Customer/header", []);
         }else{
-            $sanpham = $this->SanphamModel->getProductById($IdProduct);            
+            
+            $sanpham = $this->SanphamModel->getProductById($IdProduct);     
+            
             $ChitietSP = $this->ChitietSanphamModel->getCT_SpByID($IdProduct);
             $FirstChitietSP = $this->ChitietSanphamModel->getFirstRecordById($IdProduct);
+           
             $ImageSP = $this->HinhanhModel->getImageById($FirstChitietSP["MaCT"]);
             $ChitietSP_Gia = $this->ChitietSanpham_GiaModel->getAllByid($FirstChitietSP["MaCT"]);
             $TiLeKhuyenMai = $this->SanphamModel->getTiLeKMByID($sanpham["MaKM"]);
+            
             if($sanpham){
                 $this->view("Customer/trangchu", [
                     "Page"=>"detailproduct",

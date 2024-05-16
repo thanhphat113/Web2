@@ -2,7 +2,7 @@
 	<div class="top">
 		<p align="center">Admin</p><hr>
 		<ul align="left">
-			<li><a href="./admin/home">
+			<li><a href="./admin">
 				<i class="fas fa-list-ul sidebar-icon"></i>
 				Trang chủ</a></li>
 			<li><a href="./admin/sanpham">

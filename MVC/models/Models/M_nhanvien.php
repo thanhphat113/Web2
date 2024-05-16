@@ -1,5 +1,4 @@
 <?php
-require_once("./MVC/models/Entities/E_nhanvien.php");
 class M_nhanvien extends connectiondb{
 	
 	public function findById($id){
@@ -33,6 +32,12 @@ class M_nhanvien extends connectiondb{
 			$nhanvien = new nhanvien($manv,$tennv,$email,$sdt,$matk,$gtnv,$nsnv,$dcnv);
 			$result[] = $nhanvien;
 		}
+		return $result;
+	}
+
+	function getQuantity(){
+		$query = "select * from nhanvien";
+		$result = $this->count($query);
 		return $result;
 	}
 

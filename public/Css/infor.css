@@ -1,0 +1,239 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.cus-content {
+    width:100vw;
+    height: fit-content;
+    background-color: #666;
+}
+.cus-left{
+    color: #FFF;
+    background-color: #333;
+    width: 25vw;
+    margin:10px;
+    padding: 20px;
+    border-radius: 10px;
+    float:left;
+}
+.cus-left a {
+    display: block;
+    text-decoration: none;
+    color: white;
+    font-style: normal;
+    font-size: 1 em;
+    margin-left: 20px;
+    background-color: #333;
+    transition: ease 0.5;
+}
+.cus-left a:hover {
+    color: white;
+    font-size: 18px;
+    font-weight: 650;
+}
+.cus-right{
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    float: left;
+    color: #fff;
+    background-color: #333;
+    width: 70vw;
+}
+.cus-right .cus-h1 {
+    margin-left: 15px;
+    margin-bottom: 20px;
+}
+.cus-right .cus-h1 p {
+    margin-bottom: 15px;
+}
+.cus-right .cus-h1  hr{
+    opacity: 0.5;
+
+}
+.cus-right .cus-h1 h1{
+    font-weight: 100;
+    font-size: 1.5rem;
+    background-color: #333;
+    margin-bottom: 10px;
+}
+.cus-right .cus-info {
+    margin-left: 50px;
+}
+.cus-right .cus-info label {
+    margin-right: 10px;
+}
+/*CSS phần trang cá nhân*/
+.cus-right .cus-info br {
+    clear: both;
+}
+.cus-right .cus-info label {
+    display: inline-block;
+    width: 150px;
+    text-align: left;
+}
+.cus-right .cus-info .cus-username {
+    margin-bottom: 20px;
+}
+.cus-right .cus-info input[type="text"]{
+    height:30px;
+    padding-left: 10px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #666;
+    border-radius: 5px;
+}
+.cus-right .cus-info input[type="text"]:hover{
+    background-color: #666;
+    border: 0.5px solid white;
+    color: white;
+    font-size: 16px;
+}
+.cus-right .cus-info .cus-diachi{
+    padding-left: 30px;
+}
+.cus-right .cus-info .cus-diachi input[type="text"]{
+    width: 120px;
+    height:30px;
+    border: 1px solid #666;
+    border-radius: 5px;
+}
+/*CSS nút lưu*/
+.cus-right .cus-info input[type="submit"]{
+    font-size:larger;
+    color:#FFF;
+    background-color: #184a4a;
+    margin-left: 20px;
+    margin-bottom: 10px;
+    width: 100px;
+    height: 50px;
+    border: 1px solid #666;
+    border-radius: 10px;
+}
+.cus-right .cus-info input[type="submit"]:hover{
+    background-color: #289d9d;
+    font-weight: 500;
+}
+.cus-right .cus-info input[type="password"]{
+    height:30px;
+    padding-left: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #666;
+    border-radius: 5px;
+}
+.cus-right .cus-info input[type="password"]:hover{
+    background-color: #666;
+    border: 0.5px solid white;
+    color: white;
+    font-size: 16px;
+}
+
+/*Css mục đơn mua đơn mua*/
+.cus-right .cus-h1 a {
+    font-size: medium;
+    height: 30px;
+    display:inline-block;
+    color: white;
+    text-decoration: none;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+.cus-right .cus-h1 a:hover{
+    font-weight: bold;
+    font-size: large;
+}
+.cus-right .cus-h1 a.all, .cus-right .cus-h1 a.done, .cus-right .cus-h1 a.confirm, .cus-right .cus-h1 a.shipping {
+    border-right: 1px solid #666;
+}
+/*CSS một thành phần trong đơn mua*/
+.cus-right .cus-orders{
+    width: 100%;
+}
+.cus-right .cus-orders .cus-order{
+    padding: 10px;
+    height: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: #111;
+    border: 1px solid #666;
+    border-radius: 5px;
+    box-shadow: 0 1 1 0 #111;
+}
+/*CSS mã và tình trạng đơn mua*/
+.cus-right .cus-orders .cus-order .cus-order-h1{
+    width: 100%;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+}
+.cus-right .cus-orders .cus-order .cus-order-h1 h1{
+    margin-left: 15px;
+    font-size: larger;
+    float: left;
+}
+.cus-right .cus-orders .cus-order .cus-order-h1 p{
+    margin-top: 5px;
+    font-size: medium;
+    margin-right: 30px;
+    color: #289d9d;
+    float: right;
+}
+/*CSS chung khung đơn hàng*/
+.cus-right .cus-orders .cus-order table{
+    width: 100%;
+    border-top: 1px solid #666;
+}
+
+.cus-right .cus-orders .cus-order .cus-order-item .item-info,
+.cus-right .cus-orders .cus-order .cus-order-item .item-quantity,
+.cus-right .cus-orders .cus-order .cus-order-item .item-price{
+    border-left: 1px solid #666;
+}
+/*CSS hình ảnh item*/
+.cus-right .cus-orders .cus-order .cus-order-item .item-img{
+    max-width: 15px; /* Điều chỉnh độ rộng tối đa của container */
+    margin: 0 auto; /* Canh giữa container */
+}
+.cus-right .cus-orders .cus-order .cus-order-item .item-img img{
+    max-width: 100%; /* Hình ảnh sẽ không vượt quá độ rộng của container */
+    height: auto; /* Giữ tỉ lệ khung hình ảnh */
+    display: block; /* Loại bỏ khoảng trống dư thừa dưới hình ảnh */
+    padding: 2px;
+}
+/*CSS thông tin sản phẩm*/
+.cus-right .cus-orders .cus-order .cus-order-item .item-info{
+    width: 30vw;
+    text-align: left;
+    padding-left: 20px;
+    font-weight: 100;
+}
+.cus-right .cus-orders .cus-order .cus-order-item .item-info .item-name {
+    font-size: 18px;
+}
+.cus-right .cus-orders .cus-order .cus-order-item .item-info .item-color {
+    color:#289d9d;
+}
+.cus-right .cus-orders .cus-order .cus-order-item .item-info .item-capacity{
+    color: #9d4928;
+}
+.cus-right .cus-orders .cus-order .cus-order-item .item-price{
+    font-size: 25px;
+}
+/*Css thành tiền sản phẩm*/
+.cus-right .cus-orders .cus-order .cus-order-costs{
+    border-top: 1px solid #666;
+    padding-top: 10px;
+    padding-bottom: 25px;
+    margin-bottom: 25px;
+}
+.cus-right .cus-order .cus-order-costs p{
+    margin: 15px;
+    font-size: 25px;
+    float: left;
+}
+.cus-right .cus-orders .cus-order .cus-order-costs .cus-order-total {
+    display: block;
+    float: right;
+    font-size: 30px;
+    margin-top: 10px;
+}
