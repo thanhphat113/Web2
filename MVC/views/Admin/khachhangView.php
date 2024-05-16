@@ -77,7 +77,7 @@
         </div>
 
         <div class="modal-add" id="modal-add-customer">
-            <div style="height:400px" class="view-info">
+            <div style="height:450px" class="view-info">
                 <div class="exit-view-info" onclick="exitAdd('modal-add-customer')">X</div>
                 <div style="margin-left:80px" class="info">
                     <div class="text-info">
@@ -86,6 +86,7 @@
                             <li>Tên</li>
                             <li>Email</li>
                             <li>SĐT</li>
+                            <li>Ngày sinh</li>
                             <li>Địa chỉ</li>
                             <li>Mã TK</li>
                         </ul>
@@ -106,6 +107,10 @@
                             </li>
                             <li >
                                 <input type="text" id="phone-cus-input" name="phone-cus-input" class="li"  placeholder="Nhập số điện thoại" value="">
+                                <div class="error" id="error-sdt-kh"></div>                                    
+                            </li>
+                            <li >
+                                <input type="date" id="date-cus-input" name="date-cus-input" class="li"  value="">
                                 <div class="error" id="error-sdt-kh"></div>                                    
                             </li>
                             <li >

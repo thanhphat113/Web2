@@ -399,8 +399,9 @@
                 $sdt = $_POST["phone-cus-input"];
                 $matk = $_POST["idtk-cus-input"];
                 $dckh = $_POST["addres-cus-input"];
-				$result_mess="Đã thêm '$makh' thành công !";
-				$this->khachhangModel->add($makh,$tenkh,$email,$sdt,$matk,$dckh);
+                $nskh = $_POST["date-cus-input"];
+				$result_mess="Đã thêm '$nskh' thành công !";
+				$this->khachhangModel->add($makh,$tenkh,$email,$sdt,$dckh,$nskh,$matk);
 				$this->taikhoanModel->add($newidTK,$email,'123456Aa',1,2);
 				$khachhang_list = $oop -> showAll();
 			}

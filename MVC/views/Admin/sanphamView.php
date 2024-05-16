@@ -56,7 +56,7 @@
                         <td style="width:40px;height:40px"><img style="width: 100px;height:auto;" src="<?php 
                             foreach ($data['ctsanpham_list'] as $ctsp) {
                                 if($ctsp->getMact() == $gsp->getMact()){
-                                    echo "./public/Pictures/".$ctsp->getHinhanh();
+                                    echo "./public/".$ctsp->getHinhanh();
                                 }
                             }
                             ?>" alt="<?php 

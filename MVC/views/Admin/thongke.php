@@ -66,7 +66,7 @@
 								?>
 							<tr>
 								<td style="font-size:50px;width:35px;padding-left:3px"><?php echo $count;?>.</td>
-								<td style="width:100px;"><img style="width: 100px;height:auto;" src=<?php echo "\"./public/Pictures/".$ch->get_chitiet()->get_hinhanh()."\"" ;?> alt=<?php echo "\"".$ch->get_chitiet()->get_hinhanh()."\"";?> ></tdư>
+								<td style="width:100px;"><img style="width: 100px;height:auto;" src=<?php echo "\"./public/".$ch->get_chitiet()->get_hinhanh()."\"" ;?> alt=<?php echo "\"".$ch->get_chitiet()->get_hinhanh()."\"";?> ></tdư>
 								<td><?php echo $ch->get_chitiet()->get_sanpham()->getTensp();?></td>
 							</tr>
 							<?php $count++; endforeach; ?>

@@ -117,10 +117,10 @@ class M_khachhang extends connectiondb{
 			$result = $this->execute_query($query);
 	}
 
-	public function add($makh,$tenkh,$email,$sdt,$matk,$dckh){
-            $query = "insert into khachhang values ('{$makh}','{$tenkh}','{$email}','{$sdt}','{$matk}','{$dckh}')";
-			$result = $this->execute_query($query);
-	}
+	public function add($makh,$tenkh,$email,$sdt,$dckh,$nskh,$matk){
+		$query = "insert into khachhang values ('{$makh}','{$tenkh}','{$email}','{$sdt}','{$dckh}','{$nskh}','{$matk}')";
+		$result = $this->execute_query($query);
+}
 
 }
 
