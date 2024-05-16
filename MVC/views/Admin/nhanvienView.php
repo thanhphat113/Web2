@@ -1,11 +1,11 @@
-<div class="top-content">
+<div class="quanly-top-content">
     <form  method="post">
         <h2 class="title">Quản lý nhân viên</h2>
         <div type="submit" onclick="moveModal('modal-add-employee')" class="btn-add">Thêm nhân viên</div>
         <input type="text" class="search-input" name="id-epl-search" placeholder="Tìm mã hoặc tên nhân viên">
         <button class="btn-quick-search" name="quick_search"><i class="fas fa-search"></i></button>
 </div>
-<div class="center-content">
+<div class="quanly-center-content">
     <button class="icon-list" name="icon-list">
     <i class="fas fa-user-tie sidebar-icon"></i>
     </button>
@@ -22,13 +22,13 @@
     </div>
     <div class="search-addres">
         <label class ="text-search"for="">Địa chỉ</label>
-        <input  type="text" name="addres-epl-search">
+        <input  type="text" name="addres-epl-search" placeholder="Nhập địa chỉ nhân viên">
     </div>
     <div class="search">
         <button class="btn-search" name="search">Lọc</button>
     </div>
 </div>
-<div class="bot-content">
+<div class="quanly-bot-content">
     <table>
         <thead>                            
             <th style="width:5%">STT</th>
@@ -58,7 +58,7 @@
                     <td><?php echo $nv->getEmail();?></td>
                     <td><?php echo $nv->getMatk();?></td>
                     <td style="display:flex;">
-                        <div class="icon-option" style="background-color: rgb(93, 184, 93);" id="icon-edit" value="<?php echo $nv->getManv();?>" onclick="moveEdit('modal-edit-employee','<?php echo $nv->getManv();?>','<?php echo $nv->getTennv();?>','<?php echo $nv->getNsnv();?>','<?php echo $nv->getEmail();?>','<?php echo $nv->getSdt();?>','<?php echo $nv->getDcnv();?>','<?php echo $nv->getMatk();?>','<?php echo $nv->getGtnv();?>')">
+                        <div class="icon-option" style="background-color: rgb(93, 184, 93);" id="icon-edit" value="<?php echo $nv->getManv();?>" onclick="moveEdit('modal-edit-employee','<?php echo $nv->getManv();?>','<?php echo $nv->getTennv();?>','<?php echo $nv->getNsnv();?>','<?php echo $nv->getEmail();?>','<?php echo $nv->getSdt();?>','<?php echo $nv->getDcnv();?>','<?php echo $nv->getMatk();?>','<?php echo $nv->getGtnv();?>','<?php echo $nv->getGtnv();?>')">
                             <i class="fas fa-edit"></i>
                         </div>  
                         <div type ="submit" class="icon-option" style="background-color: rgb(255, 80, 80);" id="icon-delete" name="id-dele" value="<?php echo $nv->getManv();?>" onclick="xacnhanDelete('xacnhan-delete','<?php echo $nv->getManv();?>','id-dele')">
