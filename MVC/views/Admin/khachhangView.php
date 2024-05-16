@@ -1,11 +1,11 @@
-<div class="top-content">
+<div class="quanly-top-content">
     <form  method="post">
         <h2 class="title">Quản lý khách hàng</h2>
         <div type="submit" onclick="moveModal('modal-add-customer')" class="btn-add">Thêm khách hàng</div>
         <input type="text" class="search-input" name="id-cus-search" placeholder="Tìm mã hoặc tên khách hàng">
         <button class="btn-quick-search" name="quick_search"><i class="fas fa-search"></i></button>
 </div>
-<div class="center-content">
+<div class="quanly-center-content">
     <button class="icon-list" name="icon-list">
     <i class="fas fa-user sidebar-icon"></i>
     </button>
@@ -26,7 +26,7 @@
         <button class="btn-search" name="search">Lọc</button>
     </div>
 </div>
-    <div class="bot-content">
+    <div class="quanly-bot-content">
         <table>
             <thead>                            
                 <th style="width:5%">STT</th>
@@ -52,7 +52,7 @@
                         <td><?php echo $kh->getDckh();?></td>
                         <td><?php echo $kh->getMatk();?></td>
                         <td style="display:flex;">
-                            <div class="icon-option" style="background-color: rgb(93, 184, 93);" id="icon-edit"  onclick="moveEdit('modal-edit-customer','<?php echo $kh->getMakh();?>','<?php echo $kh->getTenkh();?>','<?php echo $kh->getMakh();?>','<?php echo $kh->getEmail();?>','<?php echo $kh->getSdt();?>','<?php echo $kh->getDckh();?>','<?php echo $kh->getMatk();?>','<?php echo $kh->getMakh();?>')">
+                            <div class="icon-option" style="background-color: rgb(93, 184, 93);" id="icon-edit"  onclick="moveEdit('modal-edit-customer','<?php echo $kh->getMakh();?>','<?php echo $kh->getTenkh();?>','<?php echo $kh->getMakh();?>','<?php echo $kh->getEmail();?>','<?php echo $kh->getSdt();?>','<?php echo $kh->getDckh();?>','<?php echo $kh->getMatk();?>','<?php echo $kh->getMakh();?>','<?php echo $kh->getMakh();?>')">
                                 <i class="fas fa-edit"></i>
                             </div>  
                             <div type ="submit" class="icon-option" style="background-color: rgb(255, 80, 80);" id="icon-delete" name="id-dele" value="<?php echo $kh->getMakh();?>" onclick="xacnhanDelete('xacnhan-delete-cus','<?php echo $kh->getMakh();?>','id-dele')">

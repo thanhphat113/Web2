@@ -1,5 +1,4 @@
 <?php
-
 require_once("./MVC/models/Entities/E_taikhoan.php");
 class M_taikhoan extends connectiondb{
 
