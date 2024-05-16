@@ -26,6 +26,6 @@
 		</ul>
 	</div>
 	<div class="bottom">
-		<p>Xin chào,</p>
+		<p>Xin chào,<?php echo $data["Nhanvien"]["TenNV"] ?></p>
 	</div>
 </div>
