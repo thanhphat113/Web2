@@ -42,6 +42,7 @@ class Login extends Controller{
                 $PassInDB = $rowMatk['Password'];
                 $Role = $rowMatk['MaQuyen'];
                 $Status = $rowMatk ['TrangThai'];
+                $Matk = $rowMatk['MaTK'];
         //         //Kiểm tra trạng thái tài khoản nếu mở
                 if($Status == 1){
                     //kiểm tra mật khẩu nếu đúng
@@ -61,9 +62,16 @@ class Login extends Controller{
                         $message = "Đăng nhập thành công.";
                         $_SESSION['username'] = $username;
                         $_SESSION['role'] = $Role;
-                    
+                        $_SESSION['Matk'] = $Matk;
+
                         // Chuyển hướng đến trang dựa theo role
-                        header("Location: ".BASE_URL ."Home");
+                        if(['role'] == 2){
+                            header("Location: ".BASE_URL ."Home");
+                        }else if(['role'] == 1){
+                            header("Location: ".BASE_URL ."admin");
+                        }else{
+                            header("Location: ".BASE_URL ."admin");
+                        }
 
                     }else{
                         // Đăng nhập không thành công, gửi thông báo lỗi

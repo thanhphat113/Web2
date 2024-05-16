@@ -28,6 +28,11 @@ class ChitietSanphamModel extends connectiondb{
             return null; // or handle the case where no product is found
         }
     }
+
+    public function getCTSPByMaCT($MaCT){
+        $query = "SELECT * FROM chitiet_sp where MaCT = '$MaCT'";
+        return mysqli_query($this->conn, $query);
+    }
 }
 
 ?>
