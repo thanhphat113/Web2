@@ -27,7 +27,45 @@
 			$this->nhanvienModel=$this->model("M_nhanvien");
 		}
 
+		function deleteHD() {
+			if ($_SERVER["REQUEST_METHOD"] == "POST") {
+				// Lấy nội dung của request body
+				$request_body = file_get_contents('php://input');
+				// Parse JSON để lấy dữ liệu
+				$data = json_decode($request_body, true);
+				
+				if (json_last_error() === JSON_ERROR_NONE && isset($data["selected"])) {
+					$selectedValue = $data["selected"];
+	
+					// Giả sử bạn có phương thức để lấy danh sách màu sắc
+					$value = $this->hoadonModel->delete($selectedValue);
+					if ($ch_list == null) echo json_encode($responseData);
+					else{
+						foreach ($ch_list as $ch) {
+	
+							array_push($responseData, $ch_option);
+						}
 		
+						// Đặt header để chỉ ra rằng đây là một response JSON
+						header('Content-Type: application/json');
+						echo json_encode(array("mess" => $value));
+						exit; // Dừng script PHP sau khi gửi kết quả JSON
+					}
+				} else {
+					// Trả về lỗi nếu JSON không hợp lệ hoặc thiếu dữ liệu
+					header('Content-Type: application/json');
+					echo json_encode(array("status" => "error", "message" => "Invalid JSON or missing data"));
+					exit;
+				}
+			} else {
+				// Trả về lỗi nếu không phải là phương thức POST
+				header('Content-Type: application/json');
+				echo json_encode(array("status" => "error", "message" => "Invalid request method"));
+				exit;
+			}
+		}
+		
+
 
 		function thongke() {
 			$donut = $this->khachhangModel->getDonutChart();
@@ -101,11 +139,23 @@
 		}
 
 		function hoadon() {
+			$mess= null;
 			$oop = $this->model("M_hoadon");
+			
+			if (isset($_POST["type"])) {
+				if(	$_POST["type"] == "update") {
+					$this->hoaDonModel->delete($this->hoaDonModel->updateTT($_POST["mahd"]));
+					$mess= "Cập nhật thành công";
+				}
+				if ( $_POST["type"] == "delete") {
+					$this->hoaDonModel->delete($this->hoaDonModel->delete($_POST["mahd"]));
+					$mess = "Xoá thành công";
+				}
+			}
 			$hoadon_list = $oop -> findAll();
-
 			$this->view('admin_page',$data = [
 				"Page" => 'hoadon',
+				"mess" => $mess,
 				"hoadon_list" => $hoadon_list]);
 		}
 

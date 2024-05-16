@@ -674,6 +674,32 @@ function xacnhanAdd(item) {
     }
 }
 
+
+document.getElementById("delete-hd").addEventListener("click", function() {
+    var tr = this.closest('tr')
+    var firstTd = tr.querySelector('td:first-child');
+    var data = {
+        selected: firstTd
+    };
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "./admin/deleteHD", true); // Không cần nối thêm selectedValue vào URL
+    xhr.setRequestHeader("Content-Type", "application/json");
+    document.write("âhhahaha")
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4) {
+            
+            if (xhr.status === 200) {
+                var responseData = JSON.parse(xhr.responseText);
+                thongbao(respoonseData["mess"])
+            } else {
+                document.write("Đã xảy ra lỗi khi gửi yêu cầu.");
+            }
+        }
+    };
+    xhr.send(JSON.stringify(data)); // Chuyển đổi data thành JSON trước khi gửi
+});
+
+
 document.getElementById("year-choise-chart").addEventListener("change", function() {
     var selectedValue = this.value;
     var data = {

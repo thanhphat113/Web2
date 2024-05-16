@@ -4,8 +4,13 @@
 	</div>
 	<div class="hoadon-content">
 		<input id="search-input" type="text" class="txtSearch" placeholder="Nhập thông tin tìm kiếm"/>
-		<button style="transition: all .75s ease;" class="btn-add" onclick="thongbao('hoá đơn')"> Thêm</button>
 		<div class="showList" >
+			<input id="year-choise-chart" type="hidden">
+			<input id="sanpham" type="hidden">
+			<input id="mau" type="hidden">
+			<input id="model-btn-add" type="hidden">
+
+
 			<table id="viewTable">
 				<thead>
 					<tr>
@@ -41,13 +46,17 @@
 										<td>'.$hd->getNgaytao() .'</td>
 										<td>'.number_format($hd->getTongtien(), 0, ',', '.').'</td>
 										<td style="color:'.$color.'">'.$trangthai.'</td>
+										
 										<td style="width:100px">
 											<button><i class="fas fa-info-circle action" style="color: #5d88a2;"></i></button>
 										</td>
-										<td style="width:200px">';
-										if ($hd->getTrangthai() == 0)	echo '<button><i class="far fa-check-circle action" style="color: #63E6BE"></i></button>';
-										echo	'<button><i class="fas fa-trash-alt action" style="color: #e13737;"></i></button>
+										<td style="width:200px">
+										<form action="./admin/hoadon" method="post">
+										<input type="hidden" name="mahd" value="'.$hd->getMahd().'">';
+										if ($hd->getTrangthai() == 0)	echo '<button type="submit" name="type" value="update"><i class="far fa-check-circle action" style="color: #63E6BE"></i></button>';
+										echo	'<button type="submit" name="type" value="delete" id="delete-hd"><i class="fas fa-trash-alt action" style="color: #e13737;"></i></button>
 										</td>
+										</form>
 									</tr>';
 								}
 					?>
